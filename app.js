@@ -6,6 +6,13 @@
 (function () {
 'use strict';
 
+/* ============================================================
+   YOUR WHATSAPP NUMBER — the only line you change to redirect
+   where the contact form sends messages.
+   Country code first, no +, no spaces, no dashes.
+   ============================================================ */
+var WHATSAPP = '393509549869';
+
 /* ---------- state ---------- */
 var lang = localStorage.getItem('sp_lang') || 'bn';
 var MONTHS = {
@@ -964,6 +971,7 @@ function contactBlock(){
     '<div class="field"><label for="ctM">'+esc(t('ctMsg'))+'</label><textarea id="ctM" rows="3"></textarea></div>'+
     '<label class="chk"><input type="checkbox" id="ctOk" required><span>'+esc(t('ctConsent'))+'</span></label>'+
     '<button class="btn" type="submit">'+esc(t('ctSend'))+'</button>'+
+    '<p style="margin:10px 0 0;font-size:.84rem;color:#9FBCAD;line-height:1.5">'+esc(t('ctWaHint'))+'</p>'+
     '<div id="ctDone" hidden></div>'+
     '</form></div>';
 }
@@ -1018,8 +1026,12 @@ function pageLegal(kind){
   var title = kind==='privacy' ? t('ftrPrivacy') : t('ftrDisclaimer');
   var body = kind==='privacy'
     ? (lang==='bn'
-      ? '<p>এই সাইট কোনো অ্যাকাউন্ট লাগে না, কোনো বিজ্ঞাপন দেখায় না, আর কোনো ট্র্যাকিং কুকি ব্যবহার করে না।</p><p>তুমি যদি যোগাযোগ ফর্ম পূরণ করো, তাহলে শুধু যে তথ্য তুমি নিজে লিখেছো সেটাই পাঠানো হয়, আর তা শুধু তোমার প্রশ্নের উত্তর দিতে ব্যবহার করা হয়। অন্য কাউকে দেওয়া হয় না, কোথাও বিক্রি করা হয় না।</p><p>পাসপোর্ট, ব্যাংক স্টেটমেন্ট বা সার্টিফিকেটের স্ক্যান এই সাইটের কোনো ফর্মে পাঠাবে না — ওগুলো ওয়েব ফর্মে নেওয়া হয় না।</p>'
-      : '<p>This site needs no account, shows no advertising, and sets no tracking cookies.</p><p>If you fill in the contact form, only what you type is sent, and it is used only to answer your question. It is not shared or sold.</p><p>Do not send scans of a passport, bank statement or certificate through any form on this site — those are never collected through a web form.</p>')
+      ? '<p>এই ওয়েবসাইটে কোনো অ্যাকাউন্ট লাগে না, কোনো বিজ্ঞাপন দেখানো হয় না, আর কোনো ট্র্যাকিং কুকি ব্যবহার করা হয় না।</p>'+
+        '<p>যোগাযোগ ফর্মটি কোনো তথ্য এই সাইটে জমা রাখে না। আপনি যা লেখেন তা দিয়ে একটি WhatsApp বার্তা তৈরি হয়, আর সেটি পাঠানো হবে কি না তা আপনার সিদ্ধান্ত। বার্তাটি সরাসরি আপনার WhatsApp থেকে পরামর্শদাতার WhatsApp-এ যায়। মাঝখানে কোনো তৃতীয় পক্ষের সার্ভারে আপনার তথ্য সংরক্ষিত হয় না।</p>'+
+        '<p>পাসপোর্ট, ব্যাংক স্টেটমেন্ট বা সার্টিফিকেটের স্ক্যান এই সাইটের কোনো ফর্মে পাঠাবেন না। সেগুলো ওয়েব ফর্মে কখনো নেওয়া হয় না।</p>'
+      : '<p>This site needs no account, shows no advertising, and sets no tracking cookies.</p>'+
+        '<p>The contact form stores nothing on this site. What you type is used to compose a WhatsApp message, and whether to send it is your decision. The message goes directly from your WhatsApp to the adviser\'s. No third-party server holds your details in between.</p>'+
+        '<p>Do not send scans of a passport, bank statement or certificate through any form on this site — those are never collected through a web form.</p>')
     : (lang==='bn'
       ? '<p>'+esc(t('ftrDisc'))+'</p><p>'+esc(t('fraudBody'))+'</p>'
       : '<p>'+esc(t('ftrDisc'))+'</p><p>'+esc(t('fraudBody'))+'</p>');
@@ -1192,16 +1204,43 @@ function wire(root){
   /* any region accordions already on the page */
   bindGroups();
 
-  /* contact */
+  /* contact — builds a WhatsApp message and opens it */
   on('ctForm','submit', function(e){
     e.preventDefault();
+    var g = function(id){ var el = document.getElementById(id); return el ? el.value.trim() : ''; };
     var d = document.getElementById('ctDone');
+    var name = g('ctN'), phone = g('ctP'), country = g('ctC'), msg = g('ctM');
+
+    if (!name || !phone || !msg){
+      if (d){
+        d.hidden = false;
+        d.className = 'note alert';
+        d.style.marginTop = '14px';
+        d.innerHTML = '<p style="margin:0">'+esc(t('ctFill'))+'</p>';
+      }
+      return;
+    }
+
+    var lines = [
+      t('siteName') + ' — ' + t('navContact'),
+      '',
+      t('ctName') + ': ' + name,
+      t('ctPhone') + ': ' + phone
+    ];
+    if (country) lines.push(t('ctCountry') + ': ' + country);
+    lines.push('', t('ctMsg') + ': ' + msg);
+
+    var url = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(lines.join('\n'));
+    window.open(url, '_blank', 'noopener');
+
     if (d){
       d.hidden = false;
       d.className = 'note good';
       d.style.marginTop = '14px';
-      d.innerHTML = '<p><strong>'+esc(t('ctDone'))+'</strong></p><p style="font-size:.9rem">'+esc(t('ctDoneBody'))+'</p>';
-      d.scrollIntoView({block:'nearest', behavior:'smooth'});
+      d.innerHTML = '<p><strong>'+esc(t('ctOpening'))+'</strong></p>'+
+        '<p style="font-size:.9rem;margin-bottom:0">'+esc(t('ctOpeningBody'))+' '+
+        '<a href="'+url+'" target="_blank" rel="noopener" style="font-weight:600">+'+esc(WHATSAPP)+'</a></p>';
+      d.scrollIntoView({ block:'nearest', behavior:'smooth' });
     }
   });
 }

@@ -55,7 +55,7 @@ italy: W(['resto','delivery','retail','tutor','hotel'], [6, 9], 'needed', 'partl
 }),
 germany: W(['warehouse','resto','retail','campus','delivery','it'], [12, 14], 'needed', 'yes', {
   en: 'The best student wages in continental Europe, and campus jobs (HiWi) pay well and look good on a CV. But the limit is 120 full days or 240 half days a year — not 20 hours every week forever. Plan around that number.',
-  bn: 'মহাদেশীয় ইউরোপে স্টুডেন্টদের সবচেয়ে ভালো মজুরি, আর ক্যাম্পাসের কাজ (HiWi) ভালো বেতন দেয় ও CV-তে ভালো দেখায়। তবে সীমা বছরে ১২০ পূর্ণ দিন বা ২৪০ অর্ধ দিন — সারা বছর প্রতি সপ্তাহে ২০ ঘণ্টা না। এই সংখ্যাটা মাথায় রেখে পরিকল্পনা করো।'
+  bn: 'মহাদেশীয় ইউরোপে শিক্ষার্থীদের সবচেয়ে ভালো মজুরি, আর ক্যাম্পাসের কাজ (HiWi) ভালো বেতন দেয় ও CV-তে ভালো দেখায়। তবে সীমা বছরে ১২০ পূর্ণ দিন বা ২৪০ অর্ধ দিন — সারা বছর প্রতি সপ্তাহে ২০ ঘণ্টা না। এই সংখ্যাটি মাথায় রেখে পরিকল্পনা করুন।'
 }),
 poland: W(['call','resto','delivery','warehouse','it'], [5, 7], 'basic', 'partly', {
   en: 'Warsaw and Kraków have large English-speaking shared-service and call-centre sectors that genuinely hire students. This is one of the better low-cost countries for finding work.',
@@ -69,7 +69,7 @@ netherlands: W(['resto','retail','warehouse','delivery','campus'], [11, 14], 'ba
 }),
 france: W(['resto','retail','tutor','campus','delivery'], [11, 13], 'needed', 'partly', {
   en: 'Housing aid (CAF) often does more for your budget than a part-time job does. Apply for it as soon as you have an address.',
-  bn: 'পার্ট-টাইম কাজের চেয়ে বাসস্থান সহায়তা (CAF) প্রায়ই বাজেটে বেশি কাজে আসে। ঠিকানা পাওয়ার সাথে সাথেই আবেদন করো।'
+  bn: 'পার্ট-টাইম কাজের চেয়ে বাসস্থান সহায়তা (CAF) প্রায়ই বাজেটে বেশি কাজে আসে। ঠিকানা পাওয়ার সঙ্গে সঙ্গেই আবেদন করুন।'
 }),
 spain: W(['resto','hotel','tutor','teaching','retail'], [7, 10], 'needed', 'partly', {
   en: 'Thirty legal hours a week is generous, and teaching English pays better than hospitality. Tourist-season work on the coast is the easiest to find.',
@@ -81,12 +81,12 @@ portugal: W(['resto','hotel','call','delivery','retail'], [5, 7], 'basic', 'part
 }),
 sweden: W(['resto','retail','cleaning','campus','delivery'], [13, 17], 'basic', 'partly', {
   en: 'No legal cap on hours, but the job market is small and competitive, and most employers want Swedish. Do not count on finding work quickly.',
-  bn: 'ঘণ্টার আইনি সীমা নেই, কিন্তু চাকরির বাজার ছোট ও প্রতিযোগিতামূলক, আর বেশিরভাগ নিয়োগকর্তা সুইডিশ চায়। দ্রুত কাজ পাওয়ার উপর ভরসা করো না।'
+  bn: 'ঘণ্টার আইনি সীমা নেই, কিন্তু চাকরির বাজার ছোট ও প্রতিযোগিতামূলক, আর বেশিরভাগ নিয়োগকর্তা সুইডিশ চায়। দ্রুত কাজ পাওয়ার ওপর ভরসা করবেন না।'
 }),
 finland: W(['cleaning','resto','warehouse','campus','delivery'], [11, 14], 'basic', 'partly', null),
 denmark: W(['resto','cleaning','retail','delivery','warehouse'], [15, 20], 'basic', 'yes', {
   en: 'Among the highest student wages anywhere, which you will need — Copenhagen is expensive. Getting a CPR number early is what unlocks legal work.',
-  bn: 'যেকোনো জায়গার তুলনায় স্টুডেন্টদের সবচেয়ে বেশি মজুরিগুলোর একটি, আর দরকারও হবে — কোপেনহেগেন ব্যয়বহুল। দ্রুত CPR নম্বর পাওয়াই বৈধ কাজের দরজা খোলে।'
+  bn: 'যেকোনো জায়গার তুলনায় শিক্ষার্থীদের সবচেয়ে বেশি মজুরিগুলোর একটি, আর দরকারও হবে — কোপেনহেগেন ব্যয়বহুল। দ্রুত CPR নম্বর পাওয়াই বৈধ কাজের দরজা খোলে।'
 }),
 ireland: W(['resto','retail','hotel','care','security'], [12, 14], 'none', 'partly', {
   en: 'English-speaking, so work is easier to find than in most of Europe. Dublin rent will still swallow most of what you earn.',
@@ -129,7 +129,7 @@ malta: W(['hotel','resto','call','it','retail'], [5, 8], 'none', 'partly', {
 /* ---------- MAJOR ENGLISH-SPEAKING ---------- */
 usa: W(['campus','tutor','it','resto'], [10, 16], 'none', 'partly', {
   en: 'In the first year you may only work ON campus — library, dining hall, labs, teaching assistance. Off-campus work without authorisation ends your status and your degree. This is the rule students break most often and pay most dearly for.',
-  bn: 'প্রথম বছরে শুধু ক্যাম্পাসের ভেতরেই কাজ করা যায় — লাইব্রেরি, ডাইনিং হল, ল্যাব, শিক্ষকের সহকারী। অনুমতি ছাড়া বাইরে কাজ করলে স্ট্যাটাস আর ডিগ্রি দুটোই শেষ। স্টুডেন্টরা এই নিয়মটাই সবচেয়ে বেশি ভাঙে, আর তার মূল্যও সবচেয়ে বেশি দেয়।'
+  bn: 'প্রথম বছরে শুধু ক্যাম্পাসের ভেতরেই কাজ করা যায় — লাইব্রেরি, ডাইনিং হল, ল্যাব, শিক্ষকের সহকারী। অনুমতি ছাড়া বাইরে কাজ করলে স্ট্যাটাস আর ডিগ্রি দুটোই শেষ। শিক্ষার্থীরা এই নিয়মটাই সবচেয়ে বেশি ভাঙে, আর তার মূল্যও সবচেয়ে বেশি দেয়।'
 }),
 uk: W(['resto','retail','warehouse','care','security','campus'], [11, 12], 'none', 'partly', {
   en: 'Twenty hours a week in term time is checked, and employers report it. Care work pays better than retail and is always hiring. London rent will still outrun your wages.',
@@ -141,17 +141,17 @@ canada: W(['resto','retail','warehouse','campus','delivery','care'], [15, 18], '
 }),
 australia: W(['resto','retail','cleaning','care','farm','delivery'], [24, 30], 'none', 'yes', {
   en: 'The highest student wages of any destination here, and 48 hours a fortnight is enough to genuinely cover living costs. This is the one country where the "work and study" promise is mostly true.',
-  bn: 'এখানের সব গন্তব্যের মধ্যে স্টুডেন্টদের সবচেয়ে বেশি মজুরি, আর পনেরো দিনে ৪৮ ঘণ্টা দিয়ে সত্যিই জীবনযাত্রার খরচ ওঠে। "কাজ করে পড়াশোনা" প্রতিশ্রুতিটা একমাত্র এই দেশেই মোটামুটি সত্যি।'
+  bn: 'এখানের সব গন্তব্যের মধ্যে শিক্ষার্থীদের সবচেয়ে বেশি মজুরি, আর পনেরো দিনে ৪৮ ঘণ্টা দিয়ে সত্যিই জীবনযাত্রার খরচ ওঠে। "কাজ করে পড়াশোনা" প্রতিশ্রুতিটা একমাত্র এই দেশেই মোটামুটি সত্যি।'
 }),
 
 /* ---------- ASIA ---------- */
 malaysia: W(['resto','retail','hotel','tutor','it'], [2, 4], 'none', 'partly', {
   en: 'Work is limited to 20 hours a week and only during semester breaks or holidays at many institutions. English is enough, but the pay is low — treat it as pocket money, not as funding.',
-  bn: 'কাজ সপ্তাহে ২০ ঘণ্টায় সীমিত, আর অনেক প্রতিষ্ঠানে শুধু সেমিস্টার বিরতি বা ছুটিতে। ইংরেজিই যথেষ্ট, তবে বেতন কম — এটাকে হাতখরচ ধরো, পড়ার খরচের উৎস না।'
+  bn: 'কাজ সপ্তাহে ২০ ঘণ্টায় সীমিত, আর অনেক প্রতিষ্ঠানে শুধু সেমিস্টার বিরতি বা ছুটিতে। ইংরেজিই যথেষ্ট, তবে বেতন কম — এটিকে হাতখরচ হিসেবে ধরুন, পড়ার খরচের উৎস হিসেবে নয়।'
 }),
 china: W([], [0, 0], 'needed', 'no', {
   en: 'Students generally cannot work. Some universities allow on-campus or internship work with written permission, but you cannot plan on it. Your full budget must be in place before you fly.',
-  bn: 'স্টুডেন্টরা সাধারণত কাজ করতে পারে না। কিছু বিশ্ববিদ্যালয় লিখিত অনুমতি নিয়ে ক্যাম্পাসে বা ইন্টার্নশিপে কাজ করতে দেয়, কিন্তু এর উপর পরিকল্পনা করা যায় না। প্লেনে ওঠার আগেই পুরো বাজেট হাতে থাকতে হবে।'
+  bn: 'শিক্ষার্থীরা সাধারণত কাজ করতে পারে না। কিছু বিশ্ববিদ্যালয় লিখিত অনুমতি নিয়ে ক্যাম্পাসে বা ইন্টার্নশিপে কাজ করতে দেয়, কিন্তু এর উপর পরিকল্পনা করা যায় না। প্লেনে ওঠার আগেই পুরো বাজেট হাতে থাকতে হবে।'
 }),
 japan: W(['resto','retail','teaching','warehouse','cleaning'], [7, 10], 'needed', 'partly', {
   en: 'Twenty-eight hours a week is the most generous limit in Asia, but you need a separate work permission stamp first, and most jobs need conversational Japanese. Teaching English is the exception.',
@@ -163,17 +163,17 @@ japan: W(['resto','retail','teaching','warehouse','cleaning'], [7, 10], 'needed'
 }),
 turkey: W(['resto','teaching','hotel','retail','tutor'], [2, 4], 'needed', 'partly', {
   en: 'Bachelor\'s students generally cannot work in the first year. Teaching English pays far better than local wages.',
-  bn: 'ব্যাচেলরের স্টুডেন্টরা সাধারণত প্রথম বছরে কাজ করতে পারে না। ইংরেজি শেখানোর কাজে স্থানীয় মজুরির চেয়ে অনেক বেশি আয় হয়।'
+  bn: 'ব্যাচেলরের শিক্ষার্থীরা সাধারণত প্রথম বছরে কাজ করতে পারে না। ইংরেজি শেখানোর কাজে স্থানীয় মজুরির চেয়ে অনেক বেশি আয় হয়।'
 }),
 uae: W([], [0, 0], 'none', 'no', {
   en: 'Student visas generally do not carry work rights, and working without a permit is taken seriously here. Budget for the full cost.',
-  bn: 'স্টুডেন্ট ভিসায় সাধারণত কাজের অধিকার থাকে না, আর অনুমতি ছাড়া কাজ করাকে এখানে খুব গুরুত্বের সাথে দেখা হয়। পুরো খরচের বাজেট রাখো।'
+  bn: 'স্টুডেন্ট ভিসায় সাধারণত কাজের অধিকার থাকে না, আর অনুমতি ছাড়া কাজ করাকে এখানে খুব গুরুত্বের সঙ্গে দেখা হয়। পুরো খরচের বাজেট হাতে রাখুন।'
 }),
 
 /* ---------- OTHER ---------- */
 'north-cyprus': W(['hotel','resto','retail','call','security'], [3, 5], 'none', 'partly', {
   en: 'English is enough and student work is common, but wages are low and often paid informally. Many students work in campus cafés and hotels.',
-  bn: 'ইংরেজিই যথেষ্ট আর স্টুডেন্টদের কাজ সাধারণ ব্যাপার, তবে মজুরি কম আর প্রায়ই অনানুষ্ঠানিকভাবে দেওয়া হয়। অনেক স্টুডেন্ট ক্যাম্পাসের ক্যাফে ও হোটেলে কাজ করে।'
+  bn: 'ইংরেজিই যথেষ্ট আর শিক্ষার্থীদের কাজ সাধারণ ব্যাপার, তবে মজুরি কম আর প্রায়ই অনানুষ্ঠানিকভাবে দেওয়া হয়। অনেক স্টুডেন্ট ক্যাম্পাসের ক্যাফে ও হোটেলে কাজ করে।'
 }),
 georgia: W(['resto','teaching','hotel','call','retail'], [2, 4], 'basic', 'partly', {
   en: 'Teaching English and call-centre work pay best. Local wages are low, but so is the cost of living.',

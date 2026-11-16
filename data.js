@@ -28,7 +28,7 @@ C('romania', 'Romania', 'রোমানিয়া', '🇷🇴', 'eu', {
   ieltsNote: { en: 'Many universities accept a Medium of Instruction (MOI) letter instead of IELTS. Confirm per university, and check whether the embassy wants a test.', bn: 'অনেক বিশ্ববিদ্যালয় IELTS-এর বদলে MOI চিঠি নেয়। প্রতিটি বিশ্ববিদ্যালয়ে আলাদা করে নিশ্চিত হও, আর দূতাবাস টেস্ট চায় কি না দেখে নাও।' },
   psw: { en: '9-month job-search stay after graduation', bn: 'পড়া শেষে ৯ মাস চাকরি খোঁজার সুযোগ' },
   bestFor: { en: 'Low tuition inside the EU with a realistic document load. The usual first choice when budget is the binding constraint.', bn: 'EU-র ভেতরে কম টিউশন, কাগজপত্রের চাপও বাস্তবসম্মত। বাজেট মূল সমস্যা হলে সাধারণত প্রথম পছন্দ।' },
-  caution: { en: 'Visa decisions are slow and refusal rates for Bangladeshi applicants have varied a lot by year. Budget extra time.', bn: 'ভিসা সিদ্ধান্ত ধীর, আর বাংলাদেশি আবেদনকারীদের রিফিউজাল হার বছরে বছরে অনেক বদলেছে। হাতে বেশি সময় রাখো।' },
+  caution: { en: 'Visa decisions are slow and refusal rates for Bangladeshi applicants have varied a lot by year. Budget extra time.', bn: 'ভিসা সিদ্ধান্ত ধীর, আর বাংলাদেশি আবেদনকারীদের রিফিউজাল হার বছরে বছরে অনেক বদলেছে। হাতে বেশি সময় রাখুন।' },
   intakes: [IN('September', 'সেপ্টেম্বর', 3, 7, 9), IN('February', 'ফেব্রুয়ারি', 10, 12, 2)]
 }),
 
@@ -50,7 +50,7 @@ C('germany', 'Germany', 'জার্মানি', '🇩🇪', 'eu', {
   ieltsNote: { en: 'English-taught programmes usually want IELTS/TOEFL; some accept MOI. German-taught programmes want TestDaF or DSH instead.', bn: 'ইংরেজি মাধ্যমের প্রোগ্রামে সাধারণত IELTS/TOEFL চায়, কিছু জায়গায় MOI চলে। জার্মান মাধ্যমে TestDaF বা DSH লাগে।' },
   psw: { en: '18-month post-study residence permit to find work', bn: 'পড়া শেষে ১৮ মাস চাকরি খোঁজার রেসিডেন্স পারমিট' },
   bestFor: { en: 'Public universities charge no tuition in most states — only a semester contribution. The strongest long-term value in Europe.', bn: 'বেশিরভাগ রাজ্যে পাবলিক বিশ্ববিদ্যালয়ে টিউশন নেই, শুধু সেমিস্টার ফি। ইউরোপে দীর্ঘমেয়াদে সবচেয়ে ভালো মূল্য।' },
-  caution: { en: 'The blocked account is the real barrier, not tuition, and the required amount is revised. Verify it before you promise a figure.', bn: 'আসল বাধা টিউশন না, ব্লকড অ্যাকাউন্ট — আর এর পরিমাণ বদলায়। কোনো সংখ্যা বলার আগে যাচাই করো।' },
+  caution: { en: 'The blocked account is the real barrier, not tuition, and the required amount is revised. Verify it before you promise a figure.', bn: 'আসল বাধা টিউশন নয়, ব্লকড অ্যাকাউন্ট — আর এর পরিমাণ বদলায়। কোনো সংখ্যা বলার আগে যাচাই করে নিন।' },
   intakes: [IN('Winter (Oct)', 'উইন্টার (অক্টো)', 4, 7, 10), IN('Summer (Apr)', 'সামার (এপ্রিল)', 10, 1, 4)]
 }),
 
@@ -60,7 +60,7 @@ C('poland', 'Poland', 'পোল্যান্ড', '🇵🇱', 'eu', {
   ieltsNote: { en: 'Many private universities accept MOI or an online interview. Public universities are stricter.', bn: 'অনেক প্রাইভেট বিশ্ববিদ্যালয় MOI বা অনলাইন ইন্টারভিউ নেয়। পাবলিকগুলো কঠোর।' },
   psw: { en: 'Job-search stay available via residence permit', bn: 'রেসিডেন্স পারমিটের মাধ্যমে চাকরি খোঁজার সুযোগ' },
   bestFor: { en: 'A large private-university market with rolling admissions, so a late applicant still has somewhere to go.', bn: 'বড় প্রাইভেট বিশ্ববিদ্যালয়ের বাজার, রোলিং ভর্তি — দেরি করে আবেদন করলেও জায়গা পাওয়া যায়।' },
-  caution: { en: 'Quality varies sharply between institutions. Check accreditation before you place a student.', bn: 'প্রতিষ্ঠান ভেদে মান অনেক আলাদা। স্টুডেন্ট পাঠানোর আগে অ্যাক্রেডিটেশন দেখে নাও।' },
+  caution: { en: 'Quality varies sharply between institutions. Check accreditation before you place a student.', bn: 'প্রতিষ্ঠান ভেদে মান অনেক আলাদা। শিক্ষার্থী পাঠানোর আগে অ্যাক্রেডিটেশন দেখে নাও।' },
   intakes: [IN('October', 'অক্টোবর', 3, 8, 10), IN('February', 'ফেব্রুয়ারি', 10, 1, 2)]
 }),
 
@@ -100,7 +100,7 @@ C('france', 'France', 'ফ্রান্স', '🇫🇷', 'eu', {
   embassyDhaka: true,
   ieltsNote: { en: 'English-taught programmes usually want a test; French-taught want DELF/DALF or TCF. Campus France runs the process.', bn: 'ইংরেজি মাধ্যমে সাধারণত টেস্ট চায়; ফরাসি মাধ্যমে DELF/DALF বা TCF। পুরো প্রক্রিয়া Campus France চালায়।' },
   psw: { en: '1-year job-search permit (APS) after a master\'s', bn: 'মাস্টার্সের পর ১ বছরের চাকরি খোঁজার পারমিট (APS)' },
-  bestFor: { en: 'Public tuition is state-subsidised even for non-EU students, and housing aid (CAF) cuts real living costs.', bn: 'নন-EU স্টুডেন্টদের জন্যও পাবলিক টিউশনে রাষ্ট্রীয় ভর্তুকি আছে, আর বাসস্থান সহায়তা (CAF) আসল খরচ কমায়।' },
+  bestFor: { en: 'Public tuition is state-subsidised even for non-EU students, and housing aid (CAF) cuts real living costs.', bn: 'নন-EU শিক্ষার্থীদের জন্যও পাবলিক টিউশনে রাষ্ট্রীয় ভর্তুকি আছে, আর বাসস্থান সহায়তা (CAF) আসল খরচ কমায়।' },
   caution: { en: 'The Campus France interview is a real filter. Weak study plans get refused there, not at the university.', bn: 'Campus France-এর ইন্টারভিউ আসল ছাঁকনি। দুর্বল স্টাডি প্ল্যান ওখানেই বাদ পড়ে, বিশ্ববিদ্যালয়ে না।' },
   intakes: [IN('September', 'সেপ্টেম্বর', 10, 4, 9), IN('January', 'জানুয়ারি', 6, 10, 1)]
 }),
@@ -110,7 +110,7 @@ C('spain', 'Spain', 'স্পেন', '🇪🇸', 'eu', {
   workHours: 30, visaWeeks: [4, 10], solvency: '€7,000–8,500',
   ieltsNote: { en: 'Varies widely. Spanish-taught degrees need DELE; English-taught programmes may accept MOI or an internal test.', bn: 'অনেক ভিন্নতা আছে। স্পেনীয় মাধ্যমে DELE লাগে; ইংরেজি মাধ্যমে MOI বা অভ্যন্তরীণ টেস্ট চলতে পারে।' },
   psw: { en: '1-year job-search permit', bn: '১ বছরের চাকরি খোঁজার পারমিট' },
-  bestFor: { en: 'Generous student work rights and a low cost of living outside Madrid and Barcelona.', bn: 'স্টুডেন্টদের কাজের অনুমতি উদার, আর মাদ্রিদ-বার্সেলোনার বাইরে জীবনযাত্রার খরচ কম।' },
+  bestFor: { en: 'Generous student work rights and a low cost of living outside Madrid and Barcelona.', bn: 'শিক্ষার্থীদের কাজের অনুমতি উদার, আর মাদ্রিদ-বার্সেলোনার বাইরে জীবনযাত্রার খরচ কম।' },
   caution: { en: 'Degree recognition (homologación) for onward study is slow. Explain this before a student commits.', bn: 'পরবর্তী পড়াশোনার জন্য ডিগ্রি স্বীকৃতি (homologación) ধীর। স্টুডেন্ট সিদ্ধান্ত নেওয়ার আগেই বুঝিয়ে দাও।' },
   intakes: [IN('September', 'সেপ্টেম্বর', 1, 6, 9), IN('February', 'ফেব্রুয়ারি', 9, 12, 2)]
 }),
@@ -130,7 +130,7 @@ C('sweden', 'Sweden', 'সুইডেন', '🇸🇪', 'eu', {
   workHours: 0, visaWeeks: [6, 14], solvency: 'Monthly minimum × study length (verify)',
   ieltsNote: { en: 'A recognised English test is normally required. Upper-secondary English from Bangladesh is rarely sufficient on its own.', bn: 'স্বীকৃত ইংরেজি টেস্ট সাধারণত লাগে। বাংলাদেশের উচ্চমাধ্যমিকের ইংরেজি একাই যথেষ্ট হয় না।' },
   psw: { en: '1-year job-search permit after graduation', bn: 'পড়া শেষে ১ বছরের চাকরি খোঁজার পারমিট' },
-  bestFor: { en: 'No formal cap on student working hours, strong research universities, and a single national application portal.', bn: 'স্টুডেন্টদের কাজের ঘণ্টায় আনুষ্ঠানিক সীমা নেই, গবেষণা বিশ্ববিদ্যালয় শক্তিশালী, আর আবেদন একটাই জাতীয় পোর্টালে।' },
+  bestFor: { en: 'No formal cap on student working hours, strong research universities, and a single national application portal.', bn: 'শিক্ষার্থীদের কাজের ঘণ্টায় আনুষ্ঠানিক সীমা নেই, গবেষণা বিশ্ববিদ্যালয় শক্তিশালী, আর আবেদন একটাই জাতীয় পোর্টালে।' },
   caution: { en: 'One national deadline in mid-January for the autumn intake. Miss it and the year is gone.', bn: 'শরৎ সেমিস্টারের জন্য জানুয়ারির মাঝামাঝি একটাই জাতীয় ডেডলাইন। মিস করলে বছর শেষ।' },
   intakes: [IN('August', 'আগস্ট', 10, 1, 8), IN('January', 'জানুয়ারি', 6, 8, 1)]
 }),
@@ -149,8 +149,8 @@ C('denmark', 'Denmark', 'ডেনমার্ক', '🇩🇰', 'eu', {
   ielts: 'required', tuition: [6000, 16000], cur: 'EUR', living: [850, 1200],
   workHours: 20, visaWeeks: [8, 16], solvency: 'Verify current monthly requirement',
   ieltsNote: { en: 'English B/English proficiency evidence is required and documented strictly.', bn: 'ইংরেজি দক্ষতার প্রমাণ বাধ্যতামূলক, আর কাগজপত্র কঠোরভাবে দেখা হয়।' },
-  psw: { en: 'Job-search stay available; verify current length', bn: 'চাকরি খোঁজার সুযোগ আছে; বর্তমান সময়সীমা যাচাই করো' },
-  bestFor: { en: 'Strong design, engineering and sustainability programmes with real industry links.', bn: 'ডিজাইন, ইঞ্জিনিয়ারিং ও সাসটেইনেবিলিটি প্রোগ্রাম শক্তিশালী, ইন্ডাস্ট্রির সাথে সত্যিকার যোগাযোগ।' },
+  psw: { en: 'Job-search stay available; verify current length', bn: 'চাকরি খোঁজার সুযোগ আছে; বর্তমান সময়সীমা যাচাই করে নিন' },
+  bestFor: { en: 'Strong design, engineering and sustainability programmes with real industry links.', bn: 'ডিজাইন, ইঞ্জিনিয়ারিং ও সাসটেইনেবিলিটি প্রোগ্রাম শক্তিশালী, ইন্ডাস্ট্রির সঙ্গে সত্যিকার যোগাযোগ।' },
   caution: { en: 'High living costs make part-time income essential, not optional.', bn: 'জীবনযাত্রার খরচ বেশি, তাই পার্ট-টাইম আয় ঐচ্ছিক না — বাধ্যতামূলক।' },
   intakes: [IN('September', 'সেপ্টেম্বর', 11, 3, 9), IN('February', 'ফেব্রুয়ারি', 8, 9, 2)]
 }),
@@ -170,8 +170,8 @@ C('austria', 'Austria', 'অস্ট্রিয়া', '🇦🇹', 'eu', {
   workHours: 20, visaWeeks: [8, 20], solvency: 'Verify current monthly requirement',
   ieltsNote: { en: 'German-taught degrees dominate and need German proficiency. English-taught master\'s usually want a test.', bn: 'জার্মান মাধ্যমের ডিগ্রি বেশি, জার্মান ভাষার দক্ষতা লাগে। ইংরেজি মাধ্যমের মাস্টার্সে সাধারণত টেস্ট চায়।' },
   psw: { en: '12-month residence permit to seek work', bn: 'চাকরি খোঁজার জন্য ১২ মাসের রেসিডেন্স পারমিট' },
-  bestFor: { en: 'Low public tuition for non-EU students compared with the rest of Western Europe.', bn: 'পশ্চিম ইউরোপের বাকি দেশের তুলনায় নন-EU স্টুডেন্টদের জন্য পাবলিক টিউশন কম।' },
-  caution: { en: 'Residence permit processing is among the slowest in the EU. Apply very early.', bn: 'EU-র মধ্যে রেসিডেন্স পারমিট প্রসেসিং সবচেয়ে ধীরগুলোর একটি। অনেক আগে আবেদন করো।' },
+  bestFor: { en: 'Low public tuition for non-EU students compared with the rest of Western Europe.', bn: 'পশ্চিম ইউরোপের বাকি দেশের তুলনায় নন-EU শিক্ষার্থীদের জন্য পাবলিক টিউশন কম।' },
+  caution: { en: 'Residence permit processing is among the slowest in the EU. Apply very early.', bn: 'EU-র মধ্যে রেসিডেন্স পারমিট প্রসেসিং সবচেয়ে ধীরগুলোর একটি। অনেক আগে আবেদন করুন।' },
   intakes: [IN('October', 'অক্টোবর', 3, 7, 10), IN('March', 'মার্চ', 10, 1, 3)]
 }),
 
@@ -181,7 +181,7 @@ C('belgium', 'Belgium', 'বেলজিয়াম', '🇧🇪', 'eu', {
   ieltsNote: { en: 'Requirements differ between the Flemish and French communities. Check which region the university sits in.', bn: 'ফ্লেমিশ ও ফরাসি অঞ্চলে শর্ত আলাদা। বিশ্ববিদ্যালয় কোন অঞ্চলে, দেখে নাও।' },
   psw: { en: '12-month search year', bn: '১২ মাসের সার্চ ইয়ার' },
   bestFor: { en: 'Brussels puts students next to EU institutions — a genuine advantage for law and policy careers.', bn: 'ব্রাসেলসে থাকলে EU প্রতিষ্ঠানগুলোর পাশে থাকা যায় — আইন ও নীতি-বিষয়ক কেরিয়ারে সত্যিকার সুবিধা।' },
-  caution: { en: 'Two separate administrative systems means two sets of rules. Do not generalise across the country.', bn: 'দুইটা আলাদা প্রশাসনিক ব্যবস্থা মানে দুই রকম নিয়ম। পুরো দেশের জন্য এক নিয়ম ধরে নিও না।' },
+  caution: { en: 'Two separate administrative systems means two sets of rules. Do not generalise across the country.', bn: 'দুটি আলাদা প্রশাসনিক ব্যবস্থা মানে দুই রকম নিয়ম। পুরো দেশের জন্য এক নিয়ম ধরে নেবেন না।' },
   intakes: [IN('September', 'সেপ্টেম্বর', 11, 4, 9), IN('February', 'ফেব্রুয়ারি', 9, 11, 2)]
 }),
 
@@ -241,7 +241,7 @@ C('croatia', 'Croatia', 'ক্রোয়েশিয়া', '🇭🇷', 'eu'
   ieltsNote: { en: 'Institutional assessment is common for English-taught programmes.', bn: 'ইংরেজি মাধ্যমের প্রোগ্রামে প্রতিষ্ঠানের নিজের মূল্যায়ন সাধারণ।' },
   psw: { en: 'Job-search stay via residence permit', bn: 'রেসিডেন্স পারমিটে চাকরি খোঁজার সুযোগ' },
   bestFor: { en: 'Tourism and hospitality programmes with genuine paid-placement seasons.', bn: 'ট্যুরিজম ও হসপিটালিটি প্রোগ্রাম, সত্যিকারের বেতনসহ প্লেসমেন্ট সিজন আছে।' },
-  caution: { en: 'Joined Schengen recently; procedures are still settling. Verify everything.', bn: 'সম্প্রতি শেনজেনে যোগ দিয়েছে; নিয়মকানুন এখনো থিতু হচ্ছে। সব যাচাই করো।' },
+  caution: { en: 'Joined Schengen recently; procedures are still settling. Verify everything.', bn: 'সম্প্রতি শেনজেনে যোগ দিয়েছে; নিয়মকানুন এখনো থিতু হচ্ছে। সবকিছু যাচাই করে নিন।' },
   intakes: [IN('October', 'অক্টোবর', 3, 7, 10), IN('March', 'মার্চ', 10, 1, 3)]
 }),
 
@@ -259,7 +259,7 @@ C('cyprus', 'Cyprus', 'সাইপ্রাস', '🇨🇾', 'eu', {
   ielts: 'flexible', tuition: [3500, 9000], cur: 'EUR', living: [500, 750],
   workHours: 20, visaWeeks: [4, 10], solvency: '€6,000–7,500',
   ieltsNote: { en: 'Most private universities accept MOI or run their own placement test.', bn: 'বেশিরভাগ প্রাইভেট বিশ্ববিদ্যালয় MOI নেয় বা নিজেদের প্লেসমেন্ট টেস্ট নেয়।' },
-  psw: { en: 'Limited; verify current rules', bn: 'সীমিত; বর্তমান নিয়ম যাচাই করো' },
+  psw: { en: 'Limited; verify current rules', bn: 'সীমিত; বর্তমান নিয়ম যাচাই করে নিন' },
   bestFor: { en: 'English-taught, EU degree, warm climate, and relatively relaxed admission.', bn: 'ইংরেজি মাধ্যম, EU ডিগ্রি, উষ্ণ আবহাওয়া, আর ভর্তি তুলনামূলক সহজ।' },
   caution: { en: 'Post-study work rights are weak. Not a migration route — sell it as an education route only.', bn: 'পড়া শেষে কাজের অধিকার দুর্বল। এটা মাইগ্রেশনের পথ না — শুধু শিক্ষার পথ হিসেবেই বলো।' },
   intakes: [IN('September', 'সেপ্টেম্বর', 2, 7, 9), IN('February', 'ফেব্রুয়ারি', 10, 12, 2)]
@@ -279,7 +279,7 @@ C('malta', 'Malta', 'মাল্টা', '🇲🇹', 'eu', {
   ielts: 'flexible', tuition: [5000, 13000], cur: 'EUR', living: [600, 900],
   workHours: 20, visaWeeks: [6, 14], solvency: '€7,000–8,500',
   ieltsNote: { en: 'English is an official language; MOI is usually straightforward to use here.', bn: 'ইংরেজি সরকারি ভাষা; এখানে MOI সাধারণত সহজেই চলে।' },
-  psw: { en: 'Limited; verify current rules', bn: 'সীমিত; বর্তমান নিয়ম যাচাই করো' },
+  psw: { en: 'Limited; verify current rules', bn: 'সীমিত; বর্তমান নিয়ম যাচাই করে নিন' },
   bestFor: { en: 'English-speaking EU country with gaming, finance and maritime niches.', bn: 'ইংরেজিভাষী EU দেশ, গেমিং-ফাইন্যান্স-মেরিটাইম সেক্টরে বিশেষত্ব।' },
   caution: { en: 'Tiny island economy; housing is expensive and seasonal.', bn: 'ছোট দ্বীপ অর্থনীতি; বাসস্থান দামি ও মৌসুমি।' },
   intakes: [IN('September', 'সেপ্টেম্বর', 2, 6, 9), IN('February', 'ফেব্রুয়ারি', 9, 12, 2)]
@@ -301,8 +301,8 @@ C('uk', 'UK', 'যুক্তরাজ্য', '🇬🇧', 'uk', {
   ielts: 'flexible', tuition: [11000, 30000], cur: 'GBP', living: [800, 1400],
   workHours: 20, visaWeeks: [3, 8], solvency: '£1,023–1,334/month × 9 (verify)', volatility: 'high',
   embassyDhaka: true,
-  ieltsNote: { en: 'Some universities accept MOI or their own test, but UKVI may still require an approved SELT. Check both layers separately.', bn: 'কিছু বিশ্ববিদ্যালয় MOI বা নিজের টেস্ট নেয়, কিন্তু UKVI তখনও অনুমোদিত SELT চাইতে পারে। দুইটা স্তর আলাদা করে দেখো।' },
-  psw: { en: 'Graduate Route — 2 years (3 for PhD); verify current terms', bn: 'গ্র্যাজুয়েট রুট — ২ বছর (পিএইচডিতে ৩); বর্তমান শর্ত যাচাই করো' },
+  ieltsNote: { en: 'Some universities accept MOI or their own test, but UKVI may still require an approved SELT. Check both layers separately.', bn: 'কিছু বিশ্ববিদ্যালয় MOI বা নিজের টেস্ট নেয়, কিন্তু UKVI তখনও অনুমোদিত SELT চাইতে পারে। দুটি স্তর আলাদাভাবে দেখে নিন।' },
+  psw: { en: 'Graduate Route — 2 years (3 for PhD); verify current terms', bn: 'গ্র্যাজুয়েট রুট — ২ বছর (পিএইচডিতে ৩); বর্তমান শর্ত যাচাই করে নিন' },
   bestFor: { en: 'One-year master\'s degrees mean one year of cost instead of two, plus a 2-year work route after.', bn: 'এক বছরের মাস্টার্স মানে দুই বছরের বদলে এক বছরের খরচ, সাথে পরে ২ বছরের কাজের সুযোগ।' },
   caution: { en: 'Dependant and maintenance rules have changed repeatedly. Never quote last year\'s figures.', bn: 'ডিপেনডেন্ট ও মেইনটেন্যান্সের নিয়ম বারবার বদলেছে। গত বছরের সংখ্যা কখনো বলো না।' },
   intakes: [IN('September', 'সেপ্টেম্বর', 10, 6, 9), IN('January', 'জানুয়ারি', 6, 10, 1)]
@@ -312,10 +312,10 @@ C('canada', 'Canada', 'কানাডা', '🇨🇦', 'na', {
   ielts: 'required', tuition: [15000, 38000], cur: 'CAD', living: [900, 1600],
   workHours: 24, visaWeeks: [8, 20], solvency: 'Verify current GIC / proof-of-funds amount', volatility: 'high',
   embassyDhaka: true,
-  ieltsNote: { en: 'Treat a recognised English test as required. Study-permit rules and streams have changed repeatedly — confirm the current policy every intake.', bn: 'স্বীকৃত ইংরেজি টেস্ট বাধ্যতামূলক ধরে নাও। স্টাডি পারমিটের নিয়ম ও স্ট্রিম বারবার বদলেছে — প্রতি ইনটেকে বর্তমান নীতি নিশ্চিত করো।' },
-  psw: { en: 'PGWP — length tied to programme and field; verify eligibility', bn: 'PGWP — সময়কাল প্রোগ্রাম ও বিষয়ের উপর নির্ভর করে; যোগ্যতা যাচাই করো' },
+  ieltsNote: { en: 'Treat a recognised English test as required. Study-permit rules and streams have changed repeatedly — confirm the current policy every intake.', bn: 'স্বীকৃত ইংরেজি টেস্ট আবশ্যক ধরে নিন। স্টাডি পারমিটের নিয়ম ও স্ট্রিম বারবার বদলেছে — প্রতি ইনটেকে বর্তমান নীতি নিশ্চিত করুন।' },
+  psw: { en: 'PGWP — length tied to programme and field; verify eligibility', bn: 'PGWP — সময়কাল প্রোগ্রাম ও বিষয়ের ওপর নির্ভর করে; যোগ্যতা যাচাই করে নিন' },
   bestFor: { en: 'Still the clearest study-to-residency pathway if the student picks an eligible programme.', bn: 'যোগ্য প্রোগ্রাম বাছলে পড়াশোনা থেকে রেসিডেন্সির সবচেয়ে পরিষ্কার পথ এখনো এটাই।' },
-  caution: { en: 'HIGHEST-CHANGE DESTINATION. Caps, PGWP field eligibility and financial requirements have all moved recently. Re-verify before every quote.', bn: 'সবচেয়ে দ্রুত বদলায় এই গন্তব্য। ক্যাপ, PGWP-র বিষয়ভিত্তিক যোগ্যতা আর আর্থিক শর্ত — সবই সাম্প্রতিককালে বদলেছে। প্রতিবার বলার আগে যাচাই করো।' },
+  caution: { en: 'HIGHEST-CHANGE DESTINATION. Caps, PGWP field eligibility and financial requirements have all moved recently. Re-verify before every quote.', bn: 'সবচেয়ে দ্রুত বদলায় এই গন্তব্য। ক্যাপ, PGWP-র বিষয়ভিত্তিক যোগ্যতা আর আর্থিক শর্ত — সবই সাম্প্রতিককালে বদলেছে। প্রতিবার বলার আগে যাচাই করে নিন।' },
   intakes: [IN('Fall (Sep)', 'ফল (সেপ্টে)', 10, 3, 9), IN('Winter (Jan)', 'উইন্টার (জানু)', 3, 8, 1), IN('Summer (May)', 'সামার (মে)', 8, 12, 5)]
 }),
 
@@ -323,7 +323,7 @@ C('australia', 'Australia', 'অস্ট্রেলিয়া', '🇦🇺', 
   ielts: 'required', tuition: [20000, 48000], cur: 'AUD', living: [1500, 2300],
   workHours: 24, visaWeeks: [4, 16], solvency: 'Verify current savings requirement', volatility: 'high',
   ieltsNote: { en: 'A recognised test is effectively required and minimum scores apply at both university and visa stage.', bn: 'স্বীকৃত টেস্ট কার্যত বাধ্যতামূলক, আর বিশ্ববিদ্যালয় ও ভিসা — দুই জায়গাতেই ন্যূনতম স্কোর লাগে।' },
-  psw: { en: 'Temporary Graduate visa; length varies by qualification', bn: 'টেম্পোরারি গ্র্যাজুয়েট ভিসা; সময়কাল যোগ্যতার উপর নির্ভর করে' },
+  psw: { en: 'Temporary Graduate visa; length varies by qualification', bn: 'টেম্পোরারি গ্র্যাজুয়েট ভিসা; সময়কাল যোগ্যতার ওপর নির্ভর করে' },
   bestFor: { en: 'High minimum wage means part-time work genuinely covers living costs — rare among destinations.', bn: 'ন্যূনতম মজুরি বেশি, তাই পার্ট-টাইম কাজে সত্যিই জীবনযাত্রার খরচ উঠে যায় — অন্য গন্তব্যে এটা বিরল।' },
   caution: { en: 'The Genuine Student requirement scrutinises intent hard. Weak or copied statements get refused.', bn: 'Genuine Student শর্তে উদ্দেশ্য কঠোরভাবে যাচাই হয়। দুর্বল বা কপি করা স্টেটমেন্ট রিফিউজ হয়।' },
   intakes: [IN('February', 'ফেব্রুয়ারি', 8, 11, 2), IN('July', 'জুলাই', 1, 4, 7)]
@@ -348,7 +348,7 @@ C('china', 'China', 'চীন', '🇨🇳', 'as', {
   ieltsNote: { en: 'English-taught programmes generally do not require IELTS. Chinese-taught degrees need HSK 4–5.', bn: 'ইংরেজি মাধ্যমের প্রোগ্রামে সাধারণত IELTS লাগে না। চীনা মাধ্যমে HSK 4–5 লাগে।' },
   psw: { en: 'Very limited; work permits need an employer and experience', bn: 'খুবই সীমিত; ওয়ার্ক পারমিটে নিয়োগকর্তা ও অভিজ্ঞতা লাগে' },
   bestFor: { en: 'CSC and university scholarships regularly cover full tuition plus accommodation and a monthly stipend.', bn: 'CSC ও বিশ্ববিদ্যালয়ের স্কলারশিপে নিয়মিতভাবে পুরো টিউশন, থাকার জায়গা আর মাসিক ভাতা কভার হয়।' },
-  caution: { en: 'Students generally cannot work part-time. The budget must be fully covered before departure.', bn: 'স্টুডেন্টরা সাধারণত পার্ট-টাইম কাজ করতে পারে না। যাওয়ার আগেই পুরো বাজেট নিশ্চিত থাকতে হবে।' },
+  caution: { en: 'Students generally cannot work part-time. The budget must be fully covered before departure.', bn: 'শিক্ষার্থীরা সাধারণত পার্ট-টাইম কাজ করতে পারে না। যাওয়ার আগেই পুরো বাজেট নিশ্চিত থাকতে হবে।' },
   intakes: [IN('September', 'সেপ্টেম্বর', 1, 6, 9), IN('March', 'মার্চ', 9, 12, 3)]
 }),
 
@@ -367,7 +367,7 @@ C('south-korea', 'South Korea', 'দক্ষিণ কোরিয়া', '�
   workHours: 25, visaWeeks: [4, 10], solvency: 'USD 10,000–15,000',
   ieltsNote: { en: 'English-taught programmes often accept MOI or TOEFL; Korean-taught degrees need TOPIK level 3+.', bn: 'ইংরেজি মাধ্যমে প্রায়ই MOI বা TOEFL চলে; কোরিয়ান মাধ্যমে TOPIK লেভেল ৩+ লাগে।' },
   psw: { en: 'D-10 job-seeking visa after graduation', bn: 'পড়া শেষে D-10 চাকরি খোঁজার ভিসা' },
-  bestFor: { en: 'GKS scholarships are fully funded, and tuition discounts for international students are common.', bn: 'GKS স্কলারশিপ পুরোপুরি ফান্ডেড, আর আন্তর্জাতিক স্টুডেন্টদের টিউশন ছাড় সাধারণ ব্যাপার।' },
+  bestFor: { en: 'GKS scholarships are fully funded, and tuition discounts for international students are common.', bn: 'GKS স্কলারশিপ পুরোপুরি ফান্ডেড, আর আন্তর্জাতিক শিক্ষার্থীদের টিউশন ছাড় সাধারণ ব্যাপার।' },
   caution: { en: 'Proof-of-funds requirements are high relative to tuition and are checked carefully.', bn: 'টিউশনের তুলনায় ফান্ডের প্রমাণের শর্ত বেশি, আর তা মন দিয়ে দেখা হয়।' },
   intakes: [IN('March', 'মার্চ', 9, 11, 3), IN('September', 'সেপ্টেম্বর', 3, 5, 9)]
 }),
@@ -388,9 +388,9 @@ C('uae', 'UAE', 'সংযুক্ত আরব আমিরাত', '🇦🇪'
   workHours: 0, visaWeeks: [2, 6], solvency: 'Sponsored by the university',
   embassyDhaka: true,
   ieltsNote: { en: 'Branch campuses usually follow their home-country policy. Some accept MOI.', bn: 'ব্রাঞ্চ ক্যাম্পাসগুলো সাধারণত নিজ দেশের নীতি মানে। কিছু জায়গায় MOI চলে।' },
-  psw: { en: 'Graduate visa options exist; verify current rules', bn: 'গ্র্যাজুয়েট ভিসার সুযোগ আছে; বর্তমান নিয়ম যাচাই করো' },
+  psw: { en: 'Graduate visa options exist; verify current rules', bn: 'গ্র্যাজুয়েট ভিসার সুযোগ আছে; বর্তমান নিয়ম যাচাই করে নিন' },
   bestFor: { en: 'Western branch-campus degrees close to home, with fast visas and a large Bangladeshi community.', bn: 'দেশের কাছেই পশ্চিমা ব্রাঞ্চ ক্যাম্পাসের ডিগ্রি, দ্রুত ভিসা আর বড় বাংলাদেশি কমিউনিটি।' },
-  caution: { en: 'Tuition is high and part-time work for students is tightly restricted.', bn: 'টিউশন বেশি, আর স্টুডেন্টদের পার্ট-টাইম কাজ কঠোরভাবে সীমিত।' },
+  caution: { en: 'Tuition is high and part-time work for students is tightly restricted.', bn: 'টিউশন বেশি, আর শিক্ষার্থীদের পার্ট-টাইম কাজ কঠোরভাবে সীমিত।' },
   intakes: [IN('September', 'সেপ্টেম্বর', 3, 7, 9), IN('January', 'জানুয়ারি', 8, 11, 1)]
 }),
 
@@ -411,7 +411,7 @@ C('georgia', 'Georgia', 'জর্জিয়া', '🇬🇪', 'other', {
   ieltsNote: { en: 'IELTS is generally not required; an internal interview or test is used instead.', bn: 'সাধারণত IELTS লাগে না; বদলে অভ্যন্তরীণ ইন্টারভিউ বা টেস্ট হয়।' },
   psw: { en: 'None meaningful', bn: 'উল্লেখযোগ্য কিছু নেই' },
   bestFor: { en: 'Low-cost English-taught MBBS with a fast, simple admission process.', bn: 'কম খরচে ইংরেজি মাধ্যমে MBBS, ভর্তি প্রক্রিয়া দ্রুত ও সহজ।' },
-  caution: { en: 'For medicine, confirm BMDC recognition and licensing-exam eligibility first. This is the single most common mis-sell in the market.', bn: 'মেডিসিনের ক্ষেত্রে আগে BMDC স্বীকৃতি আর লাইসেন্সিং পরীক্ষার যোগ্যতা নিশ্চিত করো। বাজারে সবচেয়ে বেশি ভুল বোঝানো হয় এটাই।' },
+  caution: { en: 'For medicine, confirm BMDC recognition and licensing-exam eligibility first. This is the single most common mis-sell in the market.', bn: 'মেডিসিনের ক্ষেত্রে আগে BMDC স্বীকৃতি আর লাইসেন্সিং পরীক্ষার যোগ্যতা নিশ্চিত করুন। বাজারে সবচেয়ে বেশি ভুল বোঝানো হয় এটি নিয়েই।' },
   intakes: [IN('September', 'সেপ্টেম্বর', 3, 8, 9), IN('February', 'ফেব্রুয়ারি', 10, 1, 2)]
 }),
 
@@ -421,7 +421,7 @@ C('russia', 'Russia', 'রাশিয়া', '🇷🇺', 'other', {
   ieltsNote: { en: 'IELTS is generally not required. Russian-taught degrees include a preparatory language year.', bn: 'সাধারণত IELTS লাগে না। রুশ মাধ্যমে পড়লে এক বছরের ভাষা প্রস্তুতি কোর্স থাকে।' },
   psw: { en: 'Limited', bn: 'সীমিত' },
   bestFor: { en: 'Long-established medical and engineering programmes at low cost.', bn: 'দীর্ঘদিনের প্রতিষ্ঠিত মেডিকেল ও ইঞ্জিনিয়ারিং প্রোগ্রাম, খরচ কম।' },
-  caution: { en: 'Banking, payments and travel are complicated by sanctions. Verify how fees can actually be paid.', bn: 'নিষেধাজ্ঞার কারণে ব্যাংকিং, পেমেন্ট আর যাতায়াত জটিল। ফি আসলে কীভাবে দেওয়া যাবে, যাচাই করো।' },
+  caution: { en: 'Banking, payments and travel are complicated by sanctions. Verify how fees can actually be paid.', bn: 'নিষেধাজ্ঞার কারণে ব্যাংকিং, পেমেন্ট আর যাতায়াত জটিল। ফি আসলে কীভাবে পরিশোধ করা যাবে, তা যাচাই করে নিন।' },
   intakes: [IN('September', 'সেপ্টেম্বর', 2, 7, 9)]
 })
 ];

@@ -59,7 +59,7 @@ poland: M('pg', 'cond', 5, 'half', 10, true, {
 hungary: M('pg', 'cond', 5, 'half', 8, false, null),
 czechia: M('pg', 'cond', 5, 'half', 5, false, {
   en: 'Citizenship is counted from permanent residence, not from arrival. Plan on roughly ten years in total from the day you land as a student.',
-  bn: 'নাগরিকত্বের হিসাব স্থায়ী বসবাস থেকে শুরু, দেশে পৌঁছানোর দিন থেকে না। স্টুডেন্ট হিসেবে নামার দিন থেকে মোটামুটি দশ বছর ধরে রাখো।'
+  bn: 'নাগরিকত্বের হিসাব স্থায়ী বসবাস থেকে শুরু, দেশে পৌঁছানোর দিন থেকে না। স্টুডেন্ট হিসেবে নামার দিন থেকে মোটামুটি দশ বছর ধরে রাখুন।'
 }),
 
 netherlands: M('all', 'cond', 5, 'half', 5, false, {
@@ -95,14 +95,14 @@ denmark: M('pg', 'yes', 5, 'half', 9, false, {
 
 ireland: M('phd', 'cond', 5, 'none', 5, false, {
   en: 'Ireland generally does not admit dependants of students at all, and time on a student permission does not count towards residence for citizenship. Students regularly discover this after arriving.',
-  bn: 'আয়ারল্যান্ড সাধারণত স্টুডেন্টদের পরিবারকে একেবারেই ঢুকতে দেয় না, আর স্টুডেন্ট অনুমতিতে কাটানো সময় নাগরিকত্বের বসবাসের হিসাবে গোনে না। স্টুডেন্টরা প্রায়ই পৌঁছানোর পর এটা জানতে পারে।'
+  bn: 'আয়ারল্যান্ড সাধারণত শিক্ষার্থীদের পরিবারকে একেবারেই ঢুকতে দেয় না, আর স্টুডেন্ট অনুমতিতে কাটানো সময় নাগরিকত্বের বসবাসের হিসাবে গোনে না। শিক্ষার্থীরা প্রায়ই পৌঁছানোর পর এটা জানতে পারে।'
 }),
 
 austria: M('pg', 'cond', 5, 'half', 10, false, null),
 belgium: M('pg', 'cond', 5, 'half', 5, false, null),
 lithuania: M('pg', 'cond', 5, 'half', 10, false, {
   en: 'Spouses can join master\'s and PhD students only — bachelor\'s students cannot bring a spouse. You must arrive first, then apply for the spouse.',
-  bn: 'শুধু মাস্টার্স ও পিএইচডি স্টুডেন্টদের সাথে স্ত্রী/স্বামী আসতে পারে — ব্যাচেলরে পারে না। আগে নিজে পৌঁছাতে হবে, তারপর আবেদন করতে হবে।'
+  bn: 'শুধু মাস্টার্স ও পিএইচডি শিক্ষার্থীদের সাথে স্ত্রী/স্বামী আসতে পারে — ব্যাচেলরে পারে না। আগে নিজে পৌঁছাতে হবে, তারপর আবেদন করতে হবে।'
 }),
 latvia: M('pg', 'cond', 5, 'half', 5, false, null),
 estonia: M('pg', 'cond', 5, 'half', 8, false, null),
@@ -115,7 +115,7 @@ croatia: M('pg', 'cond', 5, 'half', 8, true, {
 greece: M('pg', 'cond', 5, 'half', 7, false, null),
 cyprus: M('none', 'no', 5, 'none', 7, false, {
   en: 'Student permits in Cyprus are treated as temporary and generally do not build towards permanent residence. This is an education route only — do not plan a future around it.',
-  bn: 'সাইপ্রাসে স্টুডেন্ট পারমিট সাময়িক হিসেবে গণ্য, সাধারণত স্থায়ী বসবাসের দিকে এগোয় না। এটা শুধু শিক্ষার পথ — এটাকে ঘিরে ভবিষ্যৎ পরিকল্পনা করো না।'
+  bn: 'সাইপ্রাসে স্টুডেন্ট পারমিট সাময়িক হিসেবে গণ্য, সাধারণত স্থায়ী বসবাসের দিকে এগোয় না। এটি শুধু শিক্ষার পথ। এটিকে ঘিরে ভবিষ্যৎ পরিকল্পনা করবেন না।'
 }),
 bulgaria: M('pg', 'cond', 5, 'half', 5, false, null),
 malta: M('pg', 'cond', 5, 'half', 5, false, null),
@@ -128,17 +128,17 @@ usa: M('all', 'no', null, 'none', 5, false, {
 
 uk: M('phd', 'cond', 5, 'none', 6, true, {
   en: 'Since January 2024 only PhD and research-degree students, or government-sponsored scholars, can bring a spouse. Bachelor\'s and taught master\'s students cannot. Time on a student visa does not count towards settlement, so the five years for ILR starts from a work visa, not from your arrival as a student.',
-  bn: '২০২৪ সালের জানুয়ারি থেকে শুধু পিএইচডি ও রিসার্চ ডিগ্রির স্টুডেন্ট, বা সরকারি স্পনসরপ্রাপ্তরা স্ত্রী/স্বামী আনতে পারে। ব্যাচেলর ও টট মাস্টার্সের স্টুডেন্টরা পারে না। স্টুডেন্ট ভিসার সময় সেটেলমেন্টের হিসাবে গোনে না, তাই ILR-এর পাঁচ বছর শুরু হয় ওয়ার্ক ভিসা থেকে — স্টুডেন্ট হিসেবে পৌঁছানো থেকে না।'
+  bn: '২০২৪ সালের জানুয়ারি থেকে শুধু পিএইচডি ও রিসার্চ ডিগ্রির স্টুডেন্ট, বা সরকারি স্পনসরপ্রাপ্তরা স্ত্রী/স্বামী আনতে পারে। ব্যাচেলর ও টট মাস্টার্সের শিক্ষার্থীরা পারে না। স্টুডেন্ট ভিসার সময় সেটেলমেন্টের হিসাবে গোনে না, তাই ILR-এর পাঁচ বছর শুরু হয় ওয়ার্ক ভিসা থেকে — স্টুডেন্ট হিসেবে পৌঁছানো থেকে না।'
 }),
 
 canada: M('pg', 'cond', null, 'half', 3, true, {
   en: 'An open work permit for the spouse is limited to master\'s and doctoral students; spouses of bachelor\'s and diploma students generally get a visitor visa with no work rights. For citizenship, time before you become a permanent resident counts as half a day per day, capped at one year — so study years help a little, not fully. Study permit rules and PGWP eligibility have changed repeatedly; re-check before every intake.',
-  bn: 'স্ত্রী/স্বামীর ওপেন ওয়ার্ক পারমিট শুধু মাস্টার্স ও ডক্টরাল স্টুডেন্টদের জন্য; ব্যাচেলর ও ডিপ্লোমার ক্ষেত্রে সাধারণত ভিজিটর ভিসা, কাজের অধিকার ছাড়া। নাগরিকত্বের হিসাবে স্থায়ী বাসিন্দা হওয়ার আগের সময় দিনে আধা দিন করে গোনে, সর্বোচ্চ এক বছর — তাই পড়ার বছর কিছুটা কাজে লাগে, পুরোপুরি না। স্টাডি পারমিটের নিয়ম আর PGWP যোগ্যতা বারবার বদলেছে; প্রতি ইনটেকের আগে যাচাই করো।'
+  bn: 'স্ত্রী/স্বামীর ওপেন ওয়ার্ক পারমিট শুধু মাস্টার্স ও ডক্টরাল শিক্ষার্থীদের জন্য; ব্যাচেলর ও ডিপ্লোমার ক্ষেত্রে সাধারণত ভিজিটর ভিসা, কাজের অধিকার ছাড়া। নাগরিকত্বের হিসাবে স্থায়ী বাসিন্দা হওয়ার আগের সময় দিনে আধা দিন করে গোনে, সর্বোচ্চ এক বছর — তাই পড়ার বছর কিছুটা কাজে লাগে, পুরোপুরি না। স্টাডি পারমিটের নিয়ম আর PGWP যোগ্যতা বারবার বদলেছে; প্রতি ইনটেকের আগে যাচাই করে নিন।'
 }),
 
 australia: M('phd', 'cond', null, 'full', 4, true, {
   en: 'Dependant rules were tightened in late 2026 and now favour PhD, research, and government-sponsored students. Do not assume a spouse can come — this is one of the fastest-moving rules on this site.',
-  bn: '২০২৬ সালের শেষে পরিবার আনার নিয়ম কঠোর হয়েছে, এখন পিএইচডি, রিসার্চ ও সরকারি স্পনসরপ্রাপ্তদের দিকে ঝোঁক। স্ত্রী/স্বামী আনা যাবে ধরে নিও না — এই সাইটের সবচেয়ে দ্রুত বদলানো নিয়মগুলোর একটি।'
+  bn: '২০২৬ সালের শেষে পরিবার আনার নিয়ম কঠোর হয়েছে, এখন পিএইচডি, রিসার্চ ও সরকারি স্পনসরপ্রাপ্তদের দিকে ঝোঁক। স্ত্রী/স্বামী আনা যাবে ধরে নেবেন না — এই সাইটের সবচেয়ে দ্রুত বদলানো নিয়মগুলোর একটি।'
 }),
 
 /* ---------- ASIA & OTHER: education routes, not migration routes ---------- */
@@ -164,7 +164,7 @@ japan: M('all', 'cond', 10, 'full', 5, false, {
 
 turkey: M('all', 'cond', 8, 'none', 5, false, {
   en: 'Time on a student residence permit does not count towards long-term residence in Turkey. A spouse can usually join but work permits are employer-dependent.',
-  bn: 'তুরস্কে স্টুডেন্ট রেসিডেন্স পারমিটের সময় দীর্ঘমেয়াদি বসবাসের হিসাবে গোনে না। স্ত্রী/স্বামী সাধারণত আসতে পারে, তবে ওয়ার্ক পারমিট নিয়োগকর্তার উপর নির্ভর করে।'
+  bn: 'তুরস্কে স্টুডেন্ট রেসিডেন্স পারমিটের সময় দীর্ঘমেয়াদি বসবাসের হিসাবে গোনে না। স্ত্রী/স্বামী সাধারণত আসতে পারে, তবে ওয়ার্ক পারমিট নিয়োগকর্তার ওপর নির্ভর করে।'
 }),
 
 uae: M('all', 'cond', null, 'na', null, false, {
@@ -174,16 +174,16 @@ uae: M('all', 'cond', null, 'na', null, false, {
 
 'north-cyprus': M('none', 'no', null, 'na', null, false, {
   en: 'Not an EU territory and recognised by only one country. There is no meaningful residence or citizenship pathway, and degree recognition is limited. If an agency sells this as a route to Europe, they are lying to you.',
-  bn: 'এটা EU-র অংশ না, আর মাত্র একটি দেশ এটাকে স্বীকৃতি দেয়। অর্থবহ কোনো বসবাস বা নাগরিকত্বের পথ নেই, ডিগ্রির স্বীকৃতিও সীমিত। কোনো এজেন্সি যদি এটাকে ইউরোপে যাওয়ার পথ বলে বিক্রি করে, তারা তোমাকে মিথ্যা বলছে।'
+  bn: 'এটি EU-র অংশ নয়, আর মাত্র একটি দেশ এটিকে স্বীকৃতি দেয়। অর্থবহ কোনো বসবাস বা নাগরিকত্বের পথ নেই, ডিগ্রির স্বীকৃতিও সীমিত। কোনো এজেন্সি যদি এটিকে ইউরোপে যাওয়ার পথ বলে বিক্রি করে, তারা আপনাকে মিথ্যা বলছে।'
 }),
 
 georgia: M('all', 'cond', 10, 'none', 10, false, {
   en: 'Student years do not count towards residence. For medicine, the real question is not residence at all — it is whether BMDC will recognise the degree and let you sit the licensing exam. Settle that before you pay anyone.',
-  bn: 'পড়ার বছর বসবাসের হিসাবে গোনে না। মেডিসিনের ক্ষেত্রে আসল প্রশ্ন বসবাস না — BMDC ডিগ্রি স্বীকৃতি দিবে কি না আর লাইসেন্সিং পরীক্ষায় বসতে দিবে কি না। কাউকে টাকা দেওয়ার আগে এটা নিশ্চিত করো।'
+  bn: 'পড়ার বছর বসবাসের হিসাবে গোনে না। মেডিসিনের ক্ষেত্রে আসল প্রশ্ন বসবাস না — BMDC ডিগ্রি স্বীকৃতি দেবে কি না, আর লাইসেন্সিং পরীক্ষায় বসতে দেবে কি না। কাউকে টাকা দেওয়ার আগে এটি নিশ্চিত করুন।'
 }),
 
 russia: M('all', 'cond', 5, 'none', 5, true, {
   en: 'Sanctions make banking, fee payment and travel complicated, and rules shift with little notice. Confirm how you would actually pay tuition before committing.',
-  bn: 'নিষেধাজ্ঞার কারণে ব্যাংকিং, ফি দেওয়া আর যাতায়াত জটিল, আর নিয়ম হঠাৎ বদলায়। সিদ্ধান্ত নেওয়ার আগে নিশ্চিত করো টিউশন আসলে কীভাবে দিবে।'
+  bn: 'নিষেধাজ্ঞার কারণে ব্যাংকিং, ফি দেওয়া আর যাতায়াত জটিল, আর নিয়ম হঠাৎ বদলায়। সিদ্ধান্ত নেওয়ার আগে নিশ্চিত করুন, টিউশন আসলে কীভাবে পরিশোধ করবেন।'
 })
 };
