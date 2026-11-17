@@ -22,14 +22,39 @@ const IN = (name, bn, applyFrom, deadline, classStarts) =>
 window.COUNTRIES = [
 
 /* ---------- EUROPE / EU ---------- */
+/* ROMANIA — the one country checked against a working consultant's own
+   casework rather than desk research. Everything in `confirmed` below was
+   verified by someone who files these applications. Treat this entry as the
+   template for how every other country should eventually look. */
 C('romania', 'Romania', 'রোমানিয়া', '🇷🇴', 'eu', {
   ielts: 'flexible', tuition: [2000, 5000], cur: 'EUR', living: [300, 450],
   workHours: 20, visaWeeks: [4, 10], solvency: '€4,000–6,000', volatility: 'med',
-  ieltsNote: { en: 'Many universities accept a Medium of Instruction (MOI) letter instead of IELTS. Confirm per university, and check whether the embassy wants a test.', bn: 'অনেক বিশ্ববিদ্যালয় IELTS-এর বদলে MOI চিঠি নেয়। প্রতিটি বিশ্ববিদ্যালয়ে আলাদা করে নিশ্চিত হও, আর দূতাবাস টেস্ট চায় কি না দেখে নাও।' },
+
+  /* who may apply at all — the gate before every other question */
+  eligibility: {
+    en: 'Bachelor\'s needs SSC and HSC from a General Education Board, or O-Level and A-Level. Two groups are turned away at the Ministry stage, before any university ever sees the file: a four-year BTEB polytechnic diploma is not accepted in place of HSC, and Madrasah Board certificates (Dakhil, Alim, Fazil) are not accepted as equivalent. A Letter of Acceptance is not issued in either case. Any agency that takes money from these students for Romania is taking money for an application that cannot succeed.',
+    bn: 'ব্যাচেলরের জন্য সাধারণ শিক্ষা বোর্ডের SSC ও HSC, অথবা O-Level ও A-Level লাগবে। দুটি গোষ্ঠী মন্ত্রণালয়ের ধাপেই বাদ পড়ে যান, কোনো বিশ্ববিদ্যালয় ফাইল দেখার আগেই: BTEB-এর চার বছরের পলিটেকনিক ডিপ্লোমা HSC-র বিকল্প হিসেবে গৃহীত হয় না, আর মাদ্রাসা বোর্ডের সার্টিফিকেট (দাখিল, আলিম, ফাজিল) সমমান হিসেবে গৃহীত হয় না। কোনো ক্ষেত্রেই Letter of Acceptance ইস্যু হয় না। কোনো এজেন্সি যদি এই শিক্ষার্থীদের কাছ থেকে রোমানিয়ার জন্য টাকা নেয়, তারা এমন একটি আবেদনের জন্য টাকা নিচ্ছে যা কখনো সফল হবে না।'
+  },
+
+  /* no Romanian embassy in Dhaka — this is where the file actually goes */
+  visaVia: ['New Delhi · India', 'Kuala Lumpur · Malaysia', 'Bangkok · Thailand', 'Hanoi · Vietnam'],
+
+  /* checked against real casework, not desk research */
+  confirmed: {
+    en: ['One intake a year, not two', 'MOI is not accepted', 'Who is eligible to apply', 'Work hours'],
+    bn: ['বছরে একটি ইনটেক, দুটি নয়', 'MOI গৃহীত হয় না', 'কারা আবেদনের যোগ্য', 'কাজের ঘণ্টা']
+  },
+
+  ieltsNote: {
+    en: 'A Medium of Instruction (MOI) letter from a Bangladeshi college or university is NOT accepted here — the Ministry and most universities reject it, because the national curriculum is taught in Bangla. IELTS itself is not compulsory either. The route without a test is the university\'s own online English test or interview, which you sit after applying. Some institutions also take TOEFL, PTE or Duolingo. If an agency tells you MOI is enough for Romania, they are wrong.',
+    bn: 'বাংলাদেশি কলেজ বা বিশ্ববিদ্যালয়ের দেওয়া MOI চিঠি এখানে গৃহীত হয় না — মন্ত্রণালয় ও বেশিরভাগ বিশ্ববিদ্যালয় এটি বাতিল করে, কারণ জাতীয় শিক্ষাক্রম বাংলা মাধ্যমে পড়ানো হয়। তবে IELTS-ও বাধ্যতামূলক নয়। পরীক্ষা ছাড়া পথটি হলো বিশ্ববিদ্যালয়ের নিজস্ব অনলাইন ইংরেজি পরীক্ষা বা সাক্ষাৎকার, যেটি আবেদনের পর দিতে হয়। কিছু প্রতিষ্ঠান TOEFL, PTE বা Duolingo-ও নেয়। কোনো এজেন্সি যদি বলে রোমানিয়ার জন্য MOI-ই যথেষ্ট, তারা ভুল বলছে।'
+  },
   psw: { en: '9-month job-search stay after graduation', bn: 'পড়া শেষে ৯ মাস চাকরি খোঁজার সুযোগ' },
-  bestFor: { en: 'Low tuition inside the EU with a realistic document load. The usual first choice when budget is the binding constraint.', bn: 'EU-র ভেতরে কম টিউশন, কাগজপত্রের চাপও বাস্তবসম্মত। বাজেট মূল সমস্যা হলে সাধারণত প্রথম পছন্দ।' },
-  caution: { en: 'Visa decisions are slow and refusal rates for Bangladeshi applicants have varied a lot by year. Budget extra time.', bn: 'ভিসা সিদ্ধান্ত ধীর, আর বাংলাদেশি আবেদনকারীদের রিফিউজাল হার বছরে বছরে অনেক বদলেছে। হাতে বেশি সময় রাখুন।' },
-  intakes: [IN('September', 'সেপ্টেম্বর', 3, 7, 9), IN('February', 'ফেব্রুয়ারি', 10, 12, 2)]
+  bestFor: { en: 'Low tuition inside the EU with a realistic document load, and Romania is now fully inside Schengen, so the residence card travels. The usual first choice when budget is the binding constraint.', bn: 'EU-র ভেতরে কম টিউশন, কাগজপত্রের চাপও বাস্তবসম্মত। রোমানিয়া এখন পুরোপুরি শেনজেনভুক্ত, তাই রেসিডেন্স কার্ড দিয়ে ভ্রমণ করা যায়। বাজেট মূল সমস্যা হলে সাধারণত প্রথম পছন্দ।' },
+  caution: { en: 'There is no Romanian embassy in Dhaka, so the visa file goes to a mission abroad and the whole process is slow. The Ministry\'s Letter of Acceptance alone takes four to eight weeks, and a full year\'s tuition must usually be paid before the visa is applied for. Start by May or June for an October start.', bn: 'ঢাকায় রোমানিয়ার দূতাবাস নেই, তাই ভিসা ফাইল বিদেশের মিশনে যায় এবং পুরো প্রক্রিয়া ধীর। শুধু মন্ত্রণালয়ের Letter of Acceptance পেতেই চার থেকে আট সপ্তাহ লাগে, আর ভিসার আবেদনের আগে সাধারণত পুরো এক বছরের টিউশন পরিশোধ করতে হয়। অক্টোবরে শুরু করতে চাইলে মে বা জুনের মধ্যেই শুরু করুন।' },
+
+  /* ONE intake only. Romania has no spring entry for non-EU degree students. */
+  intakes: [IN('September / October', 'সেপ্টেম্বর / অক্টোবর', 3, 8, 10)]
 }),
 
 C('italy', 'Italy', 'ইতালি', '🇮🇹', 'eu', {
@@ -480,11 +505,11 @@ const U = (name, country, city, type, subjects, levels, o) => Object.assign({
 }, o || {});
 
 window.UNIVERSITIES = [
-  U('Babeș-Bolyai University', 'romania', 'Cluj-Napoca', 'public', ['business', 'law', 'cs', 'social'], ['bachelor', 'master', 'phd'], { moi: true }),
-  U('University of Bucharest', 'romania', 'Bucharest', 'public', ['law', 'social', 'science', 'arts'], ['bachelor', 'master', 'phd'], { moi: true }),
-  U('Politehnica University of Bucharest', 'romania', 'Bucharest', 'public', ['engineering', 'cs'], ['bachelor', 'master', 'phd'], { moi: true }),
-  U('West University of Timișoara', 'romania', 'Timișoara', 'public', ['business', 'cs', 'social'], ['bachelor', 'master'], { moi: true }),
-  U('Transilvania University of Brașov', 'romania', 'Brașov', 'public', ['engineering', 'business'], ['bachelor', 'master'], { moi: true }),
+  U('Babeș-Bolyai University', 'romania', 'Cluj-Napoca', 'public', ['business', 'law', 'cs', 'social'], ['bachelor', 'master', 'phd']),
+  U('University of Bucharest', 'romania', 'Bucharest', 'public', ['law', 'social', 'science', 'arts'], ['bachelor', 'master', 'phd']),
+  U('Politehnica University of Bucharest', 'romania', 'Bucharest', 'public', ['engineering', 'cs'], ['bachelor', 'master', 'phd']),
+  U('West University of Timișoara', 'romania', 'Timișoara', 'public', ['business', 'cs', 'social'], ['bachelor', 'master']),
+  U('Transilvania University of Brașov', 'romania', 'Brașov', 'public', ['engineering', 'business'], ['bachelor', 'master']),
 
   U('University of Turin', 'italy', 'Turin', 'public', ['law', 'business', 'social', 'science'], ['bachelor', 'master', 'phd'], { moi: true, note: 'Global Law & Transnational Legal Studies is taught in English.' }),
   U('University of Bologna', 'italy', 'Bologna', 'public', ['law', 'business', 'engineering', 'arts'], ['bachelor', 'master', 'phd'], { moi: true }),

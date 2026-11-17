@@ -52,6 +52,10 @@ en:{
   secUnis:'Universities on this site', secIelts:'English requirement',
   secIntakes:'Intakes and when to apply', secCost:'What a year really costs',
   secVisa:'Visa and documents', secWork:'Work and life', secWatch:'What to watch out for',
+  secEligibility:'Who can apply', secVisaVia:'Where the visa file goes',
+  visaViaNote:'There is no embassy for this country in Dhaka. The application goes to one of these missions instead:',
+  confirmedTitle:'Checked against real casework',
+  confirmedNote:'These points were confirmed by someone who files these applications, not taken from a website. Everything else on this page is still a desk estimate.',
   secFaq:'Common questions',
 
   fTuition:'Tuition per year', fLiving:'Living cost', fWork:'Work allowed',
@@ -266,6 +270,10 @@ bn:{
   secUnis:'এই সাইটে তালিকাভুক্ত বিশ্ববিদ্যালয়', secIelts:'ইংরেজির শর্ত',
   secIntakes:'ইনটেক ও আবেদনের সময়', secCost:'এক বছরে প্রকৃত খরচ',
   secVisa:'ভিসা ও কাগজপত্র', secWork:'কাজ ও জীবনযাত্রা', secWatch:'যে বিষয়ে সতর্ক থাকবেন',
+  secEligibility:'কারা আবেদন করতে পারবেন', secVisaVia:'ভিসা ফাইল কোথায় জমা দিতে হয়',
+  visaViaNote:'এই দেশের দূতাবাস ঢাকায় নেই। আবেদন জমা দিতে হয় নিচের যেকোনো একটি মিশনে:',
+  confirmedTitle:'বাস্তব অভিজ্ঞতায় যাচাই করা',
+  confirmedNote:'এই বিষয়গুলো যিনি নিজে এই আবেদনগুলো করেন তাঁর দ্বারা নিশ্চিত করা, কোনো ওয়েবসাইট থেকে নেওয়া নয়। এই পৃষ্ঠার বাকি সব তথ্য এখনো প্রাথমিক ধারণা।',
   secFaq:'সাধারণ প্রশ্ন',
 
   fTuition:'বছরে টিউশন', fLiving:'থাকা-খাওয়ার খরচ', fWork:'কাজের অনুমতি',

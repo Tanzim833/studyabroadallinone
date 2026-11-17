@@ -67,6 +67,86 @@ window.PROGRAMS = {
   P('Business Administration', 'master', 2, 'English', 'business')
 ],
 
+'Alexandru Ioan Cuza University of Iași': [
+  P('Computer Science', 'bachelor', 3, 'English', 'cs'),
+  P('Business Administration', 'bachelor', 3, 'English', 'business'),
+  P('Economics and Finance', 'bachelor', 3, 'English', 'business'),
+  P('Software Engineering', 'master', 2, 'English', 'cs'),
+  P('Finance and Risk Management', 'master', 2, 'English', 'business')
+],
+'Technical University of Cluj-Napoca': [
+  P('Computer Science', 'bachelor', 4, 'English', 'cs'),
+  P('Automation and Applied Informatics', 'bachelor', 4, 'English', 'engineering'),
+  P('Civil Engineering', 'bachelor', 4, 'English', 'engineering'),
+  P('Embedded Systems', 'master', 2, 'English', 'cs')
+],
+'Politehnica University of Timișoara': [
+  P('Computers and Information Technology', 'bachelor', 4, 'English', 'cs'),
+  P('Electronic Engineering', 'bachelor', 4, 'English', 'engineering'),
+  P('Civil Engineering', 'bachelor', 4, 'English', 'engineering'),
+  P('Software Engineering', 'master', 2, 'English', 'cs')
+],
+'Lucian Blaga University of Sibiu': [
+  P('Computer Science', 'bachelor', 3, 'English', 'cs'),
+  P('Industrial Engineering', 'bachelor', 4, 'English', 'engineering'),
+  P('Business Administration', 'bachelor', 3, 'English', 'business'),
+  P('Advanced Computing Systems', 'master', 2, 'English', 'cs')
+],
+'Ovidius University of Constanța': [
+  P('General Medicine', 'bachelor', 6, 'English', 'medicine'),
+  P('Dental Medicine', 'bachelor', 6, 'English', 'medicine'),
+  P('Pharmacy', 'bachelor', 5, 'English', 'medicine'),
+  P('Business Administration', 'bachelor', 3, 'English', 'business')
+],
+'University of Oradea': [
+  P('General Medicine', 'bachelor', 6, 'English', 'medicine'),
+  P('Dental Medicine', 'bachelor', 6, 'English', 'medicine'),
+  P('Information Technology', 'bachelor', 4, 'English', 'cs'),
+  P('International Relations', 'bachelor', 3, 'English', 'social')
+],
+'Ștefan cel Mare University of Suceava': [
+  P('Computer Science', 'bachelor', 3, 'English', 'cs'),
+  P('Business Administration', 'bachelor', 3, 'English', 'business'),
+  P('Electrical Engineering', 'bachelor', 4, 'English', 'engineering'),
+  P('Applied Computer Science', 'master', 2, 'English', 'cs')
+],
+'Valahia University of Târgoviște': [
+  P('Business Administration', 'bachelor', 3, 'English', 'business'),
+  P('Accounting and Management Information Systems', 'bachelor', 3, 'English', 'business'),
+  P('Computer Science', 'bachelor', 3, 'English', 'cs'),
+  P('Electrical Engineering', 'bachelor', 4, 'English', 'engineering'),
+  P('Management and Entrepreneurship', 'master', 2, 'English', 'business')
+],
+'University of Craiova': [
+  P('Computer Science', 'bachelor', 3, 'English', 'cs'),
+  P('Business Administration', 'bachelor', 3, 'English', 'business'),
+  P('Automotive Engineering', 'bachelor', 4, 'English', 'engineering')
+],
+'Dunărea de Jos University of Galați': [
+  P('Naval Architecture', 'bachelor', 4, 'English', 'engineering'),
+  P('Food Science and Engineering', 'bachelor', 4, 'English', 'agri'),
+  P('Computer Science', 'bachelor', 3, 'English', 'cs')
+],
+'Bucharest University of Economic Studies (ASE)': [
+  P('Business Administration', 'bachelor', 3, 'English', 'business'),
+  P('Finance and Banking', 'bachelor', 3, 'English', 'business'),
+  P('Accounting and Management Information Systems', 'bachelor', 3, 'English', 'business'),
+  P('International Business and Economics', 'bachelor', 3, 'English', 'business'),
+  P('Business Analytics', 'master', 2, 'English', 'business'),
+  P('Digital Business', 'master', 2, 'English', 'cs')
+],
+'Carol Davila University of Medicine and Pharmacy': [
+  P('General Medicine', 'bachelor', 6, 'English', 'medicine'),
+  P('Dental Medicine', 'bachelor', 6, 'English', 'medicine'),
+  P('Pharmacy', 'bachelor', 5, 'English', 'medicine')
+],
+'Grigore T. Popa University of Medicine and Pharmacy': [
+  P('General Medicine', 'bachelor', 6, 'English', 'medicine'),
+  P('Dental Medicine', 'bachelor', 6, 'English', 'medicine'),
+  P('Pharmacy', 'bachelor', 5, 'English', 'medicine'),
+  P('Bioengineering', 'bachelor', 4, 'English', 'engineering')
+],
+
 /* ---------- ITALY ---------- */
 'University of Turin': [
   P('Global Law and Transnational Legal Studies', 'bachelor', 3, 'English', 'law'),

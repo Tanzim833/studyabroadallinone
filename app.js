@@ -637,8 +637,28 @@ function pageCountry(slug){
     '<dt>'+esc(t('fEmbassy'))+'</dt><dd>'+esc(c.embassyDhaka?t('yes'):t('no'))+'</dd>'+
     '</dl></div>';
 
+  /* only shown for countries that carry the extra verified fields */
+  var confirmedBox = c.confirmed
+    ? '<div class="note good"><p><strong>✓ '+esc(t('confirmedTitle'))+'</strong></p>'+
+      '<p style="margin:6px 0 8px"><b>'+L(c.confirmed).map(esc).join(' · ')+'</b></p>'+
+      '<p style="font-size:.9rem;margin-bottom:0">'+esc(t('confirmedNote'))+'</p></div>'
+    : '';
+
+  var eligibilityBox = c.eligibility
+    ? '<h2 class="serif">'+esc(t('secEligibility'))+'</h2>'+
+      '<div class="note alert"><p>'+esc(L(c.eligibility))+'</p></div>'
+    : '';
+
+  var visaViaBox = c.visaVia
+    ? '<h2 class="serif">'+esc(t('secVisaVia'))+'</h2>'+
+      '<p>'+esc(t('visaViaNote'))+'</p><ul>'+
+      c.visaVia.map(function(m){ return '<li>'+esc(m)+'</li>'; }).join('')+'</ul>'
+    : '';
+
   var body = '<div class="cbody">'+
     '<h2 class="serif">'+esc(t('secWho'))+'</h2><p>'+esc(L(c.bestFor))+'</p>'+
+    confirmedBox+
+    eligibilityBox+
     (c.trending ? '<div class="note"><p><strong>'+esc(t('trendWhat'))+'</strong></p><p>'+esc(t('trendWhatBody'))+'</p></div>' : '')+
     (m.changed ? '<div class="note alert"><p><strong>'+esc(t('ruleChanged'))+'</strong> — '+esc(t('ruleChangedL'))+'</p></div>' : '')+
 
@@ -655,6 +675,8 @@ function pageCountry(slug){
     '<h2 class="serif">'+esc(t('secIelts'))+'</h2>'+
     '<p>'+ieltsPill(c)+' '+esc(t(c.ielts==='not_required'?'ieltsNotReqL':c.ielts==='flexible'?'ieltsFlexL':'ieltsReqL'))+'</p>'+
     '<p>'+esc(L(c.ieltsNote))+'</p>'+
+
+    visaViaBox+
 
     '<h2 class="serif">'+esc(t('secIntakes'))+'</h2>'+
     '<ul>'+c.intakes.map(function(i){

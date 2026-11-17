@@ -22,16 +22,19 @@
   window.UNIVERSITIES.push(
 
   /* ================= ROMANIA ================= */
-  U('Alexandru Ioan Cuza University of Iași', 'romania', 'Iași', 'public', ['business','cs','law','social'], ['bachelor','master','phd'], {moi:true}),
-  U('Technical University of Cluj-Napoca', 'romania', 'Cluj-Napoca', 'public', ['engineering','cs'], ['bachelor','master','phd'], {moi:true}),
-  U('Politehnica University of Timișoara', 'romania', 'Timișoara', 'public', ['engineering','cs'], ['bachelor','master','phd'], {moi:true}),
-  U('Lucian Blaga University of Sibiu', 'romania', 'Sibiu', 'public', ['engineering','business','social'], ['bachelor','master'], {moi:true}),
-  U('Ovidius University of Constanța', 'romania', 'Constanța', 'public', ['medicine','business','science'], ['bachelor','master'], {moi:true}),
-  U('University of Craiova', 'romania', 'Craiova', 'public', ['engineering','business','agri'], ['bachelor','master'], {moi:true}),
-  U('University of Oradea', 'romania', 'Oradea', 'public', ['engineering','medicine','business'], ['bachelor','master'], {moi:true}),
-  U('Dunărea de Jos University of Galați', 'romania', 'Galați', 'public', ['engineering','agri','science'], ['bachelor','master'], {moi:true}),
-  U('Ștefan cel Mare University of Suceava', 'romania', 'Suceava', 'public', ['cs','engineering','business'], ['bachelor','master'], {moi:true}),
-  U('Valahia University of Târgoviște', 'romania', 'Târgoviște', 'public', ['engineering','business','social'], ['bachelor','master'], {moi:true}),
+  U('Alexandru Ioan Cuza University of Iași', 'romania', 'Iași', 'public', ['business','cs','law','social'], ['bachelor','master','phd']),
+  U('Technical University of Cluj-Napoca', 'romania', 'Cluj-Napoca', 'public', ['engineering','cs'], ['bachelor','master','phd']),
+  U('Politehnica University of Timișoara', 'romania', 'Timișoara', 'public', ['engineering','cs'], ['bachelor','master','phd']),
+  U('Lucian Blaga University of Sibiu', 'romania', 'Sibiu', 'public', ['engineering','business','social'], ['bachelor','master']),
+  U('Ovidius University of Constanța', 'romania', 'Constanța', 'public', ['medicine','business','science'], ['bachelor','master']),
+  U('University of Craiova', 'romania', 'Craiova', 'public', ['engineering','business','agri'], ['bachelor','master']),
+  U('University of Oradea', 'romania', 'Oradea', 'public', ['engineering','medicine','business'], ['bachelor','master']),
+  U('Dunărea de Jos University of Galați', 'romania', 'Galați', 'public', ['engineering','agri','science'], ['bachelor','master']),
+  U('Ștefan cel Mare University of Suceava', 'romania', 'Suceava', 'public', ['cs','engineering','business'], ['bachelor','master']),
+  U('Valahia University of Târgoviște', 'romania', 'Târgoviște', 'public', ['engineering','business','social'], ['bachelor','master']),
+  U('Bucharest University of Economic Studies (ASE)', 'romania', 'Bucharest', 'public', ['business','cs','social'], ['bachelor','master','phd']),
+  U('Carol Davila University of Medicine and Pharmacy', 'romania', 'Bucharest', 'public', ['medicine'], ['bachelor','master','phd']),
+  U('Grigore T. Popa University of Medicine and Pharmacy', 'romania', 'Iași', 'public', ['medicine','engineering'], ['bachelor','master','phd']),
 
   /* ================= ITALY ================= */
   U('University of Milan', 'italy', 'Milan', 'public', ['business','medicine','law','science'], ['bachelor','master','phd']),
