@@ -66,6 +66,46 @@ window.ACTIVE = ['romania', 'hungary'];
 
 ---
 
+## ⚙️ যে চারটা জিনিস তুমি নিজে বদলাতে পারো
+
+### `active.js` — কোন দেশ দেখাবে
+উপরে বিস্তারিত আছে।
+
+### `app.js` — উপরের দিকে তিনটা লাইন
+
+```js
+var WHATSAPP = '393509549869';    // তোমার WhatsApp নম্বর
+var SHEET_URL = '';               // খালি = শুধু WhatsApp
+var OWNER = { name: 'Md Tanzim Ahammed', ... };   // About/Terms পাতায় দেখায়
+```
+
+**`OWNER`-এ email আর city খালি আছে।** ভরলে About আর Terms পাতায় দেখাবে, খালি রাখলে ওই লাইনটা দেখাবেই না।
+
+### ✅ Google Sheet চালু আছে
+
+"এই উত্তরগুলো আমাকে পাঠান" বাটনে চাপলে এখন **দুই জায়গায়** যায়:
+
+1. তোমার **WhatsApp**-এ মেসেজ
+2. তোমার Drive-এর **"StudyAbroad — Student Enquiries"** sheet-এ নতুন সারি
+
+Sheet-এ ১০টা কলাম: তারিখ ও সময় · নাম · WhatsApp · কোন লেভেল · ফলাফল · বাজেট · IELTS · ব্যান্ড · যা লিখেছে · ভাষা
+
+**Script কোথায়:** Sheet খুলে **Extensions → Apps Script**
+
+**যদি কখনো কাজ করা বন্ধ করে:** Apps Script-এ গিয়ে **Deploy → Manage deployments → পেন্সিল আইকন → Version: New version → Deploy**। লিংক বদলায় না।
+
+**বন্ধ করতে চাইলে:** `app.js`-এ `SHEET_URL` খালি করে দাও (`var SHEET_URL = '';`)। WhatsApp তখনও চলবে।
+
+### `immigration.js` — উপরের তিনটা লাইন
+
+```js
+window.SITE_UPDATED = { en: 'November 2026', bn: 'নভেম্বর ২০২৬' };
+window.SITE_REVIEW  = { en: 'February 2027', bn: 'ফেব্রুয়ারি ২০২৭' };
+window.INTAKE_YEAR  = '2027';     // হোমপেজে "2027 ইনটেকের জন্য ফাইল নেওয়া হচ্ছে"
+```
+
+---
+
 ## ✏️ সবচেয়ে বেশি যে ৪টা কাজ করবে
 
 ### ১. নতুন university যোগ করা

@@ -7,6 +7,9 @@
 
 window.SITE_UPDATED = { en: 'November 2026', bn: 'নভেম্বর ২০২৬' };
 window.SITE_REVIEW  = { en: 'February 2027', bn: 'ফেব্রুয়ারি ২০২৭' };
+/* which intake you are currently taking files for. Shown on the home page.
+   Change this once a year, when the new intake opens. */
+window.INTAKE_YEAR  = '2027';
 
 /* ---------------------------------------------------------------------------
    FIELD VALUES
@@ -36,9 +39,9 @@ window.IMMIG = {
    at only half. That half-count is the single most misrepresented fact
    in this whole industry. ---------- */
 
-romania: M('pg', 'cond', 5, 'half', 8, false, {
-  en: 'Romania is an education route, not a fast migration route. Agencies in Dhaka sell it as "EU PR in 2 years" — that is false. Five years of residence is the minimum for long-term status, and your study years count at half.',
-  bn: 'রোমানিয়া শিক্ষার পথ, দ্রুত মাইগ্রেশনের পথ না। ঢাকার এজেন্সিরা এটাকে "২ বছরে EU PR" বলে বিক্রি করে — এটা মিথ্যা। দীর্ঘমেয়াদি স্ট্যাটাসের জন্য ন্যূনতম ৫ বছর বসবাস লাগে, আর পড়ার বছরগুলো গোনা হয় অর্ধেক।'
+romania: M('all', 'yes', 5, 'half', 10, false, {
+  en: 'Five years of residence for long-term status and ten for citizenship — but study years count at half, so from a student permit it works out at roughly ten years to permanent residence and twenty to a passport. The spouse can come, and the spouse can work.',
+  bn: 'দীর্ঘমেয়াদি স্ট্যাটাসে ৫ বছর বসবাস, নাগরিকত্বে ১০ বছর — তবে পড়ার বছর গোনা হয় অর্ধেক, তাই স্টুডেন্ট পারমিট থেকে শুরু করলে স্থায়ী বসবাসে প্রায় ১০ বছর আর পাসপোর্টে প্রায় ২০ বছর দাঁড়ায়। স্ত্রী/স্বামী আসতে পারেন, আর কাজও করতে পারেন।'
 }),
 
 italy: M('pg', 'cond', 5, 'half', 10, false, {

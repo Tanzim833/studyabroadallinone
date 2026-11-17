@@ -27,7 +27,7 @@ window.COUNTRIES = [
    verified by someone who files these applications. Treat this entry as the
    template for how every other country should eventually look. */
 C('romania', 'Romania', 'রোমানিয়া', '🇷🇴', 'eu', {
-  ielts: 'flexible', tuition: [2000, 5000], cur: 'EUR', living: [300, 450],
+  ielts: 'required', tuition: [2000, 3500], cur: 'EUR', living: [200, 300],
   workHours: 20, visaWeeks: [4, 10], solvency: '€4,000–6,000', volatility: 'med',
 
   /* who may apply at all — the gate before every other question */
@@ -38,6 +38,17 @@ C('romania', 'Romania', 'রোমানিয়া', '🇷🇴', 'eu', {
 
   /* no Romanian embassy in Dhaka — this is where the file actually goes */
   visaVia: ['New Delhi · India', 'Kuala Lumpur · Malaysia', 'Bangkok · Thailand', 'Hanoi · Vietnam'],
+  visaViaNote: {
+    en: 'There has been talk of Romania opening an embassy in Bangladesh around 2027. Nothing is confirmed, so plan your file around a mission abroad and treat an embassy in Dhaka as a bonus if it happens.',
+    bn: '২০২৭ সালের দিকে বাংলাদেশে রোমানিয়ার দূতাবাস খোলার কথা শোনা যাচ্ছে। এখনো কিছু নিশ্চিত নয়, তাই বিদেশের মিশন ধরেই পরিকল্পনা করুন — ঢাকায় দূতাবাস হলে সেটা বাড়তি পাওয়া।'
+  },
+
+  /* the law says 20; what students actually do is different, and saying so is
+     the point of this site */
+  workNote: {
+    en: 'The residence permit allows 20 hours a week. In practice most students work more than that, and employers in the student job market are used to it. The 20 hours is what is written in the rule.',
+    bn: 'রেসিডেন্স পারমিটে সপ্তাহে ২০ ঘণ্টা কাজের অনুমতি থাকে। বাস্তবে বেশিরভাগ শিক্ষার্থী এর চেয়ে বেশি কাজ করেন, আর স্টুডেন্ট জব মার্কেটের মালিকরাও এতে অভ্যস্ত। ২০ ঘণ্টা হলো নিয়মে যা লেখা আছে সেটা।'
+  },
 
   /* What it actually costs to GET THERE, in BDT: from starting the application
      to landing in the country. One year's tuition paid up front, visa, flight,
@@ -48,20 +59,20 @@ C('romania', 'Romania', 'রোমানিয়া', '🇷🇴', 'eu', {
 
   /* checked against real casework, not desk research */
   confirmed: {
-    en: ['One intake a year, not two', 'MOI is not accepted', 'Who is eligible to apply', 'Work hours'],
-    bn: ['বছরে একটি ইনটেক, দুটি নয়', 'MOI নেওয়া হয় না', 'কারা আবেদনের যোগ্য', 'কাজের ঘণ্টা']
+    en: ['One intake a year, not two', 'IELTS only — MOI, TOEFL, PTE, Duolingo are not accepted', 'Who is eligible to apply', 'Work hours'],
+    bn: ['বছরে একটি ইনটেক, দুটি নয়', 'শুধু IELTS — MOI, TOEFL, PTE, Duolingo নেওয়া হয় না', 'কারা আবেদনের যোগ্য', 'কাজের ঘণ্টা']
   },
 
   /* overrides the generic "flexible" one-liner, which mentions MOI and would
      contradict the rule below */
   ieltsSummary: {
-    en: 'IELTS is not compulsory, but MOI is not accepted. The university\'s own online test or interview is the route.',
-    bn: 'IELTS বাধ্যতামূলক নয়, তবে MOI নেওয়া হয় না। বিশ্ববিদ্যালয়ের নিজের অনলাইন পরীক্ষা বা সাক্ষাৎকারই মূল পথ।'
+    en: 'IELTS only. MOI, TOEFL, PTE and Duolingo are not accepted. Without IELTS the one route in is the Romanian language preparatory year.',
+    bn: 'শুধু IELTS। MOI, TOEFL, PTE বা Duolingo নেওয়া হয় না। IELTS ছাড়া একটাই পথ — রোমানিয়ান ভাষার প্রিপারেটরি বছর।'
   },
 
   ieltsNote: {
-    en: 'A Medium of Instruction (MOI) letter from a Bangladeshi college or university is NOT accepted here — the Ministry and most universities reject it, because the national curriculum is taught in Bangla. IELTS itself is not compulsory either. The route without a test is the university\'s own online English test or interview, which you sit after applying. Some institutions also take TOEFL, PTE or Duolingo. If an agency tells you MOI is enough for Romania, they are wrong.',
-    bn: 'বাংলাদেশি কলেজ বা বিশ্ববিদ্যালয়ের দেওয়া MOI চিঠি এখানে নেওয়া হয় না — মন্ত্রণালয় ও বেশিরভাগ বিশ্ববিদ্যালয় এটি বাতিল করে, কারণ জাতীয় শিক্ষাক্রম বাংলা মাধ্যমে পড়ানো হয়। তবে IELTS-ও বাধ্যতামূলক নয়। পরীক্ষা ছাড়া পথটি হলো বিশ্ববিদ্যালয়ের নিজের অনলাইন ইংরেজি পরীক্ষা বা সাক্ষাৎকার, যেটি আবেদনের পর দিতে হয়। কিছু প্রতিষ্ঠান TOEFL, PTE বা Duolingo-ও নেয়। কোনো এজেন্সি যদি বলে রোমানিয়ার জন্য MOI-ই যথেষ্ট, তারা ভুল বলছে।'
+    en: 'For an English-taught degree, IELTS is the test Romania takes. A Medium of Instruction (MOI) letter from a Bangladeshi college or university is NOT accepted — the Ministry and the universities reject it, because the national curriculum is taught in Bangla. TOEFL, PTE and Duolingo are not accepted either. There is exactly one way in without IELTS: the Romanian language preparatory year, after which you study in Romanian. If an agency tells you MOI or Duolingo is enough for Romania, they are wrong.',
+    bn: 'ইংরেজি মাধ্যমে পড়তে চাইলে রোমানিয়া শুধু IELTS নেয়। বাংলাদেশি কলেজ বা বিশ্ববিদ্যালয়ের দেওয়া MOI চিঠি নেওয়া হয় না — মন্ত্রণালয় ও বিশ্ববিদ্যালয়গুলো এটি বাতিল করে, কারণ জাতীয় শিক্ষাক্রম বাংলা মাধ্যমে পড়ানো হয়। TOEFL, PTE বা Duolingo-ও নেওয়া হয় না। IELTS ছাড়া ভেতরে ঢোকার একটাই পথ — রোমানিয়ান ভাষার প্রিপারেটরি বছর, এরপর পড়তে হয় রোমানিয়ান ভাষায়। কোনো এজেন্সি যদি বলে রোমানিয়ার জন্য MOI বা Duolingo-ই যথেষ্ট, তারা ভুল বলছে।'
   },
   psw: { en: '9-month job-search stay after graduation', bn: 'পড়া শেষে ৯ মাস চাকরি খোঁজার সুযোগ' },
   bestFor: { en: 'Low tuition inside the EU with a realistic document load, and Romania is now fully inside Schengen, so the residence card travels. The usual first choice when budget is the binding constraint.', bn: 'EU-র ভেতরে কম টিউশন, কাগজপত্রের চাপও বাস্তবসম্মত। রোমানিয়া এখন পুরোপুরি শেনজেনভুক্ত, তাই রেসিডেন্স কার্ড দিয়ে ভ্রমণ করা যায়। বাজেট মূল সমস্যা হলে সাধারণত প্রথম পছন্দ।' },

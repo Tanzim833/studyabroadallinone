@@ -45,9 +45,9 @@ const W = (jobs, pay, lang, covers, note) => ({ jobs, pay, lang, covers, note: n
 window.WORK = {
 
 /* ---------- EUROPE / EU ---------- */
-romania: W(['delivery','resto','call','it','retail'], [3, 5], 'basic', 'partly', {
-  en: 'Bucharest and Cluj have real call-centre and IT work in English, which pays better than restaurant work. Outside those two cities options drop sharply.',
-  bn: 'বুখারেস্ট ও ক্লুজে ইংরেজিতে কল সেন্টার ও আইটির কাজ আছে, যা রেস্টুরেন্টের কাজের চেয়ে ভালো বেতন দেয়। এই দুই শহরের বাইরে সুযোগ অনেক কমে যায়।'
+romania: W(['delivery','resto','retail'], [3, 5], 'basic', 'partly', {
+  en: 'Delivery, restaurant and shop work is what students actually find, and it is concentrated in Bucharest, Cluj, Timisoara and the other university cities. Outside them the options drop sharply. A little Romanian lifts both the pay and the number of places that will take you.',
+  bn: 'ডেলিভারি, রেস্টুরেন্ট আর দোকানের কাজই শিক্ষার্থীরা আসলে পান, আর সেটা মূলত বুখারেস্ট, ক্লুজ, তিমিশোয়ারা আর অন্য বিশ্ববিদ্যালয় শহরগুলোতে। এগুলোর বাইরে সুযোগ অনেক কমে যায়। অল্প রোমানিয়ান ভাষা জানলে বেতনও বাড়ে, কাজের জায়গাও বাড়ে।'
 }),
 italy: W(['resto','delivery','retail','tutor','hotel'], [6, 9], 'needed', 'partly', {
   en: 'Without Italian you are limited to delivery and kitchen work. Many student jobs are paid off the books, which leaves you with no payslip — and a payslip is what the permit office wants to see.',

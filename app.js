@@ -13,6 +13,30 @@
    ============================================================ */
 var WHATSAPP = '393509549869';
 
+/* ============================================================
+   The Google Sheet that also receives the quick-check answers,
+   so you have a record of every student who asked.
+   Sheet: "StudyAbroad — Student Enquiries" in your Drive.
+   Leave this empty and only WhatsApp is used; the message to you
+   goes through WhatsApp either way.
+   ============================================================ */
+var SHEET_URL = 'https://script.google.com/macros/s/AKfycbz9lbhPqqRJCjE8fo_SL_rx6RkLAJDGC-Vu0l80Q33CsJOMP1EMh0vmjOndVASiGhZh/exec';
+
+/* ============================================================
+   WHO RUNS THIS SITE — shown on the "About" and "Terms" pages.
+   Fill in what you want public and leave the rest empty; an empty
+   line is simply not printed.
+   ============================================================ */
+var OWNER = {
+  name:    'Md Tanzim Ahammed',
+  roleEn:  'Student visa consultant for Romania · Law student, University of Turin',
+  roleBn:  'রোমানিয়া স্টুডেন্ট ভিসা কনসালট্যান্ট · আইনের শিক্ষার্থী, ইউনিভার্সিটি অব তুরিন',
+  whatsapp:'393509549869',
+  email:   '',                 /* e.g. 'you@studyabroadallinone.com' */
+  site:    'studyabroadallinone.com',
+  city:    ''                  /* e.g. 'Turin, Italy' */
+};
+
 /* ---------- state ---------- */
 var lang = localStorage.getItem('sp_lang') || 'bn';
 var MONTHS = {
@@ -23,7 +47,8 @@ var MONTHS = {
 /* ---------- helpers ---------- */
 function t(k){ var v = (window.T[lang]||{})[k]; if (v === undefined) v = window.T.en[k] || k;
   /* {n} = how many countries are live right now, so the copy never lies about the count */
-  return String(v).replace(/\{n\}/g, window.COUNTRIES.length); }
+  return String(v).replace(/\{n\}/g, window.COUNTRIES.length)
+                  .replace(/\{y\}/g, window.INTAKE_YEAR || ''); }
 /* some headings read wrong with a single country live: "where can you go"
    becomes "am I eligible". One helper, so it reverts on its own. */
 function tm(k){ return window.MULTI ? t(k) : t(k+'Solo'); }
@@ -44,6 +69,8 @@ function costRange(c){
 function lakh(bdt){ return Math.round(bdt/10000)/10; }
 function lakhStr(bdt){ return lakh(bdt) + ' ' + t('lakh'); }
 function cur(v, c){ return (c.cur==='EUR'?'€':c.cur==='GBP'?'£':c.cur==='USD'?'$':c.cur+' ') + v.toLocaleString('en-US'); }
+/* monthly amounts in taka: 30,000 reads better than 0.3 lakh */
+function taka(bdt){ return (Math.round(bdt/1000)*1000).toLocaleString('en-US'); }
 function tk(v){ return '৳' + Math.round(v).toLocaleString('en-US'); }
 
 function trendBadge(c){
@@ -60,7 +87,9 @@ function trendCard(c){
       '<span class="tr-nm">'+esc(nm(c))+'</span></span>'+
     '<dl>'+
       '<dt>'+esc(t('thIelts'))+'</dt><dd>'+esc(t(c.ielts==='not_required'?'ieltsNotReq':c.ielts==='flexible'?'ieltsFlex':'ieltsReq'))+'</dd>'+
-      '<dt>'+esc(t('secCost'))+'</dt><dd>'+lakh(r[0])+'–'+lakh(r[1])+' '+esc(t('lakh'))+'</dd>'+
+      '<dt>'+esc(t('secCost'))+'</dt><dd>'+(c.goCost
+          ? lakh(c.goCost[0])+'–'+lakh(c.goCost[1])+' '+esc(t('lakh'))
+          : lakh(r[0])+'–'+lakh(r[1])+' '+esc(t('lakh')))+'</dd>'+
       '<dt>'+esc(t('thIntakes'))+'</dt><dd>'+c.intakes.length+'</dd>'+
     '</dl></a>';
 }
@@ -76,20 +105,13 @@ function trendSection(){
 /* While only one or two countries are live, the home page points straight at
    them instead of showing a "trending" list of one. */
 function soloSection(){
+  /* name only. Cost, PR and work hours belong on the country page, where
+     there is room to say what they actually mean. */
   var cards = window.COUNTRIES.map(function(c){
-    var r = costRange(c), m = im(c.slug);
     return '<a class="solo" href="#/country/'+c.slug+'">'+
       '<span class="solo-flag" aria-hidden="true">'+c.flag+'</span>'+
-      '<span class="solo-body">'+
-        '<strong>'+esc(nm(c))+'</strong>'+
-        '<span class="solo-dl">'+
-          '<span>'+esc(t('thIelts'))+': '+esc(t(c.ielts==='not_required'?'ieltsNotReq':c.ielts==='flexible'?'ieltsFlex':'ieltsReq'))+'</span>'+
-          '<span>'+esc(t('secCost'))+': '+lakh(r[0])+'–'+lakh(r[1])+' '+esc(t('lakh'))+'</span>'+
-          (c.workHours ? '<span>'+esc(t('thWork'))+': '+c.workHours+' '+esc(t('hrsWeek'))+'</span>' : '')+
-          (m && m.prYears ? '<span>PR: '+m.prYears+' '+esc(t('prYearsV'))+'</span>' : '')+
-        '</span>'+
-        '<span class="solo-cta">'+esc(t('soloCta'))+' →</span>'+
-      '</span></a>'; }).join('');
+      '<span class="solo-body"><strong>'+esc(nm(c))+'</strong>'+
+      '<span class="solo-cta">'+esc(t('soloCta'))+' →</span></span></a>'; }).join('');
   return '<section class="sect" style="padding-bottom:0"><div class="wrap">'+
     '<div class="sect-head"><h2 class="serif">'+esc(t('soloTitle'))+'</h2><p>'+esc(t('soloSub'))+'</p></div>'+
     '<div class="solo-grid">'+cards+'</div>'+
@@ -188,10 +210,12 @@ function footer(){
       ftrTool('#/courses','navCourses')+'</div>'+
     '<div><h4>'+esc(t(window.MULTI?'ftrRegions':'navCountries'))+'</h4>'+regions+'</div>'+
     '<div><h4>'+esc(t('ftrLegal'))+'</h4>'+
+      '<a href="#/about">'+esc(t('ftrAbout'))+'</a>'+
+      '<a href="#/terms">'+esc(t('ftrTerms'))+'</a>'+
       '<a href="#/privacy">'+esc(t('ftrPrivacy'))+'</a>'+
       '<a href="#/disclaimer">'+esc(t('ftrDisclaimer'))+'</a>'+
-      '<a href="#/contact">'+esc(t('navContact'))+'</a>'+
-      '<a href="#/data">'+esc(t('dsTitle'))+'</a></div>'+
+      '<a href="#/data">'+esc(t('dsTitle'))+'</a>'+
+      '<a href="#/contact">'+esc(t('navContact'))+'</a></div>'+
     '</div><p class="disc">'+esc(t('ftrDisc'))+'</p></div></footer>';
 }
 
@@ -349,7 +373,9 @@ function resCard(r){
   if (r.prStudy) extra.push(esc(t('fPrStudy'))+' '+esc(t({half:'psHalf',full:'psFull',none:'psNone',na:'psNa'}[r.prStudy])));
   return '<div class="res '+r.band+'"><div class="res-top">'+
     '<h4><span aria-hidden="true">'+r.c.flag+'</span> <a href="#/country/'+r.c.slug+'">'+esc(nm(r.c))+'</a>'+trendBadge(r.c)+'</h4>'+
-    '<span class="res-cost">'+r.loL+'–'+r.hiL+' '+esc(t('lakh'))+esc(t('perYear'))+'</span></div>'+
+    '<span class="res-cost">'+(r.c.goCost
+        ? lakh(r.c.goCost[0])+'–'+lakh(r.c.goCost[1])+' '+esc(t('lakh'))+' <span class="res-cost-l">'+esc(t('goCostOnce'))+'</span>'
+        : r.loL+'–'+r.hiL+' '+esc(t('lakh'))+esc(t('perYear')))+'</span></div>'+
     '<p class="res-why">'+r.why.map(function(w){
       return (w[0]==='ok'?'✓ ':w[0]==='mid'?'! ':'✕ ')+'<b>'+esc(w[1])+'</b>'; }).join(' · ')+
       (extra.length?'<br>'+extra.join(' · '):'')+'</p></div>';
@@ -367,6 +393,88 @@ function bandsHtml(list){
       '<p style="margin:-4px 0 11px;color:var(--slate);font-size:.92rem">'+esc(t(g[2]))+'</p>'+
       '<div class="res-list">'+sub.map(resCard).join('')+'</div></div>';
   }).join('');
+}
+
+/* The student has just filled in level, result, budget and English. Rather than
+   make them type it all again, this sends those answers straight to WhatsApp. */
+function askBlock(){
+  return '<form class="askb" id="askForm">'+
+    '<h3 class="serif">'+esc(t('askTitle'))+'</h3>'+
+    '<p class="askb-sub">'+esc(t('askBody'))+'</p>'+
+    '<div class="askb-row">'+
+      '<div class="field"><label for="askN">'+esc(t('ctName'))+'</label>'+
+        '<input id="askN" type="text" autocomplete="name"></div>'+
+      '<div class="field"><label for="askP">'+esc(t('ctPhone'))+'</label>'+
+        '<input id="askP" type="tel" inputmode="tel" placeholder="01XXXXXXXXX" autocomplete="tel"></div>'+
+    '</div>'+
+    '<div class="field"><label for="askM">'+esc(t('askNote'))+'</label>'+
+      '<textarea id="askM" rows="2" placeholder="'+esc(t('askNoteHint'))+'"></textarea></div>'+
+    '<div class="askb-sum" id="askSum">'+esc(answerSummary())+'</div>'+
+    '<button class="btn" type="submit">'+esc(t('askSend'))+'</button>'+
+    '<div id="askDone" hidden></div>'+
+  '</form>';
+}
+
+/* the quick-check answers as one readable line, in the current language */
+function answerSummary(){
+  var parts = [
+    t('qcLevel')+': '+t(ans.level==='bachelor'?'lvlBachelor':ans.level==='master'?'lvlMaster':'lvlPhd'),
+    t('qcCgpa')+': '+(ans.result || '—')+' / '+(ans.scale==='100'?'100':ans.scale+'.00'),
+    t('qcBudget')+': '+ans.budget+' '+t('lakh'),
+    t('qcIelts')+': '+(ans.ielts==='yes' ? t('ieltsYes')+' ('+ans.band+')'
+                      : ans.ielts==='plan' ? t('ieltsPlan') : t('ieltsNo'))
+  ];
+  return parts.join(' · ');
+}
+
+function bindAsk(scope){
+  var f = (scope||document).querySelector('#askForm');
+  if (!f || f.dataset.bound) return;
+  f.dataset.bound = '1';
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    var g = function(id){ var el=document.getElementById(id); return el ? el.value.trim() : ''; };
+    var name=g('askN'), phone=g('askP'), note=g('askM');
+    var d = document.getElementById('askDone');
+    if (!name || !phone){
+      if (d){ d.hidden=false; d.className='note alert'; d.style.marginTop='12px';
+        d.innerHTML='<p style="margin:0">'+esc(t('ctFill'))+'</p>'; }
+      return;
+    }
+    var lines = [
+      t('siteName')+' — '+t('askTitle'),
+      '',
+      t('ctName')+': '+name,
+      t('ctPhone')+': '+phone,
+      '',
+      answerSummary()
+    ];
+    if (note) lines.push('', note);
+
+    var url = 'https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(lines.join('\n'));
+    window.open(url, '_blank', 'noopener');
+
+    /* keep a copy in the sheet too, if one is configured. Fire and forget —
+       the student's message goes through WhatsApp either way. */
+    if (SHEET_URL){
+      try {
+        fetch(SHEET_URL, { method:'POST', mode:'no-cors',
+          headers:{'Content-Type':'text/plain;charset=utf-8'},
+          body: JSON.stringify({ name:name, phone:phone, note:note, lang:lang,
+            level:ans.level, result:ans.result, scale:ans.scale,
+            budget:ans.budget, ielts:ans.ielts, band:ans.band,
+            at:new Date().toISOString() })
+        }).catch(function(){ /* the sheet is a bonus; WhatsApp already carries it */ });
+      } catch(err){}
+    }
+
+    if (d){
+      d.hidden=false; d.className='note good'; d.style.marginTop='12px';
+      d.innerHTML = '<p><strong>'+esc(t('ctOpening'))+'</strong></p>'+
+        '<p style="font-size:.9rem;margin-bottom:0">'+esc(t('ctOpeningBody'))+' '+
+        '<a href="'+url+'" target="_blank" rel="noopener" style="font-weight:600">+'+esc(WHATSAPP)+'</a></p>';
+    }
+  });
 }
 
 /* results, grouped by region — click a region to open its full list */
@@ -402,6 +510,7 @@ function renderResults(){
       '<div class="res-list">'+hot.map(resCard).join('')+'</div></div>';
   }
 
+
   /* a region accordion holding one country is a box around a box — flatten it */
   if (!window.MULTI){
     out += bandsHtml(rows);
@@ -409,6 +518,7 @@ function renderResults(){
       '<ol class="steps"><li>'+esc(t('resStep1'))+'</li>'+
       (shown('#/calendar') ? '<li>'+esc(t('resStep2'))+'</li>' : '')+
       '<li>'+esc(t('resStep3'))+'</li><li>'+esc(t('resStep4'))+'</li></ol></div>';
+    out += askBlock();
     return '<div class="reveal">'+out+'</div>';
   }
 
@@ -432,6 +542,7 @@ function renderResults(){
   out += '<div class="note good" style="max-width:none"><p><strong>'+esc(t('resNext'))+'</strong></p>'+
     '<ol class="steps"><li>'+esc(t('resStep1'))+'</li><li>'+esc(t('resStep2'))+'</li>'+
     '<li>'+esc(t('resStep3'))+'</li><li>'+esc(t('resStep4'))+'</li></ol></div>';
+  out += askBlock();
   return '<div class="reveal">'+out+'</div>';
 }
 
@@ -608,12 +719,13 @@ function workSection(c){
       w.jobs.map(function(j){ return esc(L(window.JOBTYPES[j])); }).join(' · ')+'</p>'+
     '<p><b>'+esc(t('workPay'))+':</b> '+cur(w.pay[0],c)+' – '+cur(w.pay[1],c)+esc(t('workPerHour'))+
       ' <span style="color:var(--slate);font-size:.88rem">— '+esc(t('workApprox'))+'</span></p>'+
-    '<p><b>'+esc(t('fWork'))+':</b> '+(c.workHours? c.workHours+' '+esc(t('hrsWeek')) : esc(t('hrsNone')))+'</p>'+
+    '<p><b>'+esc(t('fWork'))+':</b> '+(c.workHours? c.workHours+' '+esc(t('hrsWeek'))+' <span style="color:var(--slate);font-size:.88rem">— '+esc(t('workLegal'))+'</span>' : esc(t('hrsNone')))+'</p>'+
+    (c.workNote ? '<p>'+esc(L(c.workNote))+'</p>' : '')+
     '<p><b>'+esc(t('workLang'))+':</b> '+
       esc(t({none:'langNone',basic:'langBasic',needed:'langNeeded'}[w.lang]||'langNeeded'))+'</p>'+
     '<p><b>'+esc(t('workCovers'))+':</b> '+coversPill(w.covers)+'</p>'+
     (w.note ? '<p>'+esc(L(w.note))+'</p>' : '')+
-    '<div class="note alert"><p><strong>'+esc(t('workWarn'))+'</strong></p><p>'+esc(t('workWarnBody'))+'</p></div>';
+    '<div class="note"><p><strong>'+esc(t('workWarn'))+'</strong></p><p>'+esc(t('workWarnBody'))+'</p></div>';
   return out;
 }
 
@@ -701,21 +813,26 @@ function pageCountry(slug){
       '<p style="font-size:.9rem;margin-bottom:0">'+esc(t('confirmedNote'))+'</p></div>'
     : '';
 
-  var eligibilityBox = c.eligibility
-    ? '<h2 class="serif">'+esc(t('secEligibility'))+'</h2>'+
-      '<div class="note alert"><p>'+esc(L(c.eligibility))+'</p></div>'
+  /* who may apply at all. This is the gate before every other question on the
+     page, and the single thing an agency will not tell a student who fails it,
+     so it stands on its own above everything else. */
+  var eligibilityBanner = c.eligibility
+    ? '<section class="gate"><div class="gate-in">'+
+        '<h2 class="serif">'+esc(t('secEligibility'))+'</h2>'+
+        '<p>'+esc(L(c.eligibility))+'</p>'+
+      '</div></section>'
     : '';
 
   var visaViaBox = c.visaVia
     ? '<h2 class="serif">'+esc(t('secVisaVia'))+'</h2>'+
       '<p>'+esc(t('visaViaNote'))+'</p><ul>'+
-      c.visaVia.map(function(m){ return '<li>'+esc(m)+'</li>'; }).join('')+'</ul>'
+      c.visaVia.map(function(m){ return '<li>'+esc(m)+'</li>'; }).join('')+'</ul>'+
+      (c.visaViaNote ? '<div class="note"><p style="margin:0">'+esc(L(c.visaViaNote))+'</p></div>' : '')
     : '';
 
   var body = '<div class="cbody">'+
     '<h2 class="serif">'+esc(t('secWho'))+'</h2><p>'+esc(L(c.bestFor))+'</p>'+
     confirmedBox+
-    eligibilityBox+
     (c.trending ? '<div class="note"><p><strong>'+esc(t('trendWhat'))+'</strong></p><p>'+esc(t('trendWhatBody'))+'</p></div>' : '')+
     (m.changed ? '<div class="note alert"><p><strong>'+esc(t('ruleChanged'))+'</strong> — '+esc(t('ruleChangedL'))+'</p></div>' : '')+
 
@@ -744,7 +861,7 @@ function pageCountry(slug){
       return '<li><b>'+esc(L(i.name))+'</b> — '+esc(t('cFilterSearch')==='Search'?'apply from':'আবেদন শুরু')+' '+
         esc(mon(i.applyFrom))+', '+esc(t('calDl').toLowerCase())+' '+esc(mon(i.deadline))+', '+
         esc(t('calClass').toLowerCase())+' '+esc(mon(i.classStarts))+'</li>'; }).join('')+'</ul>'+
-    '<p><a href="#/calendar">'+esc(t('navCalendar'))+' →</a></p>'+
+    (shown('#/calendar') ? '<p><a href="#/calendar">'+esc(t('navCalendar'))+' →</a></p>' : '')+
 
     '<h2 class="serif">'+esc(t('secCost'))+'</h2>'+
     /* the number students actually ask for: what it costs to get there at all */
@@ -756,8 +873,11 @@ function pageCountry(slug){
         '<p style="font-size:.92rem">'+esc(t('goCostWhat'))+'</p>'+
         '<p style="font-size:.92rem;margin-bottom:0"><b>'+esc(t('goCostNot'))+'</b></p></div>'
       : '')+
-    '<p>'+esc(t('approx'))+' <b>'+lakh(r[0])+' – '+lakh(r[1])+' '+esc(t('lakh'))+'</b> '+esc(t('perYear'))+
-      ' (' + esc(t('costTuition').toLowerCase()) + ' + ' + esc(t('costLivingY').toLowerCase()) + ').</p>'+
+    /* deliberately NOT a single big yearly total — students read one large
+       number and stop reading. Tuition a year, living a month. */
+    '<p><b>'+esc(t('costTuition'))+':</b> '+cur(c.tuition[0],c)+' – '+cur(c.tuition[1],c)+' '+esc(t('perYear'))+'<br>'+
+      '<b>'+esc(t('fLiving'))+':</b> '+cur(c.living[0],c)+' – '+cur(c.living[1],c)+esc(t('perMonth'))+
+      ' <span style="color:var(--slate)">≈ '+taka(c.living[0]*window.FX[c.cur])+'–'+taka(c.living[1]*window.FX[c.cur])+' '+esc(t('bdt'))+esc(t('perMonth'))+'</span></p>'+
     '<p><a href="#/cost?c='+c.slug+'">'+esc(t('costTitle'))+' →</a></p>'+
 
     workSection(c)+
@@ -774,6 +894,7 @@ function pageCountry(slug){
 
   var back = window.MULTI ? ['#/countries','backCountries'] : ['#/','navHome'];
   return '<div class="wrap"><nav class="breadcrumb"><a href="'+back[0]+'">← '+esc(t(back[1]))+'</a></nav>'+
+    eligibilityBanner+
     '<div class="cpage">'+facts+body+'</div>'+
     '<div style="padding-bottom:50px">'+contactBlock()+'</div></div>';
 }
@@ -1117,23 +1238,122 @@ function pageData(){
 /* ============================================================
    STATIC PAGES
    ============================================================ */
-function pageLegal(kind){
-  var title = kind==='privacy' ? t('ftrPrivacy') : t('ftrDisclaimer');
-  var body = kind==='privacy'
-    ? (lang==='bn'
-      ? '<p>এই ওয়েবসাইটে কোনো অ্যাকাউন্ট লাগে না, কোনো বিজ্ঞাপন দেখানো হয় না, আর কোনো ট্র্যাকিং কুকি ব্যবহার করা হয় না।</p>'+
-        '<p>যোগাযোগ ফর্মটি কোনো তথ্য এই সাইটে জমা রাখে না। আপনি যা লেখেন তা দিয়ে একটি WhatsApp বার্তা তৈরি হয়, আর সেটি পাঠানো হবে কি না তা আপনার সিদ্ধান্ত। বার্তাটি সরাসরি আপনার WhatsApp থেকে পরামর্শদাতার WhatsApp-এ যায়। মাঝখানে কোনো তৃতীয় পক্ষের সার্ভারে আপনার তথ্য সংরক্ষিত হয় না।</p>'+
-        '<p>পাসপোর্ট, ব্যাংক স্টেটমেন্ট বা সার্টিফিকেটের স্ক্যান এই সাইটের কোনো ফর্মে পাঠাবেন না। সেগুলো ওয়েব ফর্মে কখনো নেওয়া হয় না।</p>'
-      : '<p>This site needs no account, shows no advertising, and sets no tracking cookies.</p>'+
-        '<p>The contact form stores nothing on this site. What you type is used to compose a WhatsApp message, and whether to send it is your decision. The message goes directly from your WhatsApp to the adviser\'s. No third-party server holds your details in between.</p>'+
-        '<p>Do not send scans of a passport, bank statement or certificate through any form on this site — those are never collected through a web form.</p>')
-    : (lang==='bn'
-      ? '<p>'+esc(t('ftrDisc'))+'</p><p>'+esc(t('fraudBody'))+'</p>'
-      : '<p>'+esc(t('ftrDisc'))+'</p><p>'+esc(t('fraudBody'))+'</p>');
-  return '<section class="sect"><div class="wrap" style="max-width:720px">'+
-    '<div class="sect-head"><h2 class="serif">'+esc(title)+'</h2></div><div class="cbody">'+body+
-    updBox()+'</div></div></section>';
+function ownerCard(){
+  var rows = [];
+  var add = function(label, value, href){
+    if (!value) return;
+    rows.push('<dt>'+esc(label)+'</dt><dd>'+
+      (href ? '<a href="'+href+'" target="_blank" rel="noopener">'+esc(value)+'</a>' : esc(value))+'</dd>');
+  };
+  add(t('ownWho'), OWNER.name);
+  add(t('ownRole'), lang==='bn' ? OWNER.roleBn : OWNER.roleEn);
+  add(t('ctPhone'), OWNER.whatsapp ? '+'+OWNER.whatsapp : '', OWNER.whatsapp ? 'https://wa.me/'+OWNER.whatsapp : '');
+  add(t('ownEmail'), OWNER.email, OWNER.email ? 'mailto:'+OWNER.email : '');
+  add(t('ownSite'), OWNER.site, OWNER.site ? 'https://'+OWNER.site : '');
+  add(t('ownCity'), OWNER.city);
+  return rows.length ? '<dl class="owner">'+rows.join('')+'</dl>' : '';
 }
+
+/* privacy · terms · disclaimer · about — one page builder, two languages */
+function pageLegal(kind){
+  var bn = (lang === 'bn');
+  var title = { privacy:t('ftrPrivacy'), terms:t('ftrTerms'),
+                disclaimer:t('ftrDisclaimer'), about:t('ftrAbout') }[kind] || '';
+  var body = '';
+
+  if (kind === 'about'){
+    body = bn
+      ? '<p>এই ওয়েবসাইটটি চালান একজন ব্যক্তি, কোনো এজেন্সি নয়। উদ্দেশ্য একটাই — বাংলাদেশি শিক্ষার্থী যেন সিদ্ধান্ত নেওয়ার আগেই জানতে পারেন কোন দেশে কী লাগে, কত খরচ হয়, আর কী কী হয় না। এই তথ্যের জন্য কোনো টাকা লাগে না, কোনো অ্যাকাউন্ট লাগে না।</p>'
+        + ownerCard()
+        + '<h3 class="serif">এই সাইট যা করে</h3>'
+        + '<ul><li>প্রতিটি দেশের ভর্তি, ইংরেজি, খরচ, কাজ, স্ত্রী/স্বামী আর PR-এর নিয়ম এক জায়গায় রাখে</li>'
+        + '<li>কোনটা যাচাই করা আর কোনটা এখনো প্রাথমিক ধারণা, সেটা আলাদা করে বলে দেয়</li>'
+        + '<li>প্রতি তিন মাসে একবার পুরো তথ্য আবার দেখা হয়</li></ul>'
+        + '<h3 class="serif">এই সাইট যা করে না</h3>'
+        + '<ul><li>কোনো বিজ্ঞাপন দেখায় না, কোনো কিছু বিক্রি করে না</li>'
+        + '<li>ভর্তি বা ভিসার কোনো নিশ্চয়তা দেয় না — সেটা কারও হাতে নেই</li>'
+        + '<li>আপনার কোনো তথ্য জমা রাখে না</li></ul>'
+        + '<p>তথ্যে ভুল চোখে পড়লে, বা আপনার নিজের অভিজ্ঞতা এখানে লেখা কথার সঙ্গে না মিললে, WhatsApp-এ জানান। ভুল পেলে সেটা ঠিক করা হয়।</p>'
+      : '<p>This site is run by one person, not an agency. It exists so that a student from Bangladesh can find out what a country actually requires, what it actually costs and what simply is not possible — before deciding anything. The information is free and needs no account.</p>'
+        + ownerCard()
+        + '<h3 class="serif">What this site does</h3>'
+        + '<ul><li>Keeps admission, English, cost, work, spouse and PR rules for a country in one place</li>'
+        + '<li>Says plainly which facts are verified and which are still a first estimate</li>'
+        + '<li>Reviews the whole thing every three months</li></ul>'
+        + '<h3 class="serif">What it does not do</h3>'
+        + '<ul><li>No advertising, nothing for sale</li>'
+        + '<li>No guarantee of admission or of a visa — nobody can give one</li>'
+        + '<li>Keeps none of your information</li></ul>'
+        + '<p>If something here is wrong, or your own experience does not match what is written, say so on WhatsApp. Errors get corrected.</p>';
+  }
+
+  else if (kind === 'terms'){
+    body = bn
+      ? '<p>এই পাতায় লেখা আছে এই ওয়েবসাইট ব্যবহারের শর্ত। সাইটটি ব্যবহার করা মানে আপনি এই শর্তগুলো মেনে নিচ্ছেন।</p>'
+        + '<h3 class="serif">১ · এটি তথ্যের ওয়েবসাইট</h3>'
+        + '<p>এখানকার সব তথ্য সাধারণ তথ্য হিসেবে দেওয়া। এটি আইনি, অভিবাসন বা আর্থিক পরামর্শ নয়, আর কোনো সরকারি সূত্রের বিকল্পও নয়। আপনার নিজের পরিস্থিতিতে কী হবে, সেটি নির্ভর করে আপনার কাগজপত্র, আপনার বিশ্ববিদ্যালয় আর সংশ্লিষ্ট দূতাবাসের সিদ্ধান্তের উপর।</p>'
+        + '<h3 class="serif">২ · নিয়ম বদলায়</h3>'
+        + '<p>বিশ্ববিদ্যালয়, মন্ত্রণালয় ও দূতাবাস আগে না জানিয়ে নিয়ম বদলাতে পারে, আর বদলায়ও। প্রতি তিন মাসে এই সাইট আবার দেখা হয়, তবু কোনো তথ্য পুরনো হয়ে থাকতে পারে। <strong>টাকা দেওয়ার বা সিদ্ধান্ত নেওয়ার আগে বিশ্ববিদ্যালয়ের নিজস্ব ওয়েবসাইট ও দূতাবাসের সরকারি পাতায় নিশ্চিত হয়ে নিন।</strong></p>'
+        + '<h3 class="serif">৩ · কোনো নিশ্চয়তা নেই</h3>'
+        + '<p>এই ওয়েবসাইট ভর্তি, স্কলারশিপ, ভিসা, কাজ, স্থায়ী বসবাস বা নাগরিকত্বের কোনো নিশ্চয়তা দেয় না। কেউ এসব নিশ্চয়তা দিতে পারে না — কোনো এজেন্সি, কোনো কনসালট্যান্ট, কোনো বিশ্ববিদ্যালয়ও না। কেউ দিলে বুঝবেন তিনি মিথ্যা বলছেন।</p>'
+        + '<h3 class="serif">৪ · দায়</h3>'
+        + '<p>এই সাইটের তথ্যের উপর ভিত্তি করে নেওয়া সিদ্ধান্তের দায় আপনার নিজের। এখানকার কোনো তথ্য বা ভুলের কারণে হওয়া কোনো ক্ষতির জন্য সাইট পরিচালনাকারী দায়ী থাকবেন না।</p>'
+        + '<h3 class="serif">৫ · পরামর্শ সেবা আলাদা</h3>'
+        + '<p>এই ওয়েবসাইট সম্পূর্ণ ফ্রি। WhatsApp-এ যোগাযোগ করলে আলাদাভাবে ব্যক্তিগত পরামর্শ সেবা নেওয়া যেতে পারে, যার শর্ত ও ফি আলাদা করে আগেই জানিয়ে দেওয়া হয়। সেই সেবার শর্ত এই পাতার অংশ নয়। যেকোনো ফি দেওয়ার আগে লিখিতভাবে জেনে নিন কী সেবা পাবেন, কত টাকায়, আর টাকা ফেরতের নিয়ম কী।</p>'
+        + '<h3 class="serif">৬ · লেখা ও তথ্য</h3>'
+        + '<p>এই সাইটের লেখা ও সাজানো তথ্য সাইট পরিচালনাকারীর। ব্যক্তিগত ব্যবহারে পড়তে ও শেয়ার করতে পারেন। বাণিজ্যিকভাবে পুরো তথ্য কপি করে নিজের নামে প্রকাশ করা যাবে না।</p>'
+        + '<h3 class="serif">৭ · যোগাযোগ</h3>'
+        + '<p>এই শর্ত নিয়ে প্রশ্ন থাকলে WhatsApp-এ জানান।</p>'
+        + ownerCard()
+      : '<p>These are the terms for using this website. By using it, you accept them.</p>'
+        + '<h3 class="serif">1 · This is an information site</h3>'
+        + '<p>Everything here is general information. It is not legal, immigration or financial advice, and it does not replace an official source. What happens in your own case depends on your documents, your university and the decision of the relevant embassy.</p>'
+        + '<h3 class="serif">2 · Rules change</h3>'
+        + '<p>Universities, ministries and embassies change their rules without notice, and they do. This site is reviewed every three months, and something here may still be out of date. <strong>Confirm on the university\'s own website and the embassy\'s official pages before paying anything or deciding anything.</strong></p>'
+        + '<h3 class="serif">3 · No guarantees</h3>'
+        + '<p>This site guarantees no admission, scholarship, visa, job, permanent residence or citizenship. Nobody can guarantee those — no agency, no consultant, no university. Anyone who does is lying to you.</p>'
+        + '<h3 class="serif">4 · Liability</h3>'
+        + '<p>Decisions you take based on this site are your own. The site owner is not liable for any loss arising from the information here or from an error in it.</p>'
+        + '<h3 class="serif">5 · Consultancy is separate</h3>'
+        + '<p>This website is free. Personal consultancy can be arranged separately over WhatsApp, on its own terms and fees, agreed in advance. Those terms are not part of this page. Before paying any fee, get in writing what service you receive, for how much, and what the refund rule is.</p>'
+        + '<h3 class="serif">6 · Content</h3>'
+        + '<p>The writing and the way the information is organised here belong to the site owner. Read it and share it for personal use. Do not copy the content wholesale and republish it commercially as your own.</p>'
+        + '<h3 class="serif">7 · Contact</h3>'
+        + '<p>Questions about these terms go to the WhatsApp number below.</p>'
+        + ownerCard();
+  }
+
+  else if (kind === 'privacy'){
+    body = bn
+      ? '<p>সংক্ষেপে: এই ওয়েবসাইট আপনার কোনো তথ্য সংগ্রহ করে না, জমা রাখে না, কাউকে দেয় না।</p>'
+        + '<h3 class="serif">অ্যাকাউন্ট, বিজ্ঞাপন, কুকি</h3>'
+        + '<p>কোনো অ্যাকাউন্ট লাগে না। কোনো বিজ্ঞাপন নেই। কোনো ট্র্যাকিং কুকি বসানো হয় না, আর আপনাকে অনুসরণ করার কোনো বিজ্ঞাপন-স্ক্রিপ্ট এখানে নেই।</p>'
+        + '<h3 class="serif">ফর্মে লেখা তথ্য</h3>'
+        + '<p>যোগাযোগ ফর্ম বা "এই উত্তরগুলো আমাকে পাঠান" — কোনোটিই এই সাইটে কিছু জমা রাখে না। আপনি যা লেখেন তা দিয়ে শুধু একটি WhatsApp বার্তা তৈরি হয়, আর সেটি পাঠাবেন কি না তা আপনার সিদ্ধান্ত। বার্তাটি যায় সরাসরি আপনার নিজের WhatsApp থেকে। মাঝখানে কোনো সার্ভারে আপনার তথ্য থাকে না।</p>'
+        + '<h3 class="serif">যা কখনো পাঠাবেন না</h3>'
+        + '<p>পাসপোর্ট, ব্যাংক স্টেটমেন্ট, সার্টিফিকেট বা জাতীয় পরিচয়পত্রের স্ক্যান এই সাইটের কোনো ফর্মে পাঠাবেন না। এসব কখনো ওয়েব ফর্মে নেওয়া হয় না।</p>'
+        + '<h3 class="serif">হোস্টিং</h3>'
+        + '<p>সাইটটি Cloudflare Pages-এ রাখা। যেকোনো ওয়েব হোস্টের মতো তাদের সার্ভারেও সাধারণ অ্যাকসেস লগ থাকে, যা তাদের নিজস্ব নীতিতে চলে। সেই লগে আপনার নাম বা আপনার লেখা কিছু থাকে না।</p>'
+      : '<p>Short version: this site collects nothing, stores nothing and shares nothing.</p>'
+        + '<h3 class="serif">Accounts, ads, cookies</h3>'
+        + '<p>No account is needed. There is no advertising. No tracking cookie is set, and there is no ad script here following you anywhere.</p>'
+        + '<h3 class="serif">What you type into a form</h3>'
+        + '<p>Neither the contact form nor "send these answers to me" stores anything on this site. What you type is only used to compose a WhatsApp message, and whether to send it is your decision. It goes from your own WhatsApp. No server in between holds your details.</p>'
+        + '<h3 class="serif">What never to send</h3>'
+        + '<p>Do not send scans of a passport, bank statement, certificate or national ID through any form on this site. Those are never collected through a web form.</p>'
+        + '<h3 class="serif">Hosting</h3>'
+        + '<p>The site is hosted on Cloudflare Pages. Like any web host they keep ordinary access logs under their own policy. Those logs contain no name and nothing you typed.</p>';
+  }
+
+  else {
+    body = '<p>'+esc(t('ftrDisc'))+'</p><p>'+esc(t('fraudBody'))+'</p>';
+  }
+
+  return '<section class="sect"><div class="wrap" style="max-width:760px">'+
+    '<div class="sect-head"><h2 class="serif">'+esc(title)+'</h2></div>'+
+    '<div class="cbody legal">'+body+updBox()+'</div></div></section>';
+}
+
 function page404(){
   return '<section class="sect"><div class="wrap"><div class="empty">'+
     '<h3 class="serif">'+esc(t('notFound'))+'</h3><p>'+esc(t('notFoundD'))+'</p>'+
@@ -1170,6 +1390,8 @@ function render(){
     case 'data':        body = pageData(); break;
     case 'privacy':     body = pageLegal('privacy'); break;
     case 'disclaimer':  body = pageLegal('disclaimer'); break;
+    case 'terms':       body = pageLegal('terms'); break;
+    case 'about':       body = pageLegal('about'); break;
     default:            body = page404();
   }
   document.documentElement.lang = lang;
@@ -1224,6 +1446,7 @@ function wire(root){
     if (a){
       a.innerHTML = renderResults();
       bindGroups(a);
+      bindAsk(a);
       a.scrollIntoView({ block:'start', behavior:'smooth' });
     }
   }
@@ -1298,6 +1521,7 @@ function wire(root){
 
   /* any region accordions already on the page */
   bindGroups();
+  bindAsk();
 
   /* contact — builds a WhatsApp message and opens it */
   on('ctForm','submit', function(e){
