@@ -412,7 +412,6 @@ function askBlock(){
     '</div>'+
     '<div class="field"><label for="askM">'+esc(t('askNote'))+'</label>'+
       '<textarea id="askM" rows="2" placeholder="'+esc(t('askNoteHint'))+'"></textarea></div>'+
-    '<div class="askb-sum" id="askSum">'+esc(answerSummary())+'</div>'+
     '<button class="btn" type="submit">'+esc(t('askSend'))+'</button>'+
     '<div id="askDone" hidden></div>'+
   '</form>';
@@ -438,45 +437,42 @@ function bindAsk(scope){
     e.preventDefault();
     var g = function(id){ var el=document.getElementById(id); return el ? el.value.trim() : ''; };
     var name=g('askN'), phone=g('askP'), note=g('askM');
-    var d = document.getElementById('askDone');
-    if (!name || !phone){
-      if (d){ d.hidden=false; d.className='note alert'; d.style.marginTop='12px';
-        d.innerHTML='<p style="margin:0">'+esc(t('ctFill'))+'</p>'; }
-      return;
-    }
-    var lines = [
-      t('siteName')+' — '+t('askTitle'),
-      '',
-      t('ctName')+': '+name,
-      t('ctPhone')+': '+phone,
-      '',
-      answerSummary()
-    ];
-    if (note) lines.push('', note);
+    var d   = document.getElementById('askDone');
+    var btn = f.querySelector('button[type="submit"]');
+    var say = function(cls, html){
+      if (!d) return;
+      d.hidden=false; d.className='note '+cls; d.style.marginTop='12px'; d.innerHTML=html;
+    };
 
-    var url = 'https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(lines.join('\n'));
-    window.open(url, '_blank', 'noopener');
+    if (!name || !phone){ say('alert', '<p style="margin:0">'+esc(t('ctFill'))+'</p>'); return; }
+    if (!SHEET_URL){ say('alert', '<p style="margin:0">'+esc(t('askFail'))+'</p>'); return; }
 
-    /* keep a copy in the sheet too, if one is configured. Fire and forget —
-       the student's message goes through WhatsApp either way. */
-    if (SHEET_URL){
-      try {
-        fetch(SHEET_URL, { method:'POST', mode:'no-cors',
-          headers:{'Content-Type':'text/plain;charset=utf-8'},
-          body: JSON.stringify({ name:name, phone:phone, note:note, lang:lang,
-            level:ans.level, result:ans.result, scale:ans.scale,
-            budget:ans.budget, ielts:ans.ielts, band:ans.band,
-            at:new Date().toISOString() })
-        }).catch(function(){ /* the sheet is a bonus; WhatsApp already carries it */ });
-      } catch(err){}
-    }
+    /* real request, not fire-and-forget: with no WhatsApp fallback the student
+       must be told the truth about whether it actually arrived */
+    btn.disabled = true;
+    var wasLabel = btn.textContent;
+    btn.textContent = t('askSending');
 
-    if (d){
-      d.hidden=false; d.className='note good'; d.style.marginTop='12px';
-      d.innerHTML = '<p><strong>'+esc(t('ctOpening'))+'</strong></p>'+
-        '<p style="font-size:.9rem;margin-bottom:0">'+esc(t('ctOpeningBody'))+' '+
-        '<a href="'+url+'" target="_blank" rel="noopener" style="font-weight:600">+'+esc(WHATSAPP)+'</a></p>';
-    }
+    var payload = { name:name, phone:phone, note:note, lang:lang,
+      level:ans.level, result:ans.result, scale:ans.scale,
+      budget:ans.budget, ielts:ans.ielts, band:ans.band,
+      at:new Date().toISOString() };
+
+    fetch(SHEET_URL, { method:'POST',
+      headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body: JSON.stringify(payload) })
+      .then(function(r){ if (!r.ok) throw new Error('bad status'); return r.text(); })
+      .then(function(){
+        f.reset();
+        say('good', '<p style="margin:0 0 4px"><strong>'+esc(t('askOk'))+'</strong></p>'+
+          '<p style="font-size:.9rem;margin:0">'+esc(t('askOkBody'))+'</p>');
+      })
+      .catch(function(){
+        say('alert', '<p style="margin:0 0 4px"><strong>'+esc(t('askFail'))+'</strong></p>'+
+          '<p style="font-size:.9rem;margin:0">'+esc(t('askFailBody'))+' '+
+          '<a href="https://wa.me/'+esc(WHATSAPP)+'" target="_blank" rel="noopener" style="font-weight:600">+'+esc(WHATSAPP)+'</a></p>');
+      })
+      .then(function(){ btn.disabled = false; btn.textContent = wasLabel; });
   });
 }
 
@@ -1328,20 +1324,28 @@ function pageLegal(kind){
 
   else if (kind === 'privacy'){
     body = bn
-      ? '<p>সংক্ষেপে: এই ওয়েবসাইট আপনার কোনো তথ্য সংগ্রহ করে না, জমা রাখে না, কাউকে দেয় না।</p>'
+      ? '<p>সংক্ষেপে: কোনো অ্যাকাউন্ট লাগে না, কোনো বিজ্ঞাপন নেই, কোনো ট্র্যাকিং নেই। শুধু আপনি নিজে ফর্মে যা লিখে পাঠাবেন, সেটুকুই আমার কাছে আসে।</p>'
         + '<h3 class="serif">অ্যাকাউন্ট, বিজ্ঞাপন, কুকি</h3>'
-        + '<p>কোনো অ্যাকাউন্ট লাগে না। কোনো বিজ্ঞাপন নেই। কোনো ট্র্যাকিং কুকি বসানো হয় না, আর আপনাকে অনুসরণ করার কোনো বিজ্ঞাপন-স্ক্রিপ্ট এখানে নেই।</p>'
-        + '<h3 class="serif">ফর্মে লেখা তথ্য</h3>'
-        + '<p>যোগাযোগ ফর্ম বা "এই উত্তরগুলো আমাকে পাঠান" — কোনোটিই এই সাইটে কিছু জমা রাখে না। আপনি যা লেখেন তা দিয়ে শুধু একটি WhatsApp বার্তা তৈরি হয়, আর সেটি পাঠাবেন কি না তা আপনার সিদ্ধান্ত। বার্তাটি যায় সরাসরি আপনার নিজের WhatsApp থেকে। মাঝখানে কোনো সার্ভারে আপনার তথ্য থাকে না।</p>'
+        + '<p>কোনো অ্যাকাউন্ট লাগে না। কোনো বিজ্ঞাপন নেই। কোনো ট্র্যাকিং কুকি বসানো হয় না, আর আপনাকে অনুসরণ করার কোনো বিজ্ঞাপন-স্ক্রিপ্ট এখানে নেই। সাইটের বাকি সব পাতা আপনি নাম-পরিচয় ছাড়াই পড়তে পারেন।</p>'
+        + '<h3 class="serif">"এই উত্তরগুলো আমাকে পাঠান" ফর্ম</h3>'
+        + '<p>এই ফর্মে <strong>পাঠান</strong> চাপলে আপনার দেওয়া তথ্য আমার কাছে চলে আসে এবং একটি Google Sheet-এ জমা থাকে, যেটি শুধু আমি দেখতে পাই। যা যায়: আপনার নাম, WhatsApp নম্বর, আপনি যা লিখেছেন, আর যাচাই ফর্মের উত্তরগুলো (কোন লেভেল, ফলাফল, বাজেট, ইংরেজির অবস্থা) এবং পাঠানোর সময়।</p>'
+        + '<p>এটি আপনার সঙ্গে যোগাযোগ করা ছাড়া অন্য কোনো কাজে ব্যবহার করা হয় না। কাউকে বিক্রি বা হস্তান্তর করা হয় না, কোনো বিজ্ঞাপনে ব্যবহার হয় না। আপনার তথ্য মুছে ফেলতে চাইলে WhatsApp-এ জানালেই মুছে দেব।</p>'
+        + '<p>ফর্ম পূরণ না করলে আপনার কিছুই জমা হয় না।</p>'
+        + '<h3 class="serif">যোগাযোগ ফর্ম</h3>'
+        + '<p>পাতার নিচের যোগাযোগ ফর্মটি আলাদা। ওটি কিছু জমা রাখে না — আপনি যা লেখেন তা দিয়ে একটি WhatsApp বার্তা তৈরি হয়, আর সেটি পাঠাবেন কি না আপনার সিদ্ধান্ত। বার্তাটি যায় সরাসরি আপনার নিজের WhatsApp থেকে।</p>'
         + '<h3 class="serif">যা কখনো পাঠাবেন না</h3>'
         + '<p>পাসপোর্ট, ব্যাংক স্টেটমেন্ট, সার্টিফিকেট বা জাতীয় পরিচয়পত্রের স্ক্যান এই সাইটের কোনো ফর্মে পাঠাবেন না। এসব কখনো ওয়েব ফর্মে নেওয়া হয় না।</p>'
         + '<h3 class="serif">হোস্টিং</h3>'
         + '<p>সাইটটি Cloudflare Pages-এ রাখা। যেকোনো ওয়েব হোস্টের মতো তাদের সার্ভারেও সাধারণ অ্যাকসেস লগ থাকে, যা তাদের নিজস্ব নীতিতে চলে। সেই লগে আপনার নাম বা আপনার লেখা কিছু থাকে না।</p>'
-      : '<p>Short version: this site collects nothing, stores nothing and shares nothing.</p>'
+      : '<p>Short version: no account, no advertising, no tracking. Only what you deliberately type into a form and send reaches me.</p>'
         + '<h3 class="serif">Accounts, ads, cookies</h3>'
-        + '<p>No account is needed. There is no advertising. No tracking cookie is set, and there is no ad script here following you anywhere.</p>'
-        + '<h3 class="serif">What you type into a form</h3>'
-        + '<p>Neither the contact form nor "send these answers to me" stores anything on this site. What you type is only used to compose a WhatsApp message, and whether to send it is your decision. It goes from your own WhatsApp. No server in between holds your details.</p>'
+        + '<p>No account is needed. There is no advertising. No tracking cookie is set, and there is no ad script here following you anywhere. Every other page can be read anonymously.</p>'
+        + '<h3 class="serif">The "send these answers to me" form</h3>'
+        + '<p>Pressing <strong>Send</strong> on that form delivers what you entered to me, and it is stored in a Google Sheet only I can see. What goes: your name, your WhatsApp number, anything you wrote, the quick-check answers (level, result, budget, English status), and the time you sent it.</p>'
+        + '<p>It is used for nothing except replying to you. It is never sold, passed on, or used for advertising. Ask me on WhatsApp and I will delete your entry.</p>'
+        + '<p>Do not fill the form in and nothing of yours is stored.</p>'
+        + '<h3 class="serif">The contact form</h3>'
+        + '<p>The contact form at the bottom of the page is different. It stores nothing — what you type is used to compose a WhatsApp message, and whether to send it is your decision. It goes from your own WhatsApp.</p>'
         + '<h3 class="serif">What never to send</h3>'
         + '<p>Do not send scans of a passport, bank statement, certificate or national ID through any form on this site. Those are never collected through a web form.</p>'
         + '<h3 class="serif">Hosting</h3>'
