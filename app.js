@@ -296,6 +296,9 @@ function quickCheckCard(){
       '</select></div>'+
 
     '<button class="btn" type="submit">'+esc(t('qcGo'))+'</button>'+
+    /* the same answers, sent straight to the adviser — otherwise nobody finds
+       this, because it sits below the results */
+    '<button class="btn-ask" type="button" id="qcAsk">'+esc(t('qcAsk'))+'</button>'+
   '</form>';
 }
 
@@ -1432,22 +1435,40 @@ function wire(root){
       if (bw && key==='ielts') bw.hidden = (ans.ielts!=='yes');
     });
   });
-  on('qcForm','submit', function(e){
-    e.preventDefault();
+  var readAnswers = function(){
     ans.result = (document.getElementById('qcRes')||{}).value || '';
     ans.scale  = (document.getElementById('qcScale')||{}).value || '4';
     ans.budget = (document.getElementById('qcBudget')||{}).value || '15';
     ans.band   = (document.getElementById('qcBand')||{}).value || '6.0';
+  };
+
+  on('qcForm','submit', function(e){
+    e.preventDefault();
+    readAnswers();
     if (root !== 'eligibility'){ location.hash = '#/eligibility'; setTimeout(showRes, 30); }
     else showRes();
   });
-  function showRes(){
+
+  /* "just ask me" — same answers, but land on the message box, not the results */
+  on('qcAsk','click', function(){
+    readAnswers();
+    if (root !== 'eligibility'){ location.hash = '#/eligibility'; setTimeout(function(){ showRes(true); }, 30); }
+    else showRes(true);
+  });
+
+  function showRes(jumpToAsk){
     var a = document.getElementById('resArea');
     if (a){
       a.innerHTML = renderResults();
       bindGroups(a);
       bindAsk(a);
-      a.scrollIntoView({ block:'start', behavior:'smooth' });
+      var f = jumpToAsk && document.getElementById('askForm');
+      if (f){
+        f.scrollIntoView({ block:'center', behavior:'smooth' });
+        setTimeout(function(){ var n = document.getElementById('askN'); if (n) n.focus(); }, 450);
+      } else {
+        a.scrollIntoView({ block:'start', behavior:'smooth' });
+      }
     }
   }
 

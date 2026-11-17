@@ -390,3 +390,8 @@ ol.steps li::before{content:counter(s);position:absolute;left:0;top:-1px;width:2
 .owner dd{margin:0;font-size:.97rem}
 @media (max-width:520px){ .owner{grid-template-columns:1fr;gap:2px 0;padding:16px 18px}
   .owner dd{margin-bottom:10px} }
+.btn-ask{display:block;width:100%;margin-top:10px;padding:11px 14px;background:transparent;
+  border:1.5px solid var(--line);border-radius:var(--r);color:var(--forest);
+  font:inherit;font-size:.92rem;font-weight:600;cursor:pointer;text-align:center;
+  transition:border-color .15s ease,background .15s ease}
+.btn-ask:hover{border-color:var(--forest);background:#F3F7F4}
