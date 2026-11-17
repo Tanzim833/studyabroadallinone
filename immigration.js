@@ -184,6 +184,6 @@ georgia: M('all', 'cond', 10, 'none', 10, false, {
 
 russia: M('all', 'cond', 5, 'none', 5, true, {
   en: 'Sanctions make banking, fee payment and travel complicated, and rules shift with little notice. Confirm how you would actually pay tuition before committing.',
-  bn: 'নিষেধাজ্ঞার কারণে ব্যাংকিং, ফি দেওয়া আর যাতায়াত জটিল, আর নিয়ম হঠাৎ বদলায়। সিদ্ধান্ত নেওয়ার আগে নিশ্চিত করুন, টিউশন আসলে কীভাবে পরিশোধ করবেন।'
+  bn: 'নিষেধাজ্ঞার কারণে ব্যাংকিং, ফি দেওয়া আর যাতায়াত জটিল, আর নিয়ম হঠাৎ বদলায়। সিদ্ধান্ত নেওয়ার আগে নিশ্চিত করুন, টিউশন আসলে কীভাবে দেবেন।'
 })
 };

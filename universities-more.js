@@ -22,19 +22,19 @@
   window.UNIVERSITIES.push(
 
   /* ================= ROMANIA ================= */
-  U('Alexandru Ioan Cuza University of Iași', 'romania', 'Iași', 'public', ['business','cs','law','social'], ['bachelor','master','phd']),
-  U('Technical University of Cluj-Napoca', 'romania', 'Cluj-Napoca', 'public', ['engineering','cs'], ['bachelor','master','phd']),
-  U('Politehnica University of Timișoara', 'romania', 'Timișoara', 'public', ['engineering','cs'], ['bachelor','master','phd']),
-  U('Lucian Blaga University of Sibiu', 'romania', 'Sibiu', 'public', ['engineering','business','social'], ['bachelor','master']),
-  U('Ovidius University of Constanța', 'romania', 'Constanța', 'public', ['medicine','business','science'], ['bachelor','master']),
+  U('Alexandru Ioan Cuza University of Iași', 'romania', 'Iași', 'public', ['business','cs','law','social'], ['bachelor','master','phd'], {tuition:[2200,3000]}),
+  U('Technical University of Cluj-Napoca', 'romania', 'Cluj-Napoca', 'public', ['engineering','cs'], ['bachelor','master','phd'], {tuition:[2700,3500]}),
+  U('Politehnica University of Timișoara', 'romania', 'Timișoara', 'public', ['engineering','cs'], ['bachelor','master','phd'], {tuition:[2700,3800]}),
+  U('Lucian Blaga University of Sibiu', 'romania', 'Sibiu', 'public', ['engineering','business','social'], ['bachelor','master'], {tuition:[2200,8500]}),
+  U('Ovidius University of Constanța', 'romania', 'Constanța', 'public', ['medicine','business','science'], ['bachelor','master'], {tuition:[2200,9500]}),
   U('University of Craiova', 'romania', 'Craiova', 'public', ['engineering','business','agri'], ['bachelor','master']),
-  U('University of Oradea', 'romania', 'Oradea', 'public', ['engineering','medicine','business'], ['bachelor','master']),
+  U('University of Oradea', 'romania', 'Oradea', 'public', ['engineering','medicine','business'], ['bachelor','master'], {tuition:[2200,9000]}),
   U('Dunărea de Jos University of Galați', 'romania', 'Galați', 'public', ['engineering','agri','science'], ['bachelor','master']),
-  U('Ștefan cel Mare University of Suceava', 'romania', 'Suceava', 'public', ['cs','engineering','business'], ['bachelor','master']),
-  U('Valahia University of Târgoviște', 'romania', 'Târgoviște', 'public', ['engineering','business','social'], ['bachelor','master']),
-  U('Bucharest University of Economic Studies (ASE)', 'romania', 'Bucharest', 'public', ['business','cs','social'], ['bachelor','master','phd']),
-  U('Carol Davila University of Medicine and Pharmacy', 'romania', 'Bucharest', 'public', ['medicine'], ['bachelor','master','phd']),
-  U('Grigore T. Popa University of Medicine and Pharmacy', 'romania', 'Iași', 'public', ['medicine','engineering'], ['bachelor','master','phd']),
+  U('Ștefan cel Mare University of Suceava', 'romania', 'Suceava', 'public', ['cs','engineering','business'], ['bachelor','master'], {tuition:[2000,2700]}),
+  U('Valahia University of Târgoviște', 'romania', 'Târgoviște', 'public', ['engineering','business','social'], ['bachelor','master'], {tuition:[2000,2700]}),
+  U('Bucharest University of Economic Studies (ASE)', 'romania', 'Bucharest', 'public', ['business','cs','social'], ['bachelor','master','phd'], {tuition:[2500,3500]}),
+  U('Carol Davila University of Medicine and Pharmacy', 'romania', 'Bucharest', 'public', ['medicine'], ['bachelor','master','phd'], {tuition:[8500,10000]}),
+  U('Grigore T. Popa University of Medicine and Pharmacy', 'romania', 'Iași', 'public', ['medicine','engineering'], ['bachelor','master','phd'], {tuition:[7500,9000]}),
 
   /* ================= ITALY ================= */
   U('University of Milan', 'italy', 'Milan', 'public', ['business','medicine','law','science'], ['bachelor','master','phd']),

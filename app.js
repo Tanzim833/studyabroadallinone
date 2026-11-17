@@ -21,7 +21,12 @@ var MONTHS = {
 };
 
 /* ---------- helpers ---------- */
-function t(k){ var v = (window.T[lang]||{})[k]; return v === undefined ? (window.T.en[k]||k) : v; }
+function t(k){ var v = (window.T[lang]||{})[k]; if (v === undefined) v = window.T.en[k] || k;
+  /* {n} = how many countries are live right now, so the copy never lies about the count */
+  return String(v).replace(/\{n\}/g, window.COUNTRIES.length); }
+/* some headings read wrong with a single country live: "where can you go"
+   becomes "am I eligible". One helper, so it reverts on its own. */
+function tm(k){ return window.MULTI ? t(k) : t(k+'Solo'); }
 function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g, function(m){
   return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]; }); }
 function nm(c){ return c.name[lang] || c.name.en; }
@@ -65,6 +70,29 @@ function trendSection(){
     '<div class="trend-grid">'+trendingCountries().map(trendCard).join('')+'</div>'+
     '<div class="note" style="margin-top:16px;max-width:none"><p><strong>'+esc(t('trendWhat'))+'</strong></p>'+
       '<p>'+esc(t('trendWhatBody'))+'</p></div>'+
+    '</div></section>';
+}
+
+/* While only one or two countries are live, the home page points straight at
+   them instead of showing a "trending" list of one. */
+function soloSection(){
+  var cards = window.COUNTRIES.map(function(c){
+    var r = costRange(c), m = im(c.slug);
+    return '<a class="solo" href="#/country/'+c.slug+'">'+
+      '<span class="solo-flag" aria-hidden="true">'+c.flag+'</span>'+
+      '<span class="solo-body">'+
+        '<strong>'+esc(nm(c))+'</strong>'+
+        '<span class="solo-dl">'+
+          '<span>'+esc(t('thIelts'))+': '+esc(t(c.ielts==='not_required'?'ieltsNotReq':c.ielts==='flexible'?'ieltsFlex':'ieltsReq'))+'</span>'+
+          '<span>'+esc(t('secCost'))+': '+lakh(r[0])+'–'+lakh(r[1])+' '+esc(t('lakh'))+'</span>'+
+          (c.workHours ? '<span>'+esc(t('thWork'))+': '+c.workHours+' '+esc(t('hrsWeek'))+'</span>' : '')+
+          (m && m.prYears ? '<span>PR: '+m.prYears+' '+esc(t('prYearsV'))+'</span>' : '')+
+        '</span>'+
+        '<span class="solo-cta">'+esc(t('soloCta'))+' →</span>'+
+      '</span></a>'; }).join('');
+  return '<section class="sect" style="padding-bottom:0"><div class="wrap">'+
+    '<div class="sect-head"><h2 class="serif">'+esc(t('soloTitle'))+'</h2><p>'+esc(t('soloSub'))+'</p></div>'+
+    '<div class="solo-grid">'+cards+'</div>'+
     '</div></section>';
 }
 
@@ -115,13 +143,19 @@ function fraudBox(){
    SHELL
    ============================================================ */
 var NAVLINKS = [
-  ['#/', 'navHome'], ['#/countries','navCountries'], ['#/eligibility','navEligibility'],
+  ['#/', 'navHome'], ['#/countries','navCountries'], ['#/eligibility',window.MULTI?'navEligibility':'navEligibilitySolo'],
   ['#/pr-spouse','navPr'], ['#/without-ielts','navNoIelts'], ['#/calendar','navCalendar'],
   ['#/cost','navCost'], ['#/courses','navCourses'], ['#/contact','navContact']
 ];
 
+/* Pages whose whole job is comparing one country against another. While fewer
+   than three countries are live they are hidden from the menu — the routes
+   still work, they are just not advertised. They come back on their own. */
+var COMPARE_ONLY = ['#/countries', '#/pr-spouse', '#/calendar'];
+function shown(href){ return window.MULTI || COMPARE_ONLY.indexOf(href) < 0; }
+
 function header(route){
-  var links = NAVLINKS.map(function(l){
+  var links = NAVLINKS.filter(function(l){ return shown(l[0]); }).map(function(l){
     var cu = (l[0] === '#/'+route || (route==='' && l[0]==='#/')) ? ' aria-current="page"' : '';
     return '<a href="'+l[0]+'"'+cu+'>'+esc(t(l[1]))+'</a>';
   }).join('');
@@ -136,17 +170,23 @@ function header(route){
 }
 
 function footer(){
-  var regions = window.REGIONS.filter(function(r){return r.id!=='all';}).map(function(r){
-    return '<a href="#/countries?region='+r.id+'">'+esc(r[lang]||r.en)+'</a>'; }).join('');
+  var regions = window.MULTI
+    ? window.REGIONS.filter(function(r){return r.id!=='all';}).map(function(r){
+        return '<a href="#/countries?region='+r.id+'">'+esc(r[lang]||r.en)+'</a>'; }).join('')
+    : window.COUNTRIES.map(function(c){
+        return '<a href="#/country/'+c.slug+'">'+esc(nm(c))+'</a>'; }).join('');
+  var ftrTool = function(href, key){
+    return shown(href) ? '<a href="'+href+'">'+esc(t(key))+'</a>' : ''; };
   return '<footer class="ftr"><div class="wrap"><div class="ftr-grid">'+
     '<div><h4>'+esc(t('siteName'))+'</h4><p style="margin:0;max-width:34ch;line-height:1.6">'+esc(t('heroSub'))+'</p></div>'+
     '<div><h4>'+esc(t('ftrTools'))+'</h4>'+
-      '<a href="#/eligibility">'+esc(t('navEligibility'))+'</a>'+
-      '<a href="#/pr-spouse">'+esc(t('navPr'))+'</a>'+
-      '<a href="#/without-ielts">'+esc(t('navNoIelts'))+'</a>'+
-      '<a href="#/calendar">'+esc(t('navCalendar'))+'</a>'+
-      '<a href="#/cost">'+esc(t('navCost'))+'</a></div>'+
-    '<div><h4>'+esc(t('ftrRegions'))+'</h4>'+regions+'</div>'+
+      ftrTool('#/eligibility',window.MULTI?'navEligibility':'navEligibilitySolo')+
+      ftrTool('#/pr-spouse','navPr')+
+      ftrTool('#/without-ielts','navNoIelts')+
+      ftrTool('#/calendar','navCalendar')+
+      ftrTool('#/cost','navCost')+
+      ftrTool('#/courses','navCourses')+'</div>'+
+    '<div><h4>'+esc(t(window.MULTI?'ftrRegions':'navCountries'))+'</h4>'+regions+'</div>'+
     '<div><h4>'+esc(t('ftrLegal'))+'</h4>'+
       '<a href="#/privacy">'+esc(t('ftrPrivacy'))+'</a>'+
       '<a href="#/disclaimer">'+esc(t('ftrDisclaimer'))+'</a>'+
@@ -160,9 +200,10 @@ function footer(){
    ============================================================ */
 function pageHome(){
   var tools = [
-    ['#/eligibility','🧭','t1','t1d'], ['#/pr-spouse','👪','navPr','prSub'],
-    ['#/without-ielts','🗣️','t3','t3d'], ['#/calendar','🗓️','t4','t4d'], ['#/cost','🧮','t5','t5d']
-  ].map(function(x){
+    ['#/eligibility','🧭',window.MULTI?'t1':'t1Solo',window.MULTI?'t1d':'t1dSolo'], ['#/pr-spouse','👪','navPr','prSub'],
+    ['#/without-ielts','🗣️','t3','t3d'], ['#/calendar','🗓️','t4','t4d'], ['#/cost','🧮','t5','t5d'],
+    ['#/courses','🎓','navCourses','cfSub']
+  ].filter(function(x){ return shown(x[0]); }).map(function(x){
     return '<a class="tool" href="'+x[0]+'"><span class="tool-ic" aria-hidden="true">'+x[1]+'</span>'+
       '<h3>'+esc(t(x[2]))+'</h3><p>'+esc(t(x[3]))+'</p></a>'; }).join('');
 
@@ -172,7 +213,7 @@ function pageHome(){
     '<div>'+quickCheckCard()+'</div>'+
     '</div></section>'+
 
-    trendSection()+
+    (window.MULTI ? trendSection() : soloSection())+
 
     '<section class="sect"><div class="wrap">'+
       '<div class="sect-head"><h2 class="serif">'+esc(t('toolsTitle'))+'</h2><p>'+esc(t('toolsSub'))+'</p></div>'+
@@ -291,14 +332,14 @@ function evaluate(){
 
 function pageEligibility(showRes){
   var html = '<section class="sect"><div class="wrap">'+
-    '<div class="sect-head"><h2 class="serif">'+esc(t('t1'))+'</h2><p>'+esc(t('t1d'))+'</p></div>'+
+    '<div class="sect-head"><h2 class="serif">'+esc(tm('t1'))+'</h2><p>'+esc(tm('t1d'))+'</p></div>'+
     '<div class="elig-grid">'+
       '<div>'+quickCheckCard()+'</div><div id="resArea">'+(showRes?renderResults():resPlaceholder())+'</div>'+
     '</div></div></section>';
   return html;
 }
 function resPlaceholder(){
-  return '<div class="empty"><h3 class="serif">'+esc(t('resTitle'))+'</h3><p>'+esc(t('qcSub'))+'</p></div>';
+  return '<div class="empty"><h3 class="serif">'+esc(tm('resTitle'))+'</h3><p>'+esc(t('qcSub'))+'</p></div>';
 }
 
 /* one country card */
@@ -348,17 +389,27 @@ function renderResults(){
   if (!groups.length)
     return '<div class="empty"><h3 class="serif">'+esc(t('resNone'))+'</h3><p>'+esc(t('resNoneD'))+'</p></div>';
 
-  var out = '<div class="res-band-hd" style="margin-bottom:4px"><h3 class="serif">'+esc(t('resTitle'))+'</h3></div>'+
-    '<p style="margin:0 0 14px;color:var(--slate);font-size:.93rem">'+esc(t('resPickRegion'))+'</p>';
+  var out = '<div class="res-band-hd" style="margin-bottom:4px"><h3 class="serif">'+esc(tm('resTitle'))+'</h3></div>'+
+    (window.MULTI ? '<p style="margin:0 0 14px;color:var(--slate);font-size:.93rem">'+esc(t('resPickRegion'))+'</p>' : '');
 
   /* the countries working well right now, pulled out of the regions and shown first */
-  var hot = rows.filter(function(r){ return r.c.trending; });
+  var hot = window.MULTI ? rows.filter(function(r){ return r.c.trending; }) : [];
   if (hot.length){
     out += '<div class="res-band"><div class="res-band-hd">'+
       '<h3 class="serif">'+esc(t('trendTitle'))+'</h3>'+
       '<span class="pill pill-hot">'+esc(t('trendFirst'))+'</span></div>'+
       '<p style="margin:-4px 0 11px;color:var(--slate);font-size:.92rem">'+esc(t('trendSub'))+'</p>'+
       '<div class="res-list">'+hot.map(resCard).join('')+'</div></div>';
+  }
+
+  /* a region accordion holding one country is a box around a box — flatten it */
+  if (!window.MULTI){
+    out += bandsHtml(rows);
+    out += '<div class="note good" style="max-width:none"><p><strong>'+esc(t('resNext'))+'</strong></p>'+
+      '<ol class="steps"><li>'+esc(t('resStep1'))+'</li>'+
+      (shown('#/calendar') ? '<li>'+esc(t('resStep2'))+'</li>' : '')+
+      '<li>'+esc(t('resStep3'))+'</li><li>'+esc(t('resStep4'))+'</li></ol></div>';
+    return '<div class="reveal">'+out+'</div>';
   }
 
   groups.forEach(function(g, i){
@@ -511,16 +562,22 @@ function uniBlock(u){
   var c = window.COUNTRIES.filter(function(x){return x.slug===u.country;})[0];
   var list = progs(u.name);
   var meta = [esc(u.city), esc(t(u.type==='public'?'cfPublic':'cfPrivate'))];
+  if (u.tuition) meta.push(cur(u.tuition[0],c)+'–'+cur(u.tuition[1],c)+esc(t('perYear')));
   meta.push(list.length
     ? list.length+' '+esc(t(list.length===1?'progOne':'progCount'))
     : esc(u.levels.map(lvlName).join(', ')));
 
-  var body = list.length
+  var feeNote = u.tuition
+    ? '<div class="note" style="margin:14px 0 0;max-width:none"><p style="font-size:.9rem;margin:0">'+
+      esc(t('uniFeeApprox'))+'</p></div>'
+    : '';
+
+  var body = (list.length
     ? progTable(list, c)
     : '<div class="note" style="margin:0;max-width:none"><p><strong>'+esc(t('progNone'))+'</strong></p>'+
       '<p style="font-size:.92rem">'+esc(t('progNoneD'))+'</p>'+
       '<p style="font-size:.92rem;margin-bottom:0"><b>'+esc(t('thLevels'))+':</b> '+esc(u.levels.map(lvlName).join(', '))+
-      ' · <b>'+esc(t('thSubjects'))+':</b> '+esc(u.subjects.map(subjName).join(', '))+'</p></div>';
+      ' · <b>'+esc(t('thSubjects'))+':</b> '+esc(u.subjects.map(subjName).join(', '))+'</p></div>') + feeNote;
 
   return '<div class="rgroup" data-open="0">'+
     '<button type="button" class="rgroup-hd" aria-expanded="false">'+
@@ -673,7 +730,11 @@ function pageCountry(slug){
     updBox()+
 
     '<h2 class="serif">'+esc(t('secIelts'))+'</h2>'+
-    '<p>'+ieltsPill(c)+' '+esc(t(c.ielts==='not_required'?'ieltsNotReqL':c.ielts==='flexible'?'ieltsFlexL':'ieltsReqL'))+'</p>'+
+    /* a country may override the generic one-liner when the generic text
+       would contradict its own rule — Romania does not accept MOI. */
+    '<p>'+ieltsPill(c)+' '+esc(c.ieltsSummary
+        ? L(c.ieltsSummary)
+        : t(c.ielts==='not_required'?'ieltsNotReqL':c.ielts==='flexible'?'ieltsFlexL':'ieltsReqL'))+'</p>'+
     '<p>'+esc(L(c.ieltsNote))+'</p>'+
 
     visaViaBox+
@@ -686,6 +747,15 @@ function pageCountry(slug){
     '<p><a href="#/calendar">'+esc(t('navCalendar'))+' →</a></p>'+
 
     '<h2 class="serif">'+esc(t('secCost'))+'</h2>'+
+    /* the number students actually ask for: what it costs to get there at all */
+    (c.goCost
+      ? '<div class="note good"><p style="margin:0 0 4px"><strong>'+esc(t('goCostTitle'))+'</strong></p>'+
+        '<p style="font-family:var(--serif);font-size:1.5rem;font-weight:600;margin:0 0 8px;color:var(--forest-dk)">'+
+          lakh(c.goCost[0])+' – '+lakh(c.goCost[1])+' '+esc(t('lakh'))+
+          ' <span style="font-family:var(--sans);font-size:.8rem;font-weight:500;color:var(--slate)">'+esc(t('goCostOnce'))+'</span></p>'+
+        '<p style="font-size:.92rem">'+esc(t('goCostWhat'))+'</p>'+
+        '<p style="font-size:.92rem;margin-bottom:0"><b>'+esc(t('goCostNot'))+'</b></p></div>'
+      : '')+
     '<p>'+esc(t('approx'))+' <b>'+lakh(r[0])+' – '+lakh(r[1])+' '+esc(t('lakh'))+'</b> '+esc(t('perYear'))+
       ' (' + esc(t('costTuition').toLowerCase()) + ' + ' + esc(t('costLivingY').toLowerCase()) + ').</p>'+
     '<p><a href="#/cost?c='+c.slug+'">'+esc(t('costTitle'))+' →</a></p>'+
@@ -702,7 +772,8 @@ function pageCountry(slug){
     fraudBox()+
     '</div>';
 
-  return '<div class="wrap"><nav class="breadcrumb"><a href="#/countries">← '+esc(t('backCountries'))+'</a></nav>'+
+  var back = window.MULTI ? ['#/countries','backCountries'] : ['#/','navHome'];
+  return '<div class="wrap"><nav class="breadcrumb"><a href="'+back[0]+'">← '+esc(t(back[1]))+'</a></nav>'+
     '<div class="cpage">'+facts+body+'</div>'+
     '<div style="padding-bottom:50px">'+contactBlock()+'</div></div>';
 }
@@ -959,15 +1030,17 @@ function renderUniTable(){
   var el = document.getElementById('uCount');
   if (el) el.textContent = list.length+' '+t('cfFound');
 
+  /* the country column is only worth a column once there is more than one */
+  var cols = window.MULTI ? 6 : 5;
   var html = '<div class="tbl-scroll"><table class="idx"><thead><tr>'+
-    '<th>'+esc(t('thUni'))+'</th><th>'+esc(t('thCountry'))+'</th><th>'+esc(t('thCity'))+'</th>'+
+    '<th>'+esc(t('thUni'))+'</th>'+(window.MULTI?'<th>'+esc(t('thCountry'))+'</th>':'')+'<th>'+esc(t('thCity'))+'</th>'+
     '<th>'+esc(t('thType'))+'</th><th>'+esc(t('thLevels'))+'</th><th>'+esc(t('thProgram'))+'</th></tr></thead><tbody>';
-  if (!list.length) html += '<tr><td colspan="6"><div class="empty" style="border:0"><p>'+esc(t('resNoneD'))+'</p></div></td></tr>';
+  if (!list.length) html += '<tr><td colspan="'+cols+'"><div class="empty" style="border:0"><p>'+esc(t('resNoneD'))+'</p></div></td></tr>';
   list.forEach(function(u){
     var c = window.COUNTRIES.filter(function(x){return x.slug===u.country;})[0] || {flag:'',name:{en:u.country,bn:u.country}};
     var pl = progs(u.name);
     html += '<tr><td style="font-weight:600">'+esc(u.name)+(u.moi?' <span class="pill pill-ok">MOI</span>':'')+'</td>'+
-      '<td class="nowrap"><a href="#/country/'+u.country+'">'+c.flag+' '+esc(nm(c))+'</a></td>'+
+      (window.MULTI ? '<td class="nowrap"><a href="#/country/'+u.country+'">'+c.flag+' '+esc(nm(c))+'</a></td>' : '')+
       '<td>'+esc(u.city)+'</td><td>'+esc(t(u.type==='public'?'cfPublic':'cfPrivate'))+'</td>'+
       '<td class="nowrap">'+u.levels.map(lvlName).join(', ')+'</td>'+
       '<td class="nowrap">'+(pl.length

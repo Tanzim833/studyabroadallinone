@@ -33,25 +33,39 @@ C('romania', 'Romania', 'রোমানিয়া', '🇷🇴', 'eu', {
   /* who may apply at all — the gate before every other question */
   eligibility: {
     en: 'Bachelor\'s needs SSC and HSC from a General Education Board, or O-Level and A-Level. Two groups are turned away at the Ministry stage, before any university ever sees the file: a four-year BTEB polytechnic diploma is not accepted in place of HSC, and Madrasah Board certificates (Dakhil, Alim, Fazil) are not accepted as equivalent. A Letter of Acceptance is not issued in either case. Any agency that takes money from these students for Romania is taking money for an application that cannot succeed.',
-    bn: 'ব্যাচেলরের জন্য সাধারণ শিক্ষা বোর্ডের SSC ও HSC, অথবা O-Level ও A-Level লাগবে। দুটি গোষ্ঠী মন্ত্রণালয়ের ধাপেই বাদ পড়ে যান, কোনো বিশ্ববিদ্যালয় ফাইল দেখার আগেই: BTEB-এর চার বছরের পলিটেকনিক ডিপ্লোমা HSC-র বিকল্প হিসেবে গৃহীত হয় না, আর মাদ্রাসা বোর্ডের সার্টিফিকেট (দাখিল, আলিম, ফাজিল) সমমান হিসেবে গৃহীত হয় না। কোনো ক্ষেত্রেই Letter of Acceptance ইস্যু হয় না। কোনো এজেন্সি যদি এই শিক্ষার্থীদের কাছ থেকে রোমানিয়ার জন্য টাকা নেয়, তারা এমন একটি আবেদনের জন্য টাকা নিচ্ছে যা কখনো সফল হবে না।'
+    bn: 'ব্যাচেলরের জন্য সাধারণ শিক্ষা বোর্ডের SSC ও HSC, অথবা O-Level ও A-Level লাগবে। দুই ধরনের শিক্ষার্থী মন্ত্রণালয়ের ধাপেই বাদ পড়ে যান, কোনো বিশ্ববিদ্যালয় ফাইল দেখার আগেই: BTEB-এর চার বছরের পলিটেকনিক ডিপ্লোমা HSC-র বিকল্প হিসেবে নেওয়া হয় না, আর মাদ্রাসা বোর্ডের সার্টিফিকেট (দাখিল, আলিম, ফাজিল) সমমান হিসেবে ধরা হয় না। কোনো ক্ষেত্রেই Letter of Acceptance ইস্যু হয় না। কোনো এজেন্সি যদি এই শিক্ষার্থীদের কাছ থেকে রোমানিয়ার জন্য টাকা নেয়, তারা এমন একটি আবেদনের জন্য টাকা নিচ্ছে যা কখনো সফল হবে না।'
   },
 
   /* no Romanian embassy in Dhaka — this is where the file actually goes */
   visaVia: ['New Delhi · India', 'Kuala Lumpur · Malaysia', 'Bangkok · Thailand', 'Hanoi · Vietnam'],
 
+  /* What it actually costs to GET THERE, in BDT: from starting the application
+     to landing in the country. One year's tuition paid up front, visa, flight,
+     documents, processing. Living costs after arrival are NOT in this figure.
+     This is the number students actually ask for, so it is kept separate from
+     the annual tuition-plus-living estimate below. */
+  goCost: [500000, 700000],
+
   /* checked against real casework, not desk research */
   confirmed: {
     en: ['One intake a year, not two', 'MOI is not accepted', 'Who is eligible to apply', 'Work hours'],
-    bn: ['বছরে একটি ইনটেক, দুটি নয়', 'MOI গৃহীত হয় না', 'কারা আবেদনের যোগ্য', 'কাজের ঘণ্টা']
+    bn: ['বছরে একটি ইনটেক, দুটি নয়', 'MOI নেওয়া হয় না', 'কারা আবেদনের যোগ্য', 'কাজের ঘণ্টা']
+  },
+
+  /* overrides the generic "flexible" one-liner, which mentions MOI and would
+     contradict the rule below */
+  ieltsSummary: {
+    en: 'IELTS is not compulsory, but MOI is not accepted. The university\'s own online test or interview is the route.',
+    bn: 'IELTS বাধ্যতামূলক নয়, তবে MOI নেওয়া হয় না। বিশ্ববিদ্যালয়ের নিজের অনলাইন পরীক্ষা বা সাক্ষাৎকারই মূল পথ।'
   },
 
   ieltsNote: {
     en: 'A Medium of Instruction (MOI) letter from a Bangladeshi college or university is NOT accepted here — the Ministry and most universities reject it, because the national curriculum is taught in Bangla. IELTS itself is not compulsory either. The route without a test is the university\'s own online English test or interview, which you sit after applying. Some institutions also take TOEFL, PTE or Duolingo. If an agency tells you MOI is enough for Romania, they are wrong.',
-    bn: 'বাংলাদেশি কলেজ বা বিশ্ববিদ্যালয়ের দেওয়া MOI চিঠি এখানে গৃহীত হয় না — মন্ত্রণালয় ও বেশিরভাগ বিশ্ববিদ্যালয় এটি বাতিল করে, কারণ জাতীয় শিক্ষাক্রম বাংলা মাধ্যমে পড়ানো হয়। তবে IELTS-ও বাধ্যতামূলক নয়। পরীক্ষা ছাড়া পথটি হলো বিশ্ববিদ্যালয়ের নিজস্ব অনলাইন ইংরেজি পরীক্ষা বা সাক্ষাৎকার, যেটি আবেদনের পর দিতে হয়। কিছু প্রতিষ্ঠান TOEFL, PTE বা Duolingo-ও নেয়। কোনো এজেন্সি যদি বলে রোমানিয়ার জন্য MOI-ই যথেষ্ট, তারা ভুল বলছে।'
+    bn: 'বাংলাদেশি কলেজ বা বিশ্ববিদ্যালয়ের দেওয়া MOI চিঠি এখানে নেওয়া হয় না — মন্ত্রণালয় ও বেশিরভাগ বিশ্ববিদ্যালয় এটি বাতিল করে, কারণ জাতীয় শিক্ষাক্রম বাংলা মাধ্যমে পড়ানো হয়। তবে IELTS-ও বাধ্যতামূলক নয়। পরীক্ষা ছাড়া পথটি হলো বিশ্ববিদ্যালয়ের নিজের অনলাইন ইংরেজি পরীক্ষা বা সাক্ষাৎকার, যেটি আবেদনের পর দিতে হয়। কিছু প্রতিষ্ঠান TOEFL, PTE বা Duolingo-ও নেয়। কোনো এজেন্সি যদি বলে রোমানিয়ার জন্য MOI-ই যথেষ্ট, তারা ভুল বলছে।'
   },
   psw: { en: '9-month job-search stay after graduation', bn: 'পড়া শেষে ৯ মাস চাকরি খোঁজার সুযোগ' },
   bestFor: { en: 'Low tuition inside the EU with a realistic document load, and Romania is now fully inside Schengen, so the residence card travels. The usual first choice when budget is the binding constraint.', bn: 'EU-র ভেতরে কম টিউশন, কাগজপত্রের চাপও বাস্তবসম্মত। রোমানিয়া এখন পুরোপুরি শেনজেনভুক্ত, তাই রেসিডেন্স কার্ড দিয়ে ভ্রমণ করা যায়। বাজেট মূল সমস্যা হলে সাধারণত প্রথম পছন্দ।' },
-  caution: { en: 'There is no Romanian embassy in Dhaka, so the visa file goes to a mission abroad and the whole process is slow. The Ministry\'s Letter of Acceptance alone takes four to eight weeks, and a full year\'s tuition must usually be paid before the visa is applied for. Start by May or June for an October start.', bn: 'ঢাকায় রোমানিয়ার দূতাবাস নেই, তাই ভিসা ফাইল বিদেশের মিশনে যায় এবং পুরো প্রক্রিয়া ধীর। শুধু মন্ত্রণালয়ের Letter of Acceptance পেতেই চার থেকে আট সপ্তাহ লাগে, আর ভিসার আবেদনের আগে সাধারণত পুরো এক বছরের টিউশন পরিশোধ করতে হয়। অক্টোবরে শুরু করতে চাইলে মে বা জুনের মধ্যেই শুরু করুন।' },
+  caution: { en: 'There is no Romanian embassy in Dhaka, so the visa file goes to a mission abroad and the whole process is slow. The Ministry\'s Letter of Acceptance alone takes four to eight weeks, and a full year\'s tuition must usually be paid before the visa is applied for. Start by May or June for an October start.', bn: 'ঢাকায় রোমানিয়ার দূতাবাস নেই, তাই ভিসা ফাইল বিদেশের মিশনে যায় এবং পুরো প্রক্রিয়া ধীর। শুধু মন্ত্রণালয়ের Letter of Acceptance পেতেই চার থেকে আট সপ্তাহ লাগে, আর ভিসার আবেদনের আগে সাধারণত পুরো এক বছরের টিউশন দিয়ে দিতে হয়। অক্টোবরে শুরু করতে চাইলে মে বা জুনের মধ্যেই শুরু করুন।' },
 
   /* ONE intake only. Romania has no spring entry for non-EU degree students. */
   intakes: [IN('September / October', 'সেপ্টেম্বর / অক্টোবর', 3, 8, 10)]
@@ -243,7 +257,7 @@ C('estonia', 'Estonia', 'এস্তোনিয়া', '🇪🇪', 'eu', {
 C('slovakia', 'Slovakia', 'স্লোভাকিয়া', '🇸🇰', 'eu', {
   ielts: 'flexible', tuition: [2000, 5000], cur: 'EUR', living: [350, 550],
   workHours: 20, visaWeeks: [6, 14], solvency: '€4,000–5,500',
-  ieltsNote: { en: 'MOI is commonly accepted; Slovak-taught degrees are tuition-free with a language certificate.', bn: 'MOI সাধারণত গৃহীত; স্লোভাক মাধ্যমে ভাষার সার্টিফিকেট থাকলে টিউশন ফ্রি।' },
+  ieltsNote: { en: 'MOI is commonly accepted; Slovak-taught degrees are tuition-free with a language certificate.', bn: 'MOI সাধারণত নেওয়া হয়; স্লোভাক মাধ্যমে ভাষার সার্টিফিকেট থাকলে টিউশন ফ্রি।' },
   psw: { en: 'Job-search stay via residence permit', bn: 'রেসিডেন্স পারমিটে চাকরি খোঁজার সুযোগ' },
   bestFor: { en: 'One of the lowest total costs in the EU, with free tuition if the student learns Slovak.', bn: 'EU-তে সবচেয়ে কম মোট খরচের একটি; স্লোভাক শিখলে টিউশন ফ্রি।' },
   caution: { en: 'Limited English-taught catalogue outside medicine.', bn: 'মেডিসিন ছাড়া ইংরেজি মাধ্যমের অপশন সীমিত।' },
@@ -337,7 +351,7 @@ C('canada', 'Canada', 'কানাডা', '🇨🇦', 'na', {
   ielts: 'required', tuition: [15000, 38000], cur: 'CAD', living: [900, 1600],
   workHours: 24, visaWeeks: [8, 20], solvency: 'Verify current GIC / proof-of-funds amount', volatility: 'high',
   embassyDhaka: true,
-  ieltsNote: { en: 'Treat a recognised English test as required. Study-permit rules and streams have changed repeatedly — confirm the current policy every intake.', bn: 'স্বীকৃত ইংরেজি টেস্ট আবশ্যক ধরে নিন। স্টাডি পারমিটের নিয়ম ও স্ট্রিম বারবার বদলেছে — প্রতি ইনটেকে বর্তমান নীতি নিশ্চিত করুন।' },
+  ieltsNote: { en: 'Treat a recognised English test as required. Study-permit rules and streams have changed repeatedly — confirm the current policy every intake.', bn: 'স্বীকৃত ইংরেজি টেস্ট লাগবে ধরে নিন। স্টাডি পারমিটের নিয়ম ও স্ট্রিম বারবার বদলেছে — প্রতি ইনটেকে বর্তমান নীতি নিশ্চিত করুন।' },
   psw: { en: 'PGWP — length tied to programme and field; verify eligibility', bn: 'PGWP — সময়কাল প্রোগ্রাম ও বিষয়ের ওপর নির্ভর করে; যোগ্যতা যাচাই করে নিন' },
   bestFor: { en: 'Still the clearest study-to-residency pathway if the student picks an eligible programme.', bn: 'যোগ্য প্রোগ্রাম বাছলে পড়াশোনা থেকে রেসিডেন্সির সবচেয়ে পরিষ্কার পথ এখনো এটাই।' },
   caution: { en: 'HIGHEST-CHANGE DESTINATION. Caps, PGWP field eligibility and financial requirements have all moved recently. Re-verify before every quote.', bn: 'সবচেয়ে দ্রুত বদলায় এই গন্তব্য। ক্যাপ, PGWP-র বিষয়ভিত্তিক যোগ্যতা আর আর্থিক শর্ত — সবই সাম্প্রতিককালে বদলেছে। প্রতিবার বলার আগে যাচাই করে নিন।' },
@@ -446,7 +460,7 @@ C('russia', 'Russia', 'রাশিয়া', '🇷🇺', 'other', {
   ieltsNote: { en: 'IELTS is generally not required. Russian-taught degrees include a preparatory language year.', bn: 'সাধারণত IELTS লাগে না। রুশ মাধ্যমে পড়লে এক বছরের ভাষা প্রস্তুতি কোর্স থাকে।' },
   psw: { en: 'Limited', bn: 'সীমিত' },
   bestFor: { en: 'Long-established medical and engineering programmes at low cost.', bn: 'দীর্ঘদিনের প্রতিষ্ঠিত মেডিকেল ও ইঞ্জিনিয়ারিং প্রোগ্রাম, খরচ কম।' },
-  caution: { en: 'Banking, payments and travel are complicated by sanctions. Verify how fees can actually be paid.', bn: 'নিষেধাজ্ঞার কারণে ব্যাংকিং, পেমেন্ট আর যাতায়াত জটিল। ফি আসলে কীভাবে পরিশোধ করা যাবে, তা যাচাই করে নিন।' },
+  caution: { en: 'Banking, payments and travel are complicated by sanctions. Verify how fees can actually be paid.', bn: 'নিষেধাজ্ঞার কারণে ব্যাংকিং, পেমেন্ট আর যাতায়াত জটিল। ফি আসলে কীভাবে দেওয়া যাবে, তা যাচাই করে নিন।' },
   intakes: [IN('September', 'সেপ্টেম্বর', 2, 7, 9)]
 })
 ];
@@ -505,11 +519,11 @@ const U = (name, country, city, type, subjects, levels, o) => Object.assign({
 }, o || {});
 
 window.UNIVERSITIES = [
-  U('Babeș-Bolyai University', 'romania', 'Cluj-Napoca', 'public', ['business', 'law', 'cs', 'social'], ['bachelor', 'master', 'phd']),
-  U('University of Bucharest', 'romania', 'Bucharest', 'public', ['law', 'social', 'science', 'arts'], ['bachelor', 'master', 'phd']),
-  U('Politehnica University of Bucharest', 'romania', 'Bucharest', 'public', ['engineering', 'cs'], ['bachelor', 'master', 'phd']),
-  U('West University of Timișoara', 'romania', 'Timișoara', 'public', ['business', 'cs', 'social'], ['bachelor', 'master']),
-  U('Transilvania University of Brașov', 'romania', 'Brașov', 'public', ['engineering', 'business'], ['bachelor', 'master']),
+  U('Babeș-Bolyai University', 'romania', 'Cluj-Napoca', 'public', ['business', 'law', 'cs', 'social'], ['bachelor', 'master', 'phd'], {tuition:[2200,3500]}),
+  U('University of Bucharest', 'romania', 'Bucharest', 'public', ['law', 'social', 'science', 'arts'], ['bachelor', 'master', 'phd'], {tuition:[2200,3200]}),
+  U('Politehnica University of Bucharest', 'romania', 'Bucharest', 'public', ['engineering', 'cs'], ['bachelor', 'master', 'phd'], {tuition:[2700,3500]}),
+  U('West University of Timișoara', 'romania', 'Timișoara', 'public', ['business', 'cs', 'social'], ['bachelor', 'master'], {tuition:[2200,3000]}),
+  U('Transilvania University of Brașov', 'romania', 'Brașov', 'public', ['engineering', 'business'], ['bachelor', 'master'], {tuition:[2200,8500]}),
 
   U('University of Turin', 'italy', 'Turin', 'public', ['law', 'business', 'social', 'science'], ['bachelor', 'master', 'phd'], { moi: true, note: 'Global Law & Transnational Legal Studies is taught in English.' }),
   U('University of Bologna', 'italy', 'Bologna', 'public', ['law', 'business', 'engineering', 'arts'], ['bachelor', 'master', 'phd'], { moi: true }),

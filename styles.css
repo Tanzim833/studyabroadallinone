@@ -336,3 +336,20 @@ ol.steps li::before{content:counter(s);position:absolute;left:0;top:-1px;width:2
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .mt0{margin-top:0}
 .center{text-align:center}
+
+/* ---- single-country spotlight (home, while fewer than 3 countries are live) */
+.solo-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));max-width:760px}
+.solo{display:flex;gap:18px;align-items:flex-start;padding:26px 24px;background:var(--card);
+  border:1px solid var(--line);border-radius:var(--r);text-decoration:none;color:inherit;
+  transition:border-color .18s ease,transform .18s ease}
+.solo:hover{border-color:var(--forest);transform:translateY(-2px)}
+.solo-flag{font-size:2.6rem;line-height:1;flex:0 0 auto}
+.solo-body{display:flex;flex-direction:column;gap:10px;min-width:0}
+.solo-body>strong{font-family:var(--serif);font-size:1.5rem;font-weight:500;line-height:1.2}
+.solo-dl{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.92rem;color:var(--slate)}
+.solo-cta{font-weight:600;color:var(--forest);font-size:.95rem;margin-top:2px}
+@media (max-width:560px){
+  .solo{padding:20px 18px;gap:14px}
+  .solo-flag{font-size:2.1rem}
+  .solo-body>strong{font-size:1.3rem}
+}
