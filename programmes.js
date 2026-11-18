@@ -87,20 +87,24 @@ unis.forEach(function(u,i){
   [['Bachelor’s',u.ba],['Master’s',u.ma]].forEach(function(L,j){L[1].forEach(function(t,k){
     id++;var pi=i*3+j*5+k;
     progs.push({id:id,uid:u.id,title:t,university:u.name,city:u.city,level:/MBA|^MA /.test(t)?'Master’s':/6 years|5 years/.test(t)?'Long-cycle degree':(t.indexOf('Preparatory')>=0?'Preparatory year':L[0]),
-      intake:'Sep/Oct',fee:u.fee,type:u.type,tone:TONES[id%TONES.length],
+      intake:'October',fee:u.fee,type:u.type,tone:TONES[id%TONES.length],
       thumb:u.thumbPhoto||img(pi,'w=96&h=240'),image:u.photo||img(pi,'w=720&h=450')});
   });});
 });
 var cities=[];unis.forEach(function(u){var c=cities.filter(function(x){return x.name===u.city;})[0];if(c)c.count++;else cities.push({name:u.city,count:1});});
 window.UNIVERSITIES=unis;window.PROGRAMMES=progs;window.CITIES=cities;
 window.ROMANIA_FACTS=[
- ['Intake','One main intake a year: Autumn (September / October). Applications usually run February/March to July/August.','Sep / Oct'],
- ['Tuition','€1,800 – €4,000 a year for Preparatory Year, Bachelor’s, Master’s and PhD. Medicine, Dentistry and Pharmacy: €5,000 – €8,500.','€1.8k – 4k'],
- ['Total cost','৳5,00,000 – ৳7,00,000 from admission to flight, including first-year tuition, attestation, visa, travel and insurance. Bank solvency is shown separately.','৳5 – 7 lakh'],
- ['Embassy','No Romanian embassy in Dhaka. Visas are handled by the Embassy of Romania in New Delhi (eviza.mae.ro), with an in-person interview.','New Delhi'],
- ['With or without IELTS','Direct English programmes with IELTS 5.5 – 6.5 or TOEFL, or a 1-year Romanian Preparatory Year without IELTS.','IELTS 5.5+'],
- ['Part-time work','Students can work part-time (4 – 6 hours a day) without a separate permit, typically earning €200 – €300 a month.','€200 – 300'],
- ['Spouse','Bachelor’s, Master’s and PhD students can bring a spouse through Family Reunification after getting a residence permit in Romania.','Allowed'],
- ['Letter of Acceptance','Issued by the Romanian Ministry of Education through your university. Takes 4 – 8 weeks.','4 – 8 weeks']
+ ['Intake','Romania has one start of study a year, in October. Each university runs its own application sessions from about March to August, and all of them lead to that same October start. Always read your own university’s calendar.','October','Sep / Oct'],
+ ['Who can apply','Bachelor’s needs SSC and HSC from a General Education Board, or O-Level and A-Level. A BTEB polytechnic diploma is not accepted in place of HSC, and Madrasah certificates (Dakhil, Alim, Fazil) are not treated as equivalent. No Letter of Acceptance is issued in either case.','SSC + HSC'],
+ ['English test','IELTS only. MOI letters, TOEFL, PTE and Duolingo are not accepted. Without IELTS the one route in is the 1-year Romanian Preparatory Year, after which you study in Romanian.','IELTS only'],
+ ['Tuition','About €2,000 – €3,500 a year at most public universities. Medicine, Dentistry and Pharmacy cost much more. Confirm the exact figure on your university’s own website before you pay.','€2k – 3.5k'],
+ ['Total cost','৳5,00,000 – ৳7,00,000 from starting the application to landing, including first-year tuition, visa, flight, documents and processing. Living costs after you arrive are separate.','৳5 – 7 lakh'],
+ ['Embassy','There is no Romanian embassy in Dhaka. The visa file goes to a mission abroad: New Delhi, Kuala Lumpur, Bangkok or Hanoi. An embassy in Dhaka has been talked about for around 2027, but nothing is confirmed.','New Delhi'],
+ ['Letter of Acceptance','Issued by the Romanian Ministry of Education through your university. It takes 4 – 8 weeks, and a full year’s tuition is usually paid before the visa application. Start by May or June for an October start.','4 – 8 weeks'],
+ ['Part-time work','The residence permit allows 20 hours a week. Delivery, restaurant and shop work is what students actually find, mostly in the big university cities, at roughly €3 – €5 an hour. Living costs run about €200 – €300 a month.','20 hrs / week'],
+ ['Spouse','A spouse can join you at Bachelor’s, Master’s and PhD level, and the spouse can work. Ask about “can come” and “can work” as two separate questions.','Allowed'],
+ ['After graduation','A 9-month stay to look for a job after you finish your degree.','9 months'],
+ ['PR and passport','Study years count at only half towards residence. From a student permit, permanent residence takes roughly 10 years and a passport roughly 20. Nobody can guarantee either.','~10 yrs PR'],
+ ['Funds to show','A bank balance of about €4,000 – €6,000 is expected for the visa. This is an estimate, so confirm the current amount with the mission before you move any money.','€4k – 6k']
 ];
 })();
