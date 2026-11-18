@@ -1,0 +1,16 @@
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:var(--font-sans);font-size:var(--typography-body-md-size);line-height:var(--typography-body-md-line);color:var(--colors-body);background:var(--colors-canvas);-webkit-font-smoothing:antialiased;font-optical-sizing:auto}
+a{color:var(--colors-link);text-decoration:none}
+a:active{color:var(--colors-link-active)}
+.sa-display-xl{font-size:48px;font-weight:500;line-height:1.1;color:var(--colors-ink)}
+.sa-display-lg{font-size:40px;font-weight:400;line-height:1.2;color:var(--colors-ink)}
+.sa-display-md{font-size:32px;font-weight:400;line-height:1.2;color:var(--colors-ink)}
+.sa-title-lg{font-size:24px;font-weight:400;line-height:1.35;letter-spacing:.12px}
+.sa-title-md{font-size:20px;font-weight:400;line-height:1.5}
+.sa-title-sm{font-size:18px;font-weight:500;line-height:1.4}
+.sa-label-md{font-size:16px;font-weight:500;line-height:1.4}
+.sa-body-md{font-size:14px;font-weight:400;line-height:1.25}
+.sa-caption{font-size:14px;font-weight:500;line-height:1.35;letter-spacing:.16px}
+.sa-container{max-width:var(--container-max);margin:0 auto;padding:0 var(--container-pad)}
+@media (max-width:767px){.sa-container{padding:0 var(--container-pad-mobile)}}

@@ -1,0 +1,9 @@
+:root{
+--spacing-xxs:4px;--spacing-xs:8px;--spacing-sm:12px;--spacing-md:16px;--spacing-lg:24px;--spacing-xl:32px;--spacing-xxl:48px;--spacing-section:96px;
+--container-max:1280px;--container-pad:48px;--container-pad-mobile:24px;
+--nav-height:64px;--input-height:44px;--icon-button-size:40px;
+--rounded-xs:2px;--rounded-sm:6px;--rounded-md:10px;--rounded-lg:12px;--rounded-pill:9999px;--rounded-full:50%;
+--elevation-button-rest:0 1px 2px rgba(24,29,38,.12),0 0 0 1px rgba(27,97,201,.06);
+--elevation-focus-ring:0 0 0 2px rgba(69,143,255,.55);
+--breakpoint-mobile:768px;/* @kind other */--breakpoint-tablet:1024px;/* @kind other */--breakpoint-wide:1440px;/* @kind other */
+}

@@ -1,0 +1,17 @@
+:root{
+--typography-display-xl-size:48px;/* @kind font */--typography-display-xl-weight:500;/* @kind other */--typography-display-xl-line:1.1;/* @kind other */--typography-display-xl-tracking:0;/* @kind other */
+--typography-display-lg-size:40px;/* @kind font */--typography-display-lg-weight:400;/* @kind other */--typography-display-lg-line:1.2;/* @kind other */--typography-display-lg-tracking:0;/* @kind other */
+--typography-display-md-size:32px;/* @kind font */--typography-display-md-weight:400;/* @kind other */--typography-display-md-line:1.2;/* @kind other */--typography-display-md-tracking:0;/* @kind other */
+--typography-title-lg-size:24px;/* @kind font */--typography-title-lg-weight:400;/* @kind other */--typography-title-lg-line:1.35;/* @kind other */--typography-title-lg-tracking:0.12px;/* @kind other */
+--typography-title-md-size:20px;/* @kind font */--typography-title-md-weight:400;/* @kind other */--typography-title-md-line:1.5;/* @kind other */--typography-title-md-tracking:0;/* @kind other */
+--typography-title-sm-size:18px;/* @kind font */--typography-title-sm-weight:500;/* @kind other */--typography-title-sm-line:1.4;/* @kind other */--typography-title-sm-tracking:0;/* @kind other */
+--typography-label-md-size:16px;/* @kind font */--typography-label-md-weight:500;/* @kind other */--typography-label-md-line:1.4;/* @kind other */--typography-label-md-tracking:0;/* @kind other */
+--typography-button-size:16px;/* @kind font */--typography-button-weight:500;/* @kind other */--typography-button-line:1.4;/* @kind other */--typography-button-tracking:0;/* @kind other */
+--typography-body-md-size:14px;/* @kind font */--typography-body-md-weight:400;/* @kind other */--typography-body-md-line:1.25;/* @kind other */--typography-body-md-tracking:0;/* @kind other */
+--typography-caption-size:14px;/* @kind font */--typography-caption-weight:500;/* @kind other */--typography-caption-line:1.35;/* @kind other */--typography-caption-tracking:0.16px;/* @kind other */
+--typography-legal-size:13.12px;/* @kind font */--typography-legal-weight:600;/* @kind other */--typography-legal-line:1.2;/* @kind other */--typography-legal-tracking:0;/* @kind other */
+--typography-pricing-display-size:44.8px;/* @kind font */--typography-pricing-display-weight:475;/* @kind other */--typography-pricing-display-line:1.1;/* @kind other */
+--typography-pricing-section-size:28px;/* @kind font */--typography-pricing-section-weight:475;/* @kind other */--typography-pricing-section-line:1.2;/* @kind other */
+--typography-pricing-card-title-size:20px;/* @kind font */--typography-pricing-card-title-weight:475;/* @kind other */--typography-pricing-card-title-line:1.3;/* @kind other */
+--typography-pricing-strong-weight:575;/* @kind other */
+}
