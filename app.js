@@ -39,6 +39,13 @@ var OWNER = {
 
 /* ---------- state ---------- */
 var lang = localStorage.getItem('sp_lang') || 'bn';
+/* bridge for consult.js (the booking form) */
+window.SP = {
+  getLang: function(){ return lang; },
+  sheetUrl: function(){ return SHEET_URL; },
+  whatsapp: function(){ return WHATSAPP; },
+  countries: function(){ return window.COUNTRIES.map(function(c){ return { slug:c.slug, name:nm(c), flag:c.flag }; }); }
+};
 var MONTHS = {
   en: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
   bn: ['জানু','ফেব','মার্চ','এপ্রি','মে','জুন','জুল','আগ','সেপ','অক্টো','নভে','ডিসে']
@@ -59,6 +66,24 @@ function L(o){ return o ? (o[lang] || o.en) : ''; }
 function regionName(id){ var r = window.REGIONS.filter(function(x){return x.id===id;})[0]; return r ? (r[lang]||r.en) : id; }
 function subjName(id){ var s = window.SUBJECTS.filter(function(x){return x.id===id;})[0]; return s ? (s[lang]||s.en) : id; }
 function mon(n){ return MONTHS[lang][(n-1+12)%12]; }
+/* intake: the month in BIG type, the secondary label (e.g. Sep / Oct) small */
+function intakeBig(i){
+  return '<span class="intake-big">'+esc(L(i.name))+'</span>'+
+    (i.small ? ' <span class="intake-small">'+esc(L(i.small))+'</span>' : '');
+}
+function intakeCards(c){
+  return '<div class="intake-cards">'+c.intakes.map(function(i){
+    return '<div class="intake-card">'+
+      '<div class="intake-card-hd"><span class="intake-kicker">'+esc(t('intakeWord'))+'</span>'+
+        '<span class="intake-big">'+esc(L(i.name))+'</span>'+
+        (i.small ? '<span class="intake-small">'+esc(L(i.small))+'</span>' : '')+'</div>'+
+      '<ol class="intake-steps">'+
+        '<li><b>'+esc(mon(i.applyFrom))+'</b><span>'+esc(t('calApply'))+'</span></li>'+
+        '<li><b>'+esc(mon(i.deadline))+'</b><span>'+esc(t('calDl'))+'</span></li>'+
+        '<li><b>'+esc(mon(i.classStarts))+'</b><span>'+esc(t('calClass'))+'</span></li>'+
+      '</ol></div>'; }).join('')+'</div>'+
+    (c.intakeNote ? '<div class="note"><p style="margin:0">'+esc(L(c.intakeNote))+'</p></div>' : '');
+}
 
 function fx(c){ return window.FX[c.cur] || 1; }
 function costRange(c){
@@ -111,6 +136,7 @@ function soloSection(){
     return '<a class="solo" href="#/country/'+c.slug+'">'+
       '<span class="solo-flag" aria-hidden="true">'+c.flag+'</span>'+
       '<span class="solo-body"><strong>'+esc(nm(c))+'</strong>'+
+      '<span class="solo-intake"><span class="intake-kicker">'+esc(t('intakeWord'))+'</span> '+c.intakes.map(intakeBig).join(' · ')+'</span>'+
       '<span class="solo-cta">'+esc(t('soloCta'))+' →</span></span></a>'; }).join('');
   return '<section class="sect" style="padding-bottom:0"><div class="wrap">'+
     '<div class="sect-head"><h2 class="serif">'+esc(t('soloTitle'))+'</h2><p>'+esc(t('soloSub'))+'</p></div>'+
@@ -185,6 +211,7 @@ function header(route){
     '<a class="brand" href="#/"><b>'+esc(t('siteName'))+'</b><span>'+esc(t('siteTag'))+'</span></a>'+
     '<button class="burger" id="burger" aria-expanded="false">'+esc(t('menu'))+'</button>'+
     '<nav class="nav" id="nav">'+links+'</nav>'+
+    '<button type="button" class="cta-book" data-consult>'+esc(t('bookCta'))+'</button>'+
     '<div class="lang" role="group">'+
       '<button data-lang="bn" aria-pressed="'+(lang==='bn')+'">বাংলা</button>'+
       '<button data-lang="en" aria-pressed="'+(lang==='en')+'">EN</button>'+
@@ -233,6 +260,7 @@ function pageHome(){
 
   return '<section class="hero"><div class="hero-grid">'+
     '<div><h1>'+esc(t('heroH1'))+'</h1><p>'+esc(t('heroSub'))+'</p>'+
+      '<p class="hero-cta"><button type="button" class="btn btn-book" data-consult>'+esc(t('bookCta'))+' <span aria-hidden="true">→</span></button></p>'+
       '<ul class="hero-trust"><li>'+esc(t('heroT1'))+'</li><li>'+esc(t('heroT2'))+'</li><li>'+esc(t('heroT3'))+'</li></ul></div>'+
     '<div>'+quickCheckCard()+'</div>'+
     '</div></section>'+
@@ -640,7 +668,7 @@ function renderCountryTable(){
       '<td class="nowrap num">'+cur(c.living[0],c)+' – '+cur(c.living[1],c)+'</td>'+
       '<td>'+(m?spousePill(m.spouse):'—')+'</td>'+
       '<td>'+(m?studyPill(m.prStudy):'—')+'</td>'+
-      '<td class="nowrap">'+c.intakes.map(function(i){return esc(L(i.name));}).join(', ')+'</td>'+
+      '<td class="nowrap">'+c.intakes.map(intakeBig).join(', ')+'</td>'+
     '</tr>';
   });
   return html + '</tbody></table></div>';
@@ -793,6 +821,7 @@ function pageCountry(slug){
     '<dt>'+esc(t('fRegion'))+'</dt><dd>'+esc(regionName(c.region))+'</dd>'+
     '<dt>'+esc(t('fTuition'))+'</dt><dd>'+cur(c.tuition[0],c)+' – '+cur(c.tuition[1],c)+'</dd>'+
     '<dt>'+esc(t('fLiving'))+'</dt><dd>'+cur(c.living[0],c)+' – '+cur(c.living[1],c)+esc(t('perMonth'))+'</dd>'+
+    '<dt>'+esc(t('fIntakes'))+'</dt><dd>'+c.intakes.map(intakeBig).join('<br>')+'</dd>'+
     '<dt>'+esc(t('fWork'))+'</dt><dd>'+(c.workHours?c.workHours+' '+esc(t('hrsWeek')):esc(t('hrsNone')))+'</dd>'+
     '<dt>'+esc(t('fSpouse'))+'</dt><dd>'+(m.spouse?esc(spouseLong(m.spouse)):'—')+'</dd>'+
     '<dt>'+esc(t('fSpouseWork'))+'</dt><dd>'+(m.spouseWork?esc(workLong(m.spouseWork)):'—')+'</dd>'+
@@ -856,10 +885,7 @@ function pageCountry(slug){
     visaViaBox+
 
     '<h2 class="serif">'+esc(t('secIntakes'))+'</h2>'+
-    '<ul>'+c.intakes.map(function(i){
-      return '<li><b>'+esc(L(i.name))+'</b> — '+esc(t('cFilterSearch')==='Search'?'apply from':'আবেদন শুরু')+' '+
-        esc(mon(i.applyFrom))+', '+esc(t('calDl').toLowerCase())+' '+esc(mon(i.deadline))+', '+
-        esc(t('calClass').toLowerCase())+' '+esc(mon(i.classStarts))+'</li>'; }).join('')+'</ul>'+
+    intakeCards(c)+
     (shown('#/calendar') ? '<p><a href="#/calendar">'+esc(t('navCalendar'))+' →</a></p>' : '')+
 
     '<h2 class="serif">'+esc(t('secCost'))+'</h2>'+
@@ -980,7 +1006,7 @@ function pageNoIelts(){
   var moiUnis= window.UNIVERSITIES.filter(function(u){return u.moi;});
 
   var chips = function(arr){ return '<p>'+arr.map(function(c){
-    return '<a href="#/country/'+c.slug+'" style="display:inline-block;margin:0 7px 7px 0;padding:5px 11px;background:#fff;border:1px solid var(--line);border-radius:999px;font-size:.9rem">'+
+    return '<a href="#/country/'+c.slug+'" style="display:inline-block;margin:0 7px 7px 0;padding:5px 11px;background:var(--card);border:1px solid var(--line);border-radius:999px;font-size:.9rem">'+
       c.flag+' '+esc(nm(c))+'</a>'; }).join('')+'</p>'; };
 
   return '<section class="sect"><div class="wrap">'+
@@ -1017,7 +1043,7 @@ function pageCalendar(){
       '</select></div></div>'+
     '<div id="calBox"></div>'+
     '<div class="cal-legend">'+
-      '<span><i style="background:#DDE9E0;border:1px solid #BFD6C6"></i>'+esc(t('calApply'))+'</span>'+
+      '<span><i style="background:#1d6b5a;border:1px solid #34d399"></i>'+esc(t('calApply'))+'</span>'+
       '<span><i style="background:var(--stamp)"></i>'+esc(t('calDl'))+'</span>'+
       '<span><i style="background:var(--forest)"></i>'+esc(t('calClass'))+'</span>'+
     '</div><div style="margin-top:18px">'+updBox()+'</div></div></section>';
@@ -1093,7 +1119,7 @@ function renderCost(){
     html += '<tr><td style="font-weight:600">'+esc(t(r[0]))+'</td>'+
       '<td style="text-align:right"><input type="number" class="ccIn" data-k="'+r[0]+'" value="'+r[1]+'" style="max-width:170px;text-align:right"></td></tr>';
   });
-  html += '<tr style="background:#F7F9F5"><td style="font-weight:700;font-size:1.05rem">'+esc(t('costTotal'))+'</td>'+
+  html += '<tr class="tot-row"><td style="font-weight:700;font-size:1.05rem">'+esc(t('costTotal'))+'</td>'+
     '<td style="text-align:right;font-weight:700;font-size:1.12rem" id="ccTotal"></td></tr>'+
     '<tr><td style="font-weight:600">'+esc(t('costSolvency'))+'</td><td style="text-align:right">'+esc(c.solvency)+'</td></tr>'+
     '</tbody></table></div>';

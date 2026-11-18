@@ -59,8 +59,8 @@ C('romania', 'Romania', 'রোমানিয়া', '🇷🇴', 'eu', {
 
   /* checked against real casework, not desk research */
   confirmed: {
-    en: ['One intake a year, not two', 'IELTS only — MOI, TOEFL, PTE, Duolingo are not accepted', 'Who is eligible to apply', 'Work hours'],
-    bn: ['বছরে একটি ইনটেক, দুটি নয়', 'শুধু IELTS — MOI, TOEFL, PTE, Duolingo নেওয়া হয় না', 'কারা আবেদনের যোগ্য', 'কাজের ঘণ্টা']
+    en: ['One start a year: October', 'IELTS only — MOI, TOEFL, PTE, Duolingo are not accepted', 'Who is eligible to apply', 'Work hours'],
+    bn: ['বছরে একবারই শুরু: অক্টোবর', 'শুধু IELTS — MOI, TOEFL, PTE, Duolingo নেওয়া হয় না', 'কারা আবেদনের যোগ্য', 'কাজের ঘণ্টা']
   },
 
   /* overrides the generic "flexible" one-liner, which mentions MOI and would
@@ -78,8 +78,16 @@ C('romania', 'Romania', 'রোমানিয়া', '🇷🇴', 'eu', {
   bestFor: { en: 'Low tuition inside the EU with a realistic document load, and Romania is now fully inside Schengen, so the residence card travels. The usual first choice when budget is the binding constraint.', bn: 'EU-র ভেতরে কম টিউশন, কাগজপত্রের চাপও বাস্তবসম্মত। রোমানিয়া এখন পুরোপুরি শেনজেনভুক্ত, তাই রেসিডেন্স কার্ড দিয়ে ভ্রমণ করা যায়। বাজেট মূল সমস্যা হলে সাধারণত প্রথম পছন্দ।' },
   caution: { en: 'There is no Romanian embassy in Dhaka, so the visa file goes to a mission abroad and the whole process is slow. The Ministry\'s Letter of Acceptance alone takes four to eight weeks, and a full year\'s tuition must usually be paid before the visa is applied for. Start by May or June for an October start.', bn: 'ঢাকায় রোমানিয়ার দূতাবাস নেই, তাই ভিসা ফাইল বিদেশের মিশনে যায় এবং পুরো প্রক্রিয়া ধীর। শুধু মন্ত্রণালয়ের Letter of Acceptance পেতেই চার থেকে আট সপ্তাহ লাগে, আর ভিসার আবেদনের আগে সাধারণত পুরো এক বছরের টিউশন দিয়ে দিতে হয়। অক্টোবরে শুরু করতে চাইলে মে বা জুনের মধ্যেই শুরু করুন।' },
 
-  /* ONE intake only. Romania has no spring entry for non-EU degree students. */
-  intakes: [IN('September / October', 'সেপ্টেম্বর / অক্টোবর', 3, 8, 10)]
+  /* ONE start of study a year: October. `small` is the secondary label shown
+     in small type under the big month. Application sessions run through
+     spring and summer (each university sets its own dates) and every one of
+     them feeds this single October start. */
+  intakes: [{ name: { en: 'October', bn: 'অক্টোবর' }, small: { en: 'Sep / Oct', bn: 'সেপ্টেম্বর / অক্টোবর' },
+              applyFrom: 3, deadline: 8, classStarts: 10 }],
+  intakeNote: {
+    en: 'Romania has one start of study a year, in October. Each university runs its own application sessions in spring and summer, and all of them lead to that same October start. Dates differ by university: for example the University of Bucharest\'s second 2026–27 session for non-EU candidates took files from 9 March to 7 April 2026 (EUR 100 processing fee), and the FILS faculty of Politehnica Bucharest took non-EU files from 3 March to 31 July 2025. Always read the calendar on your own university\'s website.',
+    bn: 'রোমানিয়ায় বছরে একবারই পড়া শুরু হয়, অক্টোবরে। প্রতিটি বিশ্ববিদ্যালয় বসন্ত ও গ্রীষ্মে নিজেদের মতো আবেদনের সেশন চালায়, আর সবগুলোই ওই একই অক্টোবরের শুরুতে গিয়ে মেলে। তারিখ বিশ্ববিদ্যালয়ভেদে আলাদা: যেমন ইউনিভার্সিটি অব বুখারেস্টের ২০২৬–২৭ সালের দ্বিতীয় সেশনে নন-EU প্রার্থীদের ফাইল নেওয়া হয়েছিল ৯ মার্চ থেকে ৭ এপ্রিল ২০২৬ পর্যন্ত (প্রসেসিং ফি ১০০ ইউরো), আর পলিটেকনিকা বুখারেস্টের FILS অনুষদ নন-EU ফাইল নিয়েছিল ৩ মার্চ থেকে ৩১ জুলাই ২০২৫ পর্যন্ত। নিজের বিশ্ববিদ্যালয়ের ওয়েবসাইটের ক্যালেন্ডারটাই সবসময় দেখে নিন।'
+  }
 }),
 
 C('italy', 'Italy', 'ইতালি', '🇮🇹', 'eu', {

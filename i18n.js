@@ -4,6 +4,7 @@
 window.T = {
 en:{
   siteName:'StudyPath', siteTag:'Bangladesh',
+  bookCta:'Book free consultation', intakeWord:'Intake',
   navHome:'Home', navCountries:'Countries', navEligibility:'Can I go?',
   navCourses:'Find a course', navNoIelts:'Without IELTS', navCalendar:'Intake calendar',
   navCost:'Cost calculator', navUniversities:'Universities', navContact:'Contact',
@@ -245,6 +246,7 @@ en:{
 },
 bn:{
   siteName:'StudyPath', siteTag:'বাংলাদেশ',
+  bookCta:'ফ্রি কনসাল্টেশন বুক করুন', intakeWord:'ইনটেক',
   navHome:'হোম', navCountries:'দেশগুলো', navEligibility:'কোথায় যেতে পারবেন?',
   navCourses:'কোর্স খুঁজুন', navNoIelts:'IELTS ছাড়া', navCalendar:'ইনটেক ক্যালেন্ডার',
   navCost:'খরচের হিসাব', navUniversities:'বিশ্ববিদ্যালয়', navContact:'যোগাযোগ',
